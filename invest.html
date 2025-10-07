@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invest | Professional Wealth Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --teal-primary: #07a6a6;
+            --teal-dark: #006666;
+            --teal-light: #07acac;
+            --text-light: #f8f9fa;
+            --text-dark: #212529;
+            --card-bg: #ffffff;
+            --section-bg: #f8fafc;
+
+            --turquoise-primary: #40e0d0;
+            --turquoise-light: #e0f780;
+            --turquoise-bright: #deff58;
+            --turquoise-dark: #20b2aa;
+            --text-dark: #2c3e50;
+            --section-bg-dark: #0a2540;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--section-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 5px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled .navbar {
+            padding: 10px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--teal-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .logo i {
+            margin-right: 8px;
+            font-size: 26px;
+            transition: transform 0.5s ease;
+        }
+
+        .logo:hover i {
+            transform: rotate(15deg);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--teal-primary);
+        }
+
+        .nav-links a.active {
+            color: var(--teal-primary);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--teal-primary);
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+
+        .btn:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
+        }
+
+        .btn-outline {
+            border: 1px solid var(--teal-primary);
+            color: var(--teal-primary);
+            background: transparent;
+            margin-right: 15px;
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(7, 166, 166, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(7, 166, 166, 0.2);
+        }
+
+        .btn-primary {
+            background-color: var(--teal-primary);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--teal-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(7, 166, 166, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--section-bg-dark) 0%, #1a3a5f 100%);
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(64, 224, 208, 0.1)"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn-light {
+            background-color: white;
+            color: var(--section-bg-dark);
+        }
+
+        .btn-light:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+
+        .section-header.visible h2 {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: #6c757d;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease 0.2s;
+        }
+
+        .section-header.visible p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .feature-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--teal-primary), var(--turquoise-primary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            transition: transform 0.5s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: rotate(15deg) scale(1.1);
+        }
+
+        .feature-icon i {
+            font-size: 24px;
+            color: white;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .feature-card p {
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+
+        .feature-link {
+            color: var(--teal-primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-link i {
+            margin-left: 5px;
+            transition: transform 0.3s;
+        }
+
+        .feature-link:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Investment Options */
+        .investment-options {
+            padding: 100px 0;
+            background-color: var(--section-bg);
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .option-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .option-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .option-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .option-header {
+            padding: 20px;
+            background: linear-gradient(135deg, var(--teal-primary), var(--turquoise-primary));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255,255,255,0.3) 0%,
+                rgba(255,255,255,0) 80%
+            );
+            transform: rotate(30deg);
+            transition: all 0.5s ease;
+        }
+
+        .option-card:hover .option-header::before {
+            transform: rotate(30deg) translate(10px, 10px);
+        }
+
+        .option-header h3 {
+            font-size: 20px;
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .option-body {
+            padding: 20px;
+        }
+
+        .option-body ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .option-body li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .option-body li:hover {
+            background-color: rgba(7, 166, 166, 0.05);
+            padding-left: 10px;
+        }
+
+        .option-body li:last-child {
+            border-bottom: none;
+        }
+
+        .option-body li i {
+            color: var(--teal-primary);
+            margin-right: 10px;
+        }
+
+        .option-footer {
+            padding: 0 20px 20px;
+        }
+
+        /* Performance Section */
+        .performance {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .performance-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .performance-chart {
+            flex: 1;
+            background-color: var(--section-bg);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.8s ease;
+        }
+
+        .performance-chart.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .chart-container {
+            height: 300px;
+            position: relative;
+        }
+
+        .performance-stats {
+            flex: 1;
+        }
+
+        .stat {
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.8s ease;
+        }
+
+        .stat.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .stat h3 {
+            font-size: 36px;
+            color: var(--teal-primary);
+            margin-bottom: 10px;
+        }
+
+        .stat p {
+            color: #6c757d;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--section-bg-dark) 0%, #1a3a5f 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,70 C20,40 40,60 60,30 C80,0 100,20 100,50 L100,100 L0,100 Z" fill="rgba(64, 224, 208, 0.1)"/></svg>');
+            background-size: cover;
+            animation: wave 10s linear infinite;
+        }
+
+        @keyframes wave {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(-10px); }
+            100% { transform: translateX(0); }
+        }
+
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta .btn {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--section-bg-dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--turquoise-primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #a0aec0;
+            text-decoration: none;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--turquoise-primary);
+            transition: width 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #2d3748;
+            color: #a0aec0;
+            font-size: 14px;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transform: scale(0.7);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h3 {
+            color: var(--teal-primary);
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #6c757d;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--teal-primary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+
+            .nav-links {
+                margin: 20px 0;
+            }
+
+            .nav-links li {
+                margin: 0 15px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .performance-content {
+                flex-direction: column;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <i class="fas fa-chart-line"></i>
+                    InvestPro
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#" class="active">Invest</a></li>
+                    <li><a href="#">Markets</a></li>
+                    <li><a href="#">Learn</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <a href="#" class="btn btn-outline">Log In</a>
+                    <a href="#" class="btn btn-primary" id="getStartedBtn">Get Started</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Professional Investing Made Simple</h1>
+                <p>Access a wide range of investment opportunities with our intuitive platform. Build your portfolio with stocks, ETFs, and more, all with zero commission fees.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-light" id="openAccountBtn">Open an Account</a>
+                    <a href="#" class="btn btn-outline" style="color: white; border-color: white;">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header" id="featuresHeader">
+                <h2>Why Choose Our Platform</h2>
+                <p>We provide professional-grade investment tools with an intuitive interface designed for both beginners and experienced investors.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card" id="feature1">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3>Diversified Portfolios</h3>
+                    <p>Build well-balanced portfolios with our curated selection of stocks, ETFs, and funds across various sectors and markets.</p>
+                    <a href="#" class="feature-link">Explore options <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="feature-card" id="feature2">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Zero Commission</h3>
+                    <p>Trade stocks and ETFs without paying any commission fees. Keep more of your investment returns.</p>
+                    <a href="#" class="feature-link">See pricing <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="feature-card" id="feature3">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure & Regulated</h3>
+                    <p>Your investments are protected with bank-level security and we're fully regulated by financial authorities.</p>
+                    <a href="#" class="feature-link">Learn about security <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment Options -->
+    <section class="investment-options">
+        <div class="container">
+            <div class="section-header" id="optionsHeader">
+                <h2>Investment Options</h2>
+                <p>Choose from a variety of investment products to match your financial goals and risk tolerance.</p>
+            </div>
+            <div class="options-grid">
+                <div class="option-card" id="option1">
+                    <div class="option-header">
+                        <h3>Stocks</h3>
+                        <p>Fractional & Full Shares</p>
+                    </div>
+                    <div class="option-body">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Trade popular stocks</li>
+                            <li><i class="fas fa-check"></i> Fractional shares available</li>
+                            <li><i class="fas fa-check"></i> Real-time market data</li>
+                            <li><i class="fas fa-check"></i> Extended hours trading</li>
+                        </ul>
+                    </div>
+                    <div class="option-footer">
+                        <a href="#" class="btn btn-primary" style="width: 100%; text-align: center;">Explore Stocks</a>
+                    </div>
+                </div>
+                <div class="option-card" id="option2">
+                    <div class="option-header">
+                        <h3>ETFs</h3>
+                        <p>Diversified Funds</p>
+                    </div>
+                    <div class="option-body">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Broad market exposure</li>
+                            <li><i class="fas fa-check"></i> Low expense ratios</li>
+                            <li><i class="fas fa-check"></i> Sector-specific funds</li>
+                            <li><i class="fas fa-check"></i> International options</li>
+                        </ul>
+                    </div>
+                    <div class="option-footer">
+                        <a href="#" class="btn btn-primary" style="width: 100%; text-align: center;">Explore ETFs</a>
+                    </div>
+                </div>
+                <div class="option-card" id="option3">
+                    <div class="option-header">
+                        <h3>Options</h3>
+                        <p>Advanced Strategies</p>
+                    </div>
+                    <div class="option-body">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Calls and puts</li>
+                            <li><i class="fas fa-check"></i> Advanced order types</li>
+                            <li><i class="fas fa-check"></i> Risk management tools</li>
+                            <li><i class="fas fa-check"></i> Educational resources</li>
+                        </ul>
+                    </div>
+                    <div class="option-footer">
+                        <a href="#" class="btn btn-primary" style="width: 100%; text-align: center;">Explore Options</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance Section -->
+    <section class="performance">
+        <div class="container">
+            <div class="section-header" id="performanceHeader">
+                <h2>Market Performance</h2>
+                <p>Track your investments with our intuitive performance dashboard and analytics tools.</p>
+            </div>
+            <div class="performance-content">
+                <div class="performance-chart" id="performanceChart">
+                    <div class="chart-container">
+                        <canvas id="investmentChart"></canvas>
+                    </div>
+                </div>
+                <div class="performance-stats">
+                    <div class="stat" id="stat1">
+                        <h3>+12.4%</h3>
+                        <p>Average annual return for diversified portfolios</p>
+                    </div>
+                    <div class="stat" id="stat2">
+                        <h3>98.7%</h3>
+                        <p>Customer satisfaction rate</p>
+                    </div>
+                    <div class="stat" id="stat3">
+                        <h3>$0</h3>
+                        <p>Commission fees on stock and ETF trades</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Start Investing Today</h2>
+            <p>Join thousands of investors who are already building their financial future with our platform.</p>
+            <a href="#" class="btn btn-light" id="ctaBtn">Open Your Account</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>InvestPro</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Products</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Stocks & ETFs</a></li>
+                        <li><a href="#">Options</a></li>
+                        <li><a href="#">Retirement</a></li>
+                        <li><a href="#">Crypto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Learning Center</a></li>
+                        <li><a href="#">Market Data</a></li>
+                        <li><a href="#">Research</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Disclosures</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 InvestPro. All rights reserved. Investing involves risk, including the possible loss of principal.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal" id="accountModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Open Your Account</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="accountForm">
+                <div style="margin-bottom: 15px;">
+                    <label for="fullName" style="display: block; margin-bottom: 5px; font-weight: 500;">Full Name</label>
+                    <input type="text" id="fullName" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;" required>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label for="email" style="display: block; margin-bottom: 5px; font-weight: 500;">Email Address</label>
+                    <input type="email" id="email" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;" required>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label for="investment" style="display: block; margin-bottom: 5px; font-weight: 500;">Investment Experience</label>
+                    <select id="investment" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;" id="submitBtn">
+                    <span id="submitText">Create Account</span>
+                    <span id="submitLoading" class="loading" style="display: none;"></span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            const elementsToAnimate = [
+                document.getElementById('featuresHeader'),
+                document.getElementById('feature1'),
+                document.getElementById('feature2'),
+                document.getElementById('feature3'),
+                document.getElementById('optionsHeader'),
+                document.getElementById('option1'),
+                document.getElementById('option2'),
+                document.getElementById('option3'),
+                document.getElementById('performanceHeader'),
+                document.getElementById('performanceChart'),
+                document.getElementById('stat1'),
+                document.getElementById('stat2'),
+                document.getElementById('stat3')
+            ];
+
+            elementsToAnimate.forEach(element => {
+                if (element) observer.observe(element);
+            });
+
+            // Initialize chart
+            initializeChart();
+
+            // Modal functionality
+            const modal = document.getElementById('accountModal');
+            const openAccountBtn = document.getElementById('openAccountBtn');
+            const getStartedBtn = document.getElementById('getStartedBtn');
+            const ctaBtn = document.getElementById('ctaBtn');
+            const closeModal = document.querySelector('.close-modal');
+            const accountForm = document.getElementById('accountForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const submitText = document.getElementById('submitText');
+            const submitLoading = document.getElementById('submitLoading');
+
+            function openModal() {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModalFunc() {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+
+            openAccountBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                openModal();
+            });
+
+            getStartedBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                openModal();
+            });
+
+            ctaBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                openModal();
+            });
+
+            closeModal.addEventListener('click', closeModalFunc);
+
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModalFunc();
+                }
+            });
+
+            accountForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show loading state
+                submitText.style.display = 'none';
+                submitLoading.style.display = 'inline-block';
+                
+                // Simulate form submission
+                setTimeout(function() {
+                    // Reset form
+                    accountForm.reset();
+                    
+                    // Show success message
+                    alert('Thank you! Your account application has been received. Our team will contact you shortly.');
+                    
+                    // Close modal
+                    closeModalFunc();
+                    
+                    // Reset button
+                    submitText.style.display = 'inline-block';
+                    submitLoading.style.display = 'none';
+                }, 2000);
+            });
+
+            // Button ripple effect
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const x = e.clientX - e.target.getBoundingClientRect().left;
+                    const y = e.clientY - e.target.getBoundingClientRect().top;
+                    
+                    const ripple = document.createElement('span');
+                    ripple.classList.add('ripple');
+                    ripple.style.left = `${x}px`;
+                    ripple.style.top = `${y}px`;
+                    
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+        });
+
+        // Initialize performance chart
+        function initializeChart() {
+            const ctx = document.getElementById('investmentChart').getContext('2d');
+            
+            // Generate sample data
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const portfolioData = [10000, 10500, 11000, 11500, 12000, 11800, 12500, 13000, 13500, 14000, 14500, 15000];
+            const marketData = [10000, 10200, 10400, 10600, 10800, 11000, 11200, 11400, 11600, 11800, 12000, 12200];
+            
+            const chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: months,
+                    datasets: [
+                        {
+                            label: 'Your Portfolio',
+                            data: portfolioData,
+                            borderColor: '#07a6a6',
+                            backgroundColor: 'rgba(7, 166, 166, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: 'Market Average',
+                            data: marketData,
+                            borderColor: '#40e0d0',
+                            backgroundColor: 'rgba(64, 224, 208, 0.1)',
+                            borderWidth: 2,
+                            borderDash: [5, 5],
+                            fill: true,
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                usePointStyle: true,
+                                padding: 20
+                            }
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': $' + context.parsed.y.toLocaleString();
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            grid: {
+                                drawBorder: false
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + value.toLocaleString();
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeOutQuart'
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
