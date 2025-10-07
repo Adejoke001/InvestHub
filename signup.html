@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InvestHub - Sign Up</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --turquoise-primary: #40E0D0;
+            --turquoise-light: #e0f780;
+            --turquoise-bright: #deff58;
+            --turquoise-dark: #20B2AA;
+            --text-dark: #2C3E50;
+        }
+
+        body {
+            background: linear-gradient(135deg, #c8de71 0%, rgb(132, 236, 225)100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .signup-container {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            max-width: 480px;
+            width: 100%;
+            border: 1px solid rgba(64, 224, 208, 0.2);
+            position: relative;
+        }
+
+        .signup-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--turquoise-primary), var(--turquoise-light), var(--turquoise-bright));
+        }
+
+        .signup-header {
+            background: linear-gradient(135deg, var(--turquoise-primary) 0%, var(--turquoise-light) 100%);
+            color: var(--text-dark);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .signup-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .signup-header h2 {
+            margin: 0;
+            font-weight: 800;
+            font-size: 2.2rem;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .signup-header p {
+            margin: 0.8rem 0 0 0;
+            font-weight: 500;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+            font-size: 1.1rem;
+        }
+
+        .signup-body {
+            padding: 2.5rem 2rem;
+            background: white;
+        }
+
+        /* Form Styles */
+        .signup-form .form-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .signup-form .form-control {
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .signup-form .form-control:focus {
+            border-color: var(--turquoise-primary);
+            box-shadow: 0 0 0 0.3rem rgba(64, 224, 208, 0.15);
+            background: white;
+            transform: translateY(-2px);
+        }
+
+        .signup-form .form-control::placeholder {
+            color: #adb5bd;
+            font-weight: 400;
+        }
+
+        .input-group .btn-outline-secondary {
+            border: 2px solid #e9ecef;
+            border-left: none;
+            border-radius: 0 12px 12px 0;
+            background: #f8f9fa;
+            color: var(--turquoise-dark);
+            transition: all 0.3s ease;
+        }
+
+        .input-group .btn-outline-secondary:hover {
+            background: var(--turquoise-primary);
+            color: white;
+            border-color: var(--turquoise-primary);
+        }
+
+        .signup-form .form-check-input {
+            border: 2px solid #e9ecef;
+            margin-top: 0.2rem;
+        }
+
+        .signup-form .form-check-input:checked {
+            background-color: var(--turquoise-primary);
+            border-color: var(--turquoise-primary);
+        }
+
+        .signup-form .form-check-input:focus {
+            border-color: var(--turquoise-primary);
+            box-shadow: 0 0 0 0.2rem rgba(64, 224, 208, 0.25);
+        }
+
+        .signup-form .form-check-label {
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .btn-turquoise {
+            background: linear-gradient(135deg, var(--turquoise-primary) 0%, var(--turquoise-light) 100%);
+            border: none;
+            color: var(--text-dark);
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 25px rgba(64, 224, 208, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-turquoise::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .btn-turquoise:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(64, 224, 208, 0.4);
+            background: linear-gradient(135deg, var(--turquoise-light) 0%, var(--turquoise-bright) 100%);
+        }
+
+        .btn-turquoise:hover::before {
+            left: 100%;
+        }
+
+        .text-turquoise {
+            color: var(--turquoise-primary) !important;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .text-turquoise:hover {
+            color: var(--turquoise-dark) !important;
+            text-decoration: underline;
+        }
+
+        /* Loading state for submit button */
+        .btn-loading {
+            position: relative;
+            color: transparent !important;
+        }
+
+        .btn-loading::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            top: 50%;
+            left: 50%;
+            margin-left: -12px;
+            margin-top: -12px;
+            border: 3px solid var(--text-dark);
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(180deg); }
+        }
+
+        /* Alert positioning */
+        #successAlert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            max-width: 400px;
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            background: linear-gradient(135deg, var(--turquoise-primary) 0%, var(--turquoise-light) 100%);
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .form-text {
+            color: #6c757d;
+            font-size: 0.85rem;
+            margin-top: 0.3rem;
+        }
+
+        .invalid-feedback {
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Floating animation for icons */
+        .floating-icon {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .floating-icon:nth-child(2) {
+            animation-delay: 1s;
+        }
+
+        .floating-icon:nth-child(3) {
+            animation-delay: 2s;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 576px) {
+            .signup-container {
+                margin: 10px;
+                border-radius: 20px;
+            }
+            
+            .signup-header {
+                padding: 2rem 1.5rem;
+            }
+            
+            .signup-body {
+                padding: 2rem 1.5rem;
+            }
+            
+            .signup-header h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Signup Form Container -->
+    <div class="signup-container">
+        <div class="signup-header">
+            <h2><i class="fas fa-rocket floating-icon me-2"></i>Start Investing Today</h2>
+            <p>Join millions building wealth with InvestHub</p>
+        </div>
+        
+        <div class="signup-body">
+            <form id="signupForm" class="signup-form">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label for="firstName" class="form-label">First Name *</label>
+                            <input type="text" class="form-control" id="firstName" required placeholder="John">
+                            <div class="invalid-feedback">Please enter your first name</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label for="lastName" class="form-label">Last Name *</label>
+                            <input type="text" class="form-control" id="lastName" required placeholder="Doe">
+                            <div class="invalid-feedback">Please enter your last name</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="email" class="form-label">Email Address *</label>
+                    <input type="email" class="form-control" id="email" required placeholder="john.doe@example.com">
+                    <div class="invalid-feedback">Please enter a valid email address</div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="phone" class="form-label">Phone Number</label>
+                    <input type="tel" class="form-control" id="phone" placeholder="+1 (555) 123-4567">
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="password" class="form-label">Password *</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="password" required placeholder="••••••••">
+                        <button type="button" class="btn btn-outline-secondary toggle-password" data-target="password">
+                            <i class="fas fa-eye floating-icon"></i>
+                        </button>
+                    </div>
+                    <div class="form-text">Must be at least 8 characters with numbers and letters</div>
+                    <div class="invalid-feedback">Password must be at least 8 characters with letters and numbers</div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="confirmPassword" class="form-label">Confirm Password *</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="confirmPassword" required placeholder="••••••••">
+                        <button type="button" class="btn btn-outline-secondary toggle-password" data-target="confirmPassword">
+                            <i class="fas fa-eye floating-icon"></i>
+                        </button>
+                    </div>
+                    <div class="invalid-feedback">Passwords do not match</div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="investmentExperience" class="form-label">Investment Experience</label>
+                    <select class="form-select" id="investmentExperience">
+                        <option value="">Select your experience level</option>
+                        <option value="beginner">Beginner (New to investing)</option>
+                        <option value="intermediate">Intermediate (Some experience)</option>
+                        <option value="advanced">Advanced (Experienced investor)</option>
+                    </select>
+                </div>
+
+                <div class="form-check mb-4">
+                    <input class="form-check-input" type="checkbox" id="terms" required>
+                    <label class="form-check-label" for="terms">
+                        I agree to the <a href="#" class="text-turquoise">Terms of Service</a> and <a href="#" class="text-turquoise">Privacy Policy</a>
+                    </label>
+                    <div class="invalid-feedback">You must agree to the terms and conditions</div>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-turquoise btn-lg" id="submitBtn">
+                        <i class="fas fa-rocket me-2"></i>
+                        Create Free Account
+                    </button>
+                </div>
+
+                <div class="text-center mt-4">
+                    <p class="text-muted mb-0">Already have an account? <a href="#" class="text-turquoise">Log in</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Alert (Hidden by default) -->
+    <div id="successAlert" class="alert alert-success alert-dismissible fade" role="alert" style="display: none;">
+        <i class="fas fa-check-circle me-2"></i>
+        <strong>Success!</strong> Your account has been created successfully. Welcome to InvestHub!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Signup Form Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const signupForm = document.getElementById('signupForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const successAlert = document.getElementById('successAlert');
+
+            // Password toggle functionality
+            document.querySelectorAll('.toggle-password').forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    const passwordInput = document.getElementById(targetId);
+                    const icon = this.querySelector('i');
+                    
+                    if (passwordInput.type === 'password') {
+                        passwordInput.type = 'text';
+                        icon.classList.remove('fa-eye');
+                        icon.classList.add('fa-eye-slash');
+                    } else {
+                        passwordInput.type = 'password';
+                        icon.classList.remove('fa-eye-slash');
+                        icon.classList.add('fa-eye');
+                    }
+                });
+            });
+
+            // Real-time password validation
+            const password = document.getElementById('password');
+            const confirmPassword = document.getElementById('confirmPassword');
+
+            password.addEventListener('input', validatePassword);
+            confirmPassword.addEventListener('input', validatePassword);
+
+            function validatePassword() {
+                const passwordValue = password.value;
+                const confirmValue = confirmPassword.value;
+
+                // Password strength validation
+                if (passwordValue.length > 0) {
+                    const hasLetter = /[a-zA-Z]/.test(passwordValue);
+                    const hasNumber = /[0-9]/.test(passwordValue);
+                    
+                    if (passwordValue.length < 8 || !hasLetter || !hasNumber) {
+                        password.classList.add('is-invalid');
+                        return false;
+                    } else {
+                        password.classList.remove('is-invalid');
+                        password.classList.add('is-valid');
+                    }
+                }
+
+                // Confirm password match
+                if (confirmValue.length > 0) {
+                    if (passwordValue !== confirmValue) {
+                        confirmPassword.classList.add('is-invalid');
+                        return false;
+                    } else {
+                        confirmPassword.classList.remove('is-invalid');
+                        confirmPassword.classList.add('is-valid');
+                    }
+                }
+
+                return true;
+            }
+
+            // Form submission
+            signupForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (validateForm()) {
+                    // Show loading state
+                    submitBtn.disabled = true;
+                    submitBtn.classList.add('btn-loading');
+                    submitBtn.innerHTML = 'Creating Account...';
+
+                    // Simulate API call
+                    setTimeout(() => {
+                        // Reset form
+                        signupForm.reset();
+                        signupForm.classList.remove('was-validated');
+                        
+                        // Remove validation classes
+                        document.querySelectorAll('.is-valid, .is-invalid').forEach(el => {
+                            el.classList.remove('is-valid', 'is-invalid');
+                        });
+
+                        // Show success alert
+                        successAlert.style.display = 'block';
+                        successAlert.classList.add('show');
+
+                        // Auto-hide alert after 5 seconds
+                        setTimeout(() => {
+                            successAlert.classList.remove('show');
+                            setTimeout(() => {
+                                successAlert.style.display = 'none';
+                            }, 150);
+                        }, 5000);
+
+                        // Reset button
+                        submitBtn.disabled = false;
+                        submitBtn.classList.remove('btn-loading');
+                        submitBtn.innerHTML = '<i class="fas fa-rocket me-2"></i>Create Free Account';
+
+                        // Show welcome message
+                        showWelcomeMessage();
+                    }, 2000);
+                }
+            });
+
+            function validateForm() {
+                let isValid = true;
+
+                // Required fields validation
+                const requiredFields = signupForm.querySelectorAll('[required]');
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        field.classList.add('is-invalid');
+                        isValid = false;
+                    } else {
+                        field.classList.remove('is-invalid');
+                    }
+                });
+
+                // Email validation
+                const email = document.getElementById('email');
+                if (email.value && !isValidEmail(email.value)) {
+                    email.classList.add('is-invalid');
+                    isValid = false;
+                }
+
+                // Terms agreement validation
+                const terms = document.getElementById('terms');
+                if (!terms.checked) {
+                    terms.classList.add('is-invalid');
+                    isValid = false;
+                } else {
+                    terms.classList.remove('is-invalid');
+                }
+
+                // Password validation
+                if (!validatePassword()) {
+                    isValid = false;
+                }
+
+                if (!isValid) {
+                    // Show first error field
+                    const firstInvalid = signupForm.querySelector('.is-invalid');
+                    if (firstInvalid) {
+                        firstInvalid.focus();
+                    }
+                    
+                    // Show error alert
+                    showAlert('Please fill in all required fields correctly.', 'danger');
+                }
+
+                return isValid;
+            }
+
+            function isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+
+            function showAlert(message, type) {
+                // Remove existing alerts
+                const existingAlert = document.querySelector('.alert:not(#successAlert)');
+                if (existingAlert) {
+                    existingAlert.remove();
+                }
+
+                const alertDiv = document.createElement('div');
+                alertDiv.className = `alert alert-${type} alert-dismissible fade show fixed-top m-3`;
+                alertDiv.style.cssText = 'z-index: 9999; margin-top: 20px; right: 20px; left: auto; max-width: 400px; border-radius: 15px;';
+                alertDiv.innerHTML = `
+                    <i class="fas fa-${type === 'danger' ? 'exclamation-triangle' : 'info-circle'} me-2"></i>
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                `;
+                
+                document.body.appendChild(alertDiv);
+
+                // Auto remove after 5 seconds
+                setTimeout(() => {
+                    if (alertDiv.parentNode) {
+                        alertDiv.classList.remove('show');
+                        setTimeout(() => {
+                            alertDiv.remove();
+                        }, 150);
+                    }
+                }, 5000);
+            }
+
+            function showWelcomeMessage() {
+                console.log('Welcome to InvestHub! Account created successfully.');
+            }
+        });
+    </script>
+</body>
+</html>

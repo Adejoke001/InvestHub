@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/favico.png" type="image/x-icon">
+    <title>InvestHub Trades</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-trade fixed-top mb-0">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                InvestHub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Invest</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Cash Card</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            What We Offer
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Invest</a></li>
+                            <li><a class="dropdown-item" href="#">Crypto</a></li>
+                            <li><a class="dropdown-item" href="#">Trading</a></li>
+                            <li><a class="dropdown-item" href="#"></a></li>
+                            <li><a class="dropdown-item" href="#">Stocks & ETFs</a></li>
+                            <li><a class="dropdown-item" href="#">Options</a></li>
+                            <li><a class="dropdown-item" href="#">Crypto</a></li>
+                            <li><a class="dropdown-item" href="#">Learn & Explore</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Learn</a>
+                    </li>
+                </ul>
+                <div class="d-flex btn-container">
+                    <button class="btn btn-login me-2">Log in</button>
+                    <button class="btn btn-signup">Sign up</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+
+    <section class="hero-section">
+        <div class="floating-elements">
+            <div class="floating-element"><i class="fab fa-bitcoin"></i></div>
+            <div class="floating-element"><i class="fab fa-ethereum"></i></div>
+            <div class="floating-element"><i class="fas fa-chart-line"></i></div>
+            <div class="floating-element"><i class="fas fa-coins"></i></div>
+            <div class="floating-element"><i class="fas fa-wallet"></i></div>
+            <div class="floating-element"><i class="fas fa-rocket"></i></div>
+        </div>
+
+        <!-- SINGLE CAROUSEL with multiple slides -->
+        <div class="slider-wrapper owl-carousel owl-theme" id="hero-slider">
+            <!-- Slide 1 -->
+            <div class="slide1 min-vh-100">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 hero-content">
+                            <h1 class="hero-title animate-pop-in">Investing Made Simple & Accessible</h1>
+                            <p class="hero-subtitle animate-pop-in animate-delay-1">Join millions of investors who trust
+                                our platform to grow their wealth with cryptocurrency. Start with as little as $1 and
+                                build your financial future.</p>
+                            <div class="hero-buttons animate-pop-in animate-delay-2">
+                                <button class="btn btn-primary-custom">Get Started</button>
+                                <button class="btn btn-outline-custom">Learn More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide2 min-vh-100">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 hero-content">
+                            <h1 class="hero-title animate-pop-in">Trade Stocks & ETFs Commission-Free</h1>
+                            <p class="hero-subtitle animate-pop-in animate-delay-1">Access thousands of stocks and ETFs
+                                with zero commission fees. Build a diversified portfolio that matches your investment
+                                goals.</p>
+                            <div class="hero-buttons animate-pop-in animate-delay-2">
+                                <button class="btn btn-primary-custom">Explore Stocks</button>
+                                <button class="btn btn-outline-custom">View ETFs</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide3 min-vh-100">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 hero-content">
+                            <h1 class="hero-title animate-pop-in">Smart Tools For Smarter Investing</h1>
+                            <p class="hero-subtitle animate-pop-in animate-delay-1">Leverage our advanced analytics,
+                                real-time data, and educational resources to make informed investment decisions.</p>
+                            <div class="hero-buttons animate-pop-in animate-delay-2">
+                                <button class="btn btn-primary-custom">Try Tools</button>
+                                <button class="btn btn-outline-custom">See Features</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up" data-aos-duration="800">Why Choose InvestHub?</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">Our platform
+                offers everything you need to start your investment journey with confidence.</p>
+
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                        <div class="feature-icon" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="400">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h3 class="feature-title">Diversified Portfolios</h3>
+                        <p class="feature-description">Build balanced portfolios with stocks, ETFs, and crypto assets
+                            tailored to your risk tolerance and financial goals.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+                        <div class="feature-icon" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="500">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="feature-title">Secure & Protected</h3>
+                        <p class="feature-description">Bank-level security and SIPC insurance protect your investments
+                            up to $500,000.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="500">
+                        <div class="feature-icon" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="600">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3 class="feature-title">Learn As You Grow</h3>
+                        <p class="feature-description">Access educational resources and tools to make informed
+                            investment decisions at every level.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Stats Section -->
+  <section class="stats-section">
+    <div class="container">
+        <div class="stats-marquee">
+            <div class="stats-track">
+                <div class="stat-item">
+                    <div class="stat-number">2M+</div>
+                    <div class="stat-label">Active Investors</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">$50B+</div>
+                    <div class="stat-label">Assets Managed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4.8★</div>
+                    <div class="stat-label">App Store Rating</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Customer Support</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">99.9%</div>
+                    <div class="stat-label">Uptime</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label">Countries</div>
+                </div>
+                
+                <!-- Duplicate for seamless loop -->
+                <div class="stat-item">
+                    <div class="stat-number">2M+</div>
+                    <div class="stat-label">Active Investors</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">$50B+</div>
+                    <div class="stat-label">Assets Managed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4.8★</div>
+                    <div class="stat-label">App Store Rating</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Customer Support</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">99.9%</div>
+                    <div class="stat-label">Uptime</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Countries</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+    <div class="container">
+        <div class="cta-content" data-aos="fade-up" data-aos-duration="800">
+            <div class="cta-badge" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="200">
+                <span>🚀 Limited Time Offer</span>
+            </div>
+            
+            <h2 class="cta-title">Start Your <span class="gradient-text">Investment Journey</span> Today</h2>
+            
+            <p class="cta-subtitle">Join <strong>2 million+ investors</strong> who trust our platform to build their financial future. Start with just $1 and grow your wealth with confidence.</p>
+            
+            <div class="cta-features">
+                <div class="feature-pill" data-aos="fade-right" data-aos-delay="300">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Zero Commission Fees</span>
+                </div>
+                <div class="feature-pill" data-aos="fade-right" data-aos-delay="400">
+                    <i class="fas fa-check-circle"></i>
+                    <span>No Account Minimums</span>
+                </div>
+                <div class="feature-pill" data-aos="fade-right" data-aos-delay="500">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Bank-Level Security</span>
+                </div>
+            </div>
+            
+            <div class="cta-buttons" data-aos="fade-up" data-aos-delay="600">
+                <button class="btn btn-cta-primary">
+                    <i class="fas fa-rocket"></i>
+                    <a href="./signup.html" class="text-black" style="text-decoration: none;">Create Free Account</a>
+                </button>
+                <button class="btn btn-cta-secondary">
+                    <i class="fas fa-play-circle"></i>
+                    Watch Demo
+                </button>
+            </div>
+            
+            <div class="cta-trust" data-aos="fade-up" data-aos-delay="800">
+                <div class="trust-badges">
+                    <div class="trust-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>SIPC Insured</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-lock"></i>
+                        <span>256-bit Encryption</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-star"></i>
+                        <span>4.8★ App Store</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Floating elements for visual interest -->
+        <div class="cta-floating-elements">
+            <div class="floating-element element-1" data-aos="fade-in" data-aos-delay="1000">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="floating-element element-2" data-aos="fade-in" data-aos-delay="1200">
+                <i class="fas fa-coins"></i>
+            </div>
+            <div class="floating-element element-3" data-aos="fade-in" data-aos-delay="1400">
+                <i class="fas fa-wallet"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Strategies Section -->
+    <section class="strategies-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="sec-title ">Smart Investment Strategies</h2>
+                <p class="sec-subtitle">Discover proven strategies to grow your wealth with professional guidance and advanced tools</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Strategy 1 -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="strategy-card">
+                        <div class="strategy-icon floating-strategy">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="strategy-title">Growth Investing</h3>
+                        <p class="strategy-description">Focus on companies with strong growth potential and above-average earnings expansion.</p>
+                        <ul class="strategy-features">
+                            <li>High-growth stock selection</li>
+                            <li>Emerging market opportunities</li>
+                            <li>Technology sector focus</li>
+                            <li>Long-term capital appreciation</li>
+                        </ul>
+                        <div class="strategy-progress">
+                            <div class="progress-label">
+                                <span>Risk Level</span>
+                                <span>High</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <span class="strategy-badge">Recommended for long-term</span>
+                    </div>
+                </div>
+
+                <!-- Strategy 2 -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="strategy-card">
+                        <div class="strategy-icon floating-strategy">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="strategy-title">Value Investing</h3>
+                        <p class="strategy-description">Identify undervalued stocks with strong fundamentals and margin of safety.</p>
+                        <ul class="strategy-features">
+                            <li>Fundamental analysis</li>
+                            <li>Dividend-paying stocks</li>
+                            <li>Blue-chip companies</li>
+                            <li>Risk-averse approach</li>
+                        </ul>
+                        <div class="strategy-progress">
+                            <div class="progress-label">
+                                <span>Risk Level</span>
+                                <span>Medium</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 50%"></div>
+                            </div>
+                        </div>
+                        <span class="strategy-badge">Stable returns</span>
+                    </div>
+                </div>
+
+                <!-- Strategy 3 -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="strategy-card">
+                        <div class="strategy-icon floating-strategy">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h3 class="strategy-title">Income Investing</h3>
+                        <p class="strategy-description">Generate regular income through dividends, bonds, and other income-producing assets.</p>
+                        <ul class="strategy-features">
+                            <li>Dividend aristocrats</li>
+                            <li>Bond ladder strategy</li>
+                            <li>REIT investments</li>
+                            <li>Monthly income focus</li>
+                        </ul>
+                        <div class="strategy-progress">
+                            <div class="progress-label">
+                                <span>Risk Level</span>
+                                <span>Low</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 30%"></div>
+                            </div>
+                        </div>
+                        <span class="strategy-badge">Passive income</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Strategies Row -->
+            <div class="row g-4 mt-2">
+                <!-- Strategy 4 -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="strategy-card">
+                        <div class="strategy-icon floating-strategy">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3 class="strategy-title">Global Diversification</h3>
+                        <p class="strategy-description">Spread investments across global markets to reduce risk and capture international growth.</p>
+                        <ul class="strategy-features">
+                            <li>International ETFs</li>
+                            <li>Emerging markets</li>
+                            <li>Currency diversification</li>
+                            <li>Global sector rotation</li>
+                        </ul>
+                        <div class="strategy-progress">
+                            <div class="progress-label">
+                                <span>Risk Level</span>
+                                <span>Medium</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 60%"></div>
+                            </div>
+                        </div>
+                        <span class="strategy-badge">Global exposure</span>
+                    </div>
+                </div>
+
+                <!-- Strategy 5 -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="strategy-card">
+                        <div class="strategy-icon floating-strategy">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3 class="strategy-title">Momentum Trading</h3>
+                        <p class="strategy-description">Capitalize on market trends and momentum with short to medium-term trading strategies.</p>
+                        <ul class="strategy-features">
+                            <li>Technical analysis</li>
+                            <li>Swing trading</li>
+                            <li>Trend following</li>
+                            <li>Risk management</li>
+                        </ul>
+                        <div class="strategy-progress">
+                            <div class="progress-label">
+                                <span>Risk Level</span>
+                                <span>High</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <span class="strategy-badge">Active trading</span>
+                    </div>
+                </div>
+
+                <!-- Strategy 6 -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="strategy-card">
+                        <div class="strategy-icon floating-strategy">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3 class="strategy-title">AI-Powered Investing</h3>
+                        <p class="strategy-description">Leverage artificial intelligence and machine learning for data-driven investment decisions.</p>
+                        <ul class="strategy-features">
+                            <li>Algorithmic trading</li>
+                            <li>Predictive analytics</li>
+                            <li>Portfolio optimization</li>
+                            <li>Risk assessment AI</li>
+                        </ul>
+                        <div class="strategy-progress">
+                            <div class="progress-label">
+                                <span>Risk Level</span>
+                                <span>Medium-High</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        <span class="strategy-badge">Tech-driven</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Counter -->
+            <div class="stats-counter last" data-aos="fade-up" data-aos-delay="700">
+                <div class="row">
+                    <div class="col-md-3 col-6 mb-4">
+                        <div class="stat-number num" data-count="2.5">20</div>
+                        <div class="stat-label">Million Investors</div>
+                    </div>
+                    <div class="col-md-3 col-6 mb-4">
+                        <div class="stat-number num" data-count="15.2">$2m</div>
+                        <div class="stat-label">Avg. Annual Return</div>
+                    </div>
+                    <div class="col-md-3 col-6 mb-4">
+                        <div class="stat-number num" data-count="98">99.9%</div>
+                        <div class="stat-label">Success Rate</div>
+                    </div>
+                    <div class="col-md-3 col-6 mb-4">
+                        <div class="stat-number num" data-count="24">100%</div>
+                        <div class="stat-label">24/7 Support</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="800">
+                <button class="cta-button">
+                    <i class="fas fa-rocket"></i>
+                    Start Your Strategy Today
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h2 class="footer-brand mb-15"><a href="#" class="foot">InvestHub</a></h2>
+                    <p class="firstp">We are a leading trading platform providing access to global markets, advanced trading tools, and educational resources for traders of all experience levels.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Trading Platforms</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Market Analysis</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Investment Products</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Trading Education</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Economic Calendar</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Headquarters</strong><br>
+                                123 Financial District,<br>
+                                New York, NY 10005
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Phone</strong><br>
+                                +1 (555) 123-4567
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email</strong><br>
+                                support@globaltradepro.com
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for market insights, trading tips, and platform updates.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2023 Global Trade Pro. All rights reserved.</p>
+                    
+                    <div class="payment-methods">
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-paypal"></i>
+                        <i class="fab fa-cc-apple-pay"></i>
+                    </div>
+                    
+                    <div class="legal-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Risk Disclosure</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/js/jquery-3.7.1.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/app.js"></script>
+
+</body>
+
+</html>
