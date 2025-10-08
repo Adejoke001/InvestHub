@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Trading - InvestHub</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+    <style>
+        :root {
+            --dark-primary: #0a0f1c;
+            --dark-secondary: #1a1f2e;
+            --dark-tertiary: #2d3345;
+            --gold-primary: #ffd700;
+            --gold-secondary: #ffed4e;
+            --gold-dark: #b39700;
+            --gold-gradient: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            --dark-gradient: linear-gradient(135deg, #0a0f1c 0%, #1a1f2e 100%);
+            --text-light: #f8f9fa;
+            --text-muted: #a0aec0;
+            --text-dark: #2d3748;
+            --border-color: #2d3345;
+            --success: #48bb78;
+            --danger: #f56565;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--dark-gradient);
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .learn-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header Section */
+        .learn-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .learn-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            margin-top: 4rem;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+        }
+
+        .learn-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .learn-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gold-gradient);
+            border-radius: 2px;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--gold-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* Navigation Tabs */
+        .learn-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: var(--dark-tertiary);
+            border: 2px solid var(--border-color);
+            color: var(--text-light);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-btn.active,
+        .nav-btn:hover {
+            background: var(--gold-gradient);
+            color: var(--dark-primary);
+            border-color: var(--gold-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--gold-gradient);
+            border-radius: 2px;
+        }
+
+        /* Course Cards */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .course-card {
+            background: var(--dark-secondary);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.15);
+            border-color: var(--gold-primary);
+        }
+
+        .course-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--gold-gradient);
+            color: var(--dark-primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            z-index: 2;
+        }
+
+        .course-image {
+            height: 200px;
+            background: var(--dark-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold-primary);
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, transparent 100%);
+        }
+
+        .course-content {
+            padding: 1.5rem;
+        }
+
+        .course-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .course-description {
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.2rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .course-duration,
+        .course-level {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .course-progress {
+            height: 6px;
+            background: var(--dark-tertiary);
+            border-radius: 3px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--gold-gradient);
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+
+        .course-btn {
+            background: var(--gold-gradient);
+            border: none;
+            color: var(--dark-primary);
+            padding: 0.8rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 0.95rem;
+        }
+
+        .course-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Articles Grid */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .article-card {
+            background: var(--dark-secondary);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold-primary);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.1);
+        }
+
+        .article-image {
+            height: 160px;
+            background: var(--dark-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold-primary);
+            font-size: 2rem;
+        }
+
+        .article-content {
+            padding: 1.5rem;
+        }
+
+        .article-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+
+        .article-excerpt {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Webinars Section */
+        .webinars-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .webinar-item {
+            background: var(--dark-secondary);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            display: flex;
+            gap: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .webinar-item:hover {
+            border-color: var(--gold-primary);
+            transform: translateX(5px);
+        }
+
+        .webinar-date {
+            background: var(--gold-gradient);
+            color: var(--dark-primary);
+            width: 80px;
+            height: 80px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-weight: 700;
+        }
+
+        .webinar-date .day {
+            font-size: 1.8rem;
+            line-height: 1;
+        }
+
+        .webinar-date .month {
+            font-size: 0.9rem;
+        }
+
+        .webinar-content {
+            flex: 1;
+        }
+
+        .webinar-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .webinar-description {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .webinar-meta {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .webinar-meta div {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .webinar-btn {
+            padding: 0.35rem 0.9rem;
+            font-size: 0.82rem;
+            border-radius: 8px;
+            width: auto;
+            display: inline-block;
+            min-width: 110px;
+            margin: 1rem auto 0;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .webinar-btn {
+                width: 100%;
+                display: block;
+            }
+        }
+
+
+        /* Resources Section */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .resource-card {
+            background: var(--dark-secondary);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .resource-card:hover {
+            border-color: var(--gold-primary);
+            transform: translateY(-5px);
+        }
+
+        .resource-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gold-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.8rem;
+            color: var(--dark-primary);
+        }
+
+        .resource-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .resource-description {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.2rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 15, 28, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, var(--dark-secondary) 0%, var(--dark-tertiary) 100%);
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            max-width: 600px;
+            width: 100%;
+            border: 1px solid var(--border-color);
+            position: relative;
+            transform: scale(0.9);
+            animation: scaleUp 0.3s ease forwards;
+        }
+
+        .modal-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gold-gradient);
+        }
+
+        .modal-header {
+            background: var(--gold-gradient);
+            color: var(--dark-primary);
+            padding: 1.5rem 2rem;
+            position: relative;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            font-weight: 800;
+            font-size: 1.5rem;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--dark-primary);
+            color: var(--gold-primary);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-btn:hover {
+            background: var(--gold-primary);
+            color: var(--dark-primary);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 2rem;
+            background: var(--dark-secondary);
+        }
+
+        .modal-body p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+
+        .modal-btn {
+            background: var(--gold-gradient);
+            border: none;
+            color: var(--dark-primary);
+            padding: 0.7rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .modal-btn.secondary {
+            background: var(--dark-tertiary);
+            color: var(--text-light);
+            border: 1px solid var(--border-color);
+        }
+
+        /* AI Assistant */
+        .ai-assistant {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: var(--gold-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .ai-assistant:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.6);
+        }
+
+        .ai-chat {
+            position: fixed;
+            bottom: 5rem;
+            right: 2rem;
+            width: 350px;
+            background: var(--dark-secondary);
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: none;
+            flex-direction: column;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .ai-chat.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .ai-header {
+            background: var(--gold-gradient);
+            color: var(--dark-primary);
+            padding: 1rem;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ai-messages {
+            padding: 1rem;
+            height: 300px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .ai-message {
+            padding: 0.8rem 1rem;
+            border-radius: 12px;
+            max-width: 80%;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .ai-message.user {
+            background: var(--gold-gradient);
+            color: var(--dark-primary);
+            align-self: flex-end;
+        }
+
+        .ai-message.bot {
+            background: var(--dark-tertiary);
+            color: var(--text-light);
+            align-self: flex-start;
+        }
+
+        .ai-input {
+            display: flex;
+            padding: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .ai-input input {
+            flex: 1;
+            padding: 0.7rem;
+            background: var(--dark-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .ai-input button {
+            background: var(--gold-primary);
+            border: none;
+            color: var(--dark-primary);
+            width: 40px;
+            border-radius: 8px;
+            margin-left: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .ai-input button:hover {
+            background: var(--gold-secondary);
+        }
+
+        /* Gold accent elements */
+        .learn-accent {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .accent-1 {
+            top: 10%;
+            left: 5%;
+        }
+
+        .accent-2 {
+            bottom: 20%;
+            right: 8%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .learn-container {
+                padding: 1rem;
+            }
+
+            .learn-title {
+                font-size: 2.5rem;
+                margin-top: 5.5rem;
+            }
+
+            .learn-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .stats-container {
+                gap: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .webinar-item {
+                flex-direction: column;
+            }
+
+            .webinar-date {
+                width: 100%;
+                height: 60px;
+                flex-direction: row;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+
+            .nav-btn {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .ai-chat {
+                width: 300px;
+                right: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .learn-title {
+                font-size: 2rem;
+                margin-top: 4rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .articles-grid,
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .learn-accent {
+                display: none;
+            }
+
+            .ai-chat {
+                width: calc(100% - 2rem);
+                right: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-trade fixed-top mb-0">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                InvestHub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/invest.html">Invest</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Cash Card</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            What We Offer
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/invest.html">Invest</a></li>
+                            <li><a class="dropdown-item" href="#">Crypto</a></li>
+                            <li><a class="dropdown-item" href="#">Trading</a></li>
+                            <li><a class="dropdown-item" href="#">Banking</a></li>
+                            <li><a class="dropdown-item" href="#">Credit Card</a></li>
+                            <li><a class="dropdown-item" href="#">Stocks & ETFs</a></li>
+                            <li><a class="dropdown-item" href="#">Options</a></li>
+                            <li><a class="dropdown-item" href="#">Crypto</a></li>
+                            <li><a class="dropdown-item" href="#">Learn & Explore</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Others
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/testimonial.html">Testimonials</a></li>
+                            <li><a class="dropdown-item" href="/faq.html">FAQ</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/learn.html">Learn</a>
+                    </li>
+                </ul>
+                <div class="d-flex btn-container">
+                    <button class="btn btn-login me-2 "><a href="/login.html" class="log">Log in</a></button>
+                    <button class="btn btn-signup"><a href="./signup.html" class="sign">Sign up</a></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="learn-container">
+        <div class="learn-header">
+            <h1 class="learn-title">Trading Education Hub</h1>
+            <p class="learn-subtitle">Master the markets with our comprehensive trading courses, resources, and expert
+                insights</p>
+
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Trading Courses</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">200+</div>
+                    <div class="stat-label">Educational Articles</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15K+</div>
+                    <div class="stat-label">Active Learners</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Success Rate</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="learn-nav">
+            <button class="nav-btn active" data-target="courses">
+                <i class="fas fa-graduation-cap"></i> Courses
+            </button>
+            <button class="nav-btn" data-target="articles">
+                <i class="fas fa-newspaper"></i> Articles
+            </button>
+            <button class="nav-btn" data-target="webinars">
+                <i class="fas fa-video"></i> Webinars
+            </button>
+            <button class="nav-btn" data-target="resources">
+                <i class="fas fa-tools"></i> Resources
+            </button>
+        </div>
+
+        <!-- Courses Section -->
+        <div class="content-section active" id="courses">
+            <h2 class="section-title">Featured Trading Courses</h2>
+
+            <div class="courses-grid">
+                <!-- Course 1 -->
+                <div class="course-card">
+                    <div class="course-badge">Beginner</div>
+                    <div class="course-image">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Trading Fundamentals</h3>
+                        <p class="course-description">Learn the basics of financial markets, trading terminology, and
+                            how to place your first trade.</p>
+                        <div class="course-meta">
+                            <div class="course-duration">
+                                <i class="far fa-clock"></i> 8 hours
+                            </div>
+                            <div class="course-level">
+                                <i class="fas fa-signal"></i> Beginner
+                            </div>
+                        </div>
+                        <div class="course-progress">
+                            <div class="progress-bar" style="width: 30%"></div>
+                        </div>
+                        <button class="course-btn" data-course="fundamentals">Continue Learning</button>
+                    </div>
+                </div>
+
+                <!-- Course 2 -->
+                <div class="course-card">
+                    <div class="course-badge">Intermediate</div>
+                    <div class="course-image">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Technical Analysis Mastery</h3>
+                        <p class="course-description">Master chart patterns, indicators, and technical strategies to
+                            predict market movements.</p>
+                        <div class="course-meta">
+                            <div class="course-duration">
+                                <i class="far fa-clock"></i> 12 hours
+                            </div>
+                            <div class="course-level">
+                                <i class="fas fa-signal"></i> Intermediate
+                            </div>
+                        </div>
+                        <div class="course-progress">
+                            <div class="progress-bar" style="width: 0%"></div>
+                        </div>
+                        <button class="course-btn" data-course="technical-analysis">Start Course</button>
+                    </div>
+                </div>
+
+                <!-- Course 3 -->
+                <div class="course-card">
+                    <div class="course-badge">Advanced</div>
+                    <div class="course-image">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Advanced Risk Management</h3>
+                        <p class="course-description">Learn sophisticated risk management techniques to protect your
+                            capital and maximize returns.</p>
+                        <div class="course-meta">
+                            <div class="course-duration">
+                                <i class="far fa-clock"></i> 10 hours
+                            </div>
+                            <div class="course-level">
+                                <i class="fas fa-signal"></i> Advanced
+                            </div>
+                        </div>
+                        <div class="course-progress">
+                            <div class="progress-bar" style="width: 0%"></div>
+                        </div>
+                        <button class="course-btn" data-course="risk-management">Start Course</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Articles Section -->
+        <div class="content-section" id="articles">
+            <h2 class="section-title">Latest Trading Articles</h2>
+
+            <div class="articles-grid">
+                <!-- Article 1 -->
+                <div class="article-card">
+                    <div class="article-image">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="article-content">
+                        <h3 class="article-title">Understanding Market Trends in 2024</h3>
+                        <p class="article-excerpt">Analyze current market trends and learn how to identify profitable
+                            trading opportunities in volatile markets.</p>
+                        <div class="article-meta">
+                            <span><i class="far fa-calendar"></i> 2 days ago</span>
+                            <span><i class="far fa-clock"></i> 8 min read</span>
+                        </div>
+                        <button class="course-btn" style="margin-top: 1rem;" data-article="market-trends">Read
+                            Article</button>
+                    </div>
+                </div>
+
+                <!-- Article 2 -->
+                <div class="article-card">
+                    <div class="article-image">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <div class="article-content">
+                        <h3 class="article-title">Cryptocurrency Trading Strategies</h3>
+                        <p class="article-excerpt">Explore effective strategies for trading cryptocurrencies and
+                            managing the unique risks of digital assets.</p>
+                        <div class="article-meta">
+                            <span><i class="far fa-calendar"></i> 1 week ago</span>
+                            <span><i class="far fa-clock"></i> 12 min read</span>
+                        </div>
+                        <button class="course-btn" style="margin-top: 1rem;" data-article="crypto-strategies">Read
+                            Article</button>
+                    </div>
+                </div>
+
+                <!-- Article 3 -->
+                <div class="article-card">
+                    <div class="article-image">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="article-content">
+                        <h3 class="article-title">Psychology of Successful Traders</h3>
+                        <p class="article-excerpt">Discover the mental habits and psychological traits that separate
+                            profitable traders from the rest.</p>
+                        <div class="article-meta">
+                            <span><i class="far fa-calendar"></i> 2 weeks ago</span>
+                            <span><i class="far fa-clock"></i> 10 min read</span>
+                        </div>
+                        <button class="course-btn" style="margin-top: 1rem;" data-article="trading-psychology">Read
+                            Article</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Webinars Section -->
+        <div class="content-section" id="webinars">
+            <h2 class="section-title">Upcoming Trading Webinars</h2>
+
+            <div class="webinars-list">
+                <!-- Webinar 1 -->
+                <div class="webinar-item">
+                    <div class="webinar-date">
+                        <div class="day">15</div>
+                        <div class="month">MAR</div>
+                    </div>
+                    <div class="webinar-content">
+                        <h3 class="webinar-title">Forex Trading for Beginners</h3>
+                        <p class="webinar-description">Join our expert traders as they break down the fundamentals of
+                            forex trading and share actionable strategies.</p>
+                        <div class="webinar-meta">
+                            <div><i class="far fa-clock"></i> 2:00 PM EST</div>
+                            <div><i class="fas fa-user"></i> John Trader</div>
+                            <div><i class="fas fa-users"></i> 245 registered</div>
+                        </div>
+                        <button class="course-btn webinar-btn" style="margin-top: 1rem;"
+                            data-webinar="forex-beginners">Register Now</button>
+                    </div>
+                </div>
+
+                <!-- Webinar 2 -->
+                <div class="webinar-item">
+                    <div class="webinar-date">
+                        <div class="day">22</div>
+                        <div class="month">MAR</div>
+                    </div>
+                    <div class="webinar-content">
+                        <h3 class="webinar-title">Advanced Options Strategies</h3>
+                        <p class="webinar-description">Learn sophisticated options trading strategies to enhance your
+                            portfolio and manage risk effectively.</p>
+                        <div class="webinar-meta">
+                            <div><i class="far fa-clock"></i> 3:30 PM EST</div>
+                            <div><i class="fas fa-user"></i> Sarah Analyst</div>
+                            <div><i class="fas fa-users"></i> 189 registered</div>
+                        </div>
+                        <button class="course-btn webinar-btn" style="margin-top: 1rem;"
+                            data-webinar="options-strategies">Register Now</button>
+                    </div>
+                </div>
+
+                <!-- Webinar 3 -->
+                <div class="webinar-item">
+                    <div class="webinar-date">
+                        <div class="day">05</div>
+                        <div class="month">APR</div>
+                    </div>
+                    <div class="webinar-content">
+                        <h3 class="webinar-title">Market Analysis & Prediction Techniques</h3>
+                        <p class="webinar-description">Master the art of market analysis and learn how to make accurate
+                            predictions using technical and fundamental analysis.</p>
+                        <div class="webinar-meta">
+                            <div><i class="far fa-clock"></i> 1:00 PM EST</div>
+                            <div><i class="fas fa-user"></i> Mike Strategist</div>
+                            <div><i class="fas fa-users"></i> 312 registered</div>
+                        </div>
+                        <button class="course-btn webinar-btn" style="margin-top: 1rem;"
+                            data-webinar="market-analysis">Register Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resources Section -->
+        <div class="content-section" id="resources">
+            <h2 class="section-title">Trading Tools & Resources</h2>
+
+            <div class="resources-grid">
+                <!-- Resource 1 -->
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3 class="resource-title">Risk Calculator</h3>
+                    <p class="resource-description">Calculate position sizes and risk exposure based on your account
+                        size and risk tolerance.</p>
+                    <button class="course-btn" data-resource="risk-calculator">Use Tool</button>
+                </div>
+
+                <!-- Resource 2 -->
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3 class="resource-title">Economic Calendar</h3>
+                    <p class="resource-description">Stay updated with important economic events and indicators that
+                        impact the markets.</p>
+                    <button class="course-btn" data-resource="economic-calendar">View Calendar</button>
+                </div>
+
+                <!-- Resource 3 -->
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="resource-title">Trading Glossary</h3>
+                    <p class="resource-description">Comprehensive dictionary of trading terms and concepts for beginners
+                        and experts.</p>
+                    <button class="course-btn" data-resource="trading-glossary">Explore</button>
+                </div>
+
+                <!-- Resource 4 -->
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3 class="resource-title">Portfolio Tracker</h3>
+                    <p class="resource-description">Monitor your trading performance and track your portfolio in
+                        real-time.</p>
+                    <button class="course-btn" data-resource="portfolio-tracker">Track Portfolio</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gold accent elements -->
+        <div class="learn-accent accent-1"></div>
+        <div class="learn-accent accent-2"></div>
+    </div>
+
+    <!-- AI Assistant -->
+    <div class="ai-assistant" id="aiAssistant">
+        <i class="fas fa-robot"></i>
+    </div>
+
+    <div class="ai-chat" id="aiChat">
+        <div class="ai-header">
+            <span>Trading Assistant</span>
+            <button class="close-btn" id="closeChat">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="ai-messages" id="aiMessages">
+            <div class="ai-message bot">
+                Hello! I'm your trading assistant. How can I help you with your trading education today?
+            </div>
+        </div>
+        <div class="ai-input">
+            <input type="text" id="aiInput" placeholder="Ask me about trading...">
+            <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h2 class="footer-brand mb-15"><a href="#" class="foot">InvestHub</a></h2>
+                    <p class="firstp">We are a leading trading platform providing access to global markets, advanced
+                        trading tools, and educational resources for traders of all experience levels.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Trading Platforms</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Market Analysis</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Investment Products</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Trading Education</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Economic Calendar</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Headquarters</strong><br>
+                                123 Financial District,<br>
+                                New York, NY 10005
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Phone</strong><br>
+                                +1 (555) 123-4567
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email</strong><br>
+                                support@globaltradepro.com
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for market insights, trading tips, and platform updates.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2023 Global Trade Pro. All rights reserved.</p>
+
+                    <div class="payment-methods">
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-paypal"></i>
+                        <i class="fab fa-cc-apple-pay"></i>
+                    </div>
+
+                    <div class="legal-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Risk Disclosure</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- Modal for actions -->
+    <div class="modal" id="actionModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Action Required</h3>
+                <button class="close-btn" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="modalMessage">Please confirm your action.</p>
+                <div class="modal-actions">
+                    <button class="modal-btn secondary" id="cancelAction">Cancel</button>
+                    <button class="modal-btn" id="confirmAction">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab Navigation
+        document.addEventListener('DOMContentLoaded', function () {
+            const navBtns = document.querySelectorAll('.nav-btn');
+            const contentSections = document.querySelectorAll('.content-section');
+
+            navBtns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const targetId = this.getAttribute('data-target');
+
+                    // Update active nav button
+                    navBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Show target section
+                    contentSections.forEach(section => {
+                        section.classList.remove('active');
+                        if (section.id === targetId) {
+                            section.classList.add('active');
+                        }
+                    });
+                });
+            });
+
+            // Initialize progress bars animation
+            const progressBars = document.querySelectorAll('.progress-bar');
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 500);
+            });
+
+            // Course buttons functionality
+            const courseButtons = document.querySelectorAll('.course-btn[data-course]');
+            courseButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const course = this.getAttribute('data-course');
+                    showModal(
+                        'Start Course',
+                        `Are you sure you want to start the "${getCourseName(course)}" course?`,
+                        () => {
+                            // Simulate course enrollment
+                            simulateLoading(() => {
+                                showNotification(`Successfully enrolled in "${getCourseName(course)}"!`);
+                                // Update button text if it's a new course
+                                if (this.textContent === 'Start Course') {
+                                    this.textContent = 'Continue Learning';
+                                    // Update progress bar
+                                    const progressBar = this.parentElement.querySelector('.progress-bar');
+                                    if (progressBar && progressBar.style.width === '0%') {
+                                        progressBar.style.width = '5%';
+                                    }
+                                }
+                            });
+                        }
+                    );
+                });
+            });
+
+            // Article buttons functionality
+            const articleButtons = document.querySelectorAll('.course-btn[data-article]');
+            articleButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const article = this.getAttribute('data-article');
+                    showModal(
+                        'Read Article',
+                        `Open the article "${getArticleName(article)}"?`,
+                        () => {
+                            // Simulate opening article
+                            simulateLoading(() => {
+                                showNotification(`Opening "${getArticleName(article)}"...`);
+                                // In a real app, this would redirect to the article page
+                            });
+                        }
+                    );
+                });
+            });
+
+            // Webinar buttons functionality
+            const webinarButtons = document.querySelectorAll('.course-btn[data-webinar]');
+            webinarButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const webinar = this.getAttribute('data-webinar');
+                    showModal(
+                        'Register for Webinar',
+                        `Register for the "${getWebinarName(webinar)}" webinar?`,
+                        () => {
+                            // Simulate webinar registration
+                            simulateLoading(() => {
+                                showNotification(`Successfully registered for "${getWebinarName(webinar)}"!`);
+                                // Update registration count
+                                const registrationElement = this.closest('.webinar-content').querySelector('.webinar-meta div:last-child');
+                                if (registrationElement) {
+                                    const currentCount = parseInt(registrationElement.textContent);
+                                    registrationElement.innerHTML = `<i class="fas fa-users"></i> ${currentCount + 1} registered`;
+                                }
+                                this.textContent = 'Registered';
+                                this.disabled = true;
+                                this.style.opacity = '0.7';
+                            });
+                        }
+                    );
+                });
+            });
+
+            // Resource buttons functionality
+            const resourceButtons = document.querySelectorAll('.course-btn[data-resource]');
+            resourceButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const resource = this.getAttribute('data-resource');
+                    showModal(
+                        'Open Resource',
+                        `Open the "${getResourceName(resource)}" tool?`,
+                        () => {
+                            // Simulate opening resource
+                            simulateLoading(() => {
+                                showNotification(`Opening "${getResourceName(resource)}"...`);
+                                // In a real app, this would open the resource
+                            });
+                        }
+                    );
+                });
+            });
+
+            // AI Assistant functionality
+            const aiAssistant = document.getElementById('aiAssistant');
+            const aiChat = document.getElementById('aiChat');
+            const closeChat = document.getElementById('closeChat');
+            const sendMessage = document.getElementById('sendMessage');
+            const aiInput = document.getElementById('aiInput');
+            const aiMessages = document.getElementById('aiMessages');
+
+            aiAssistant.addEventListener('click', function () {
+                aiChat.classList.toggle('active');
+            });
+
+            closeChat.addEventListener('click', function () {
+                aiChat.classList.remove('active');
+            });
+
+            sendMessage.addEventListener('click', sendAIMessage);
+            aiInput.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    sendAIMessage();
+                }
+            });
+
+            function sendAIMessage() {
+                const message = aiInput.value.trim();
+                if (message) {
+                    // Add user message
+                    addMessage(message, 'user');
+                    aiInput.value = '';
+
+                    // Simulate AI response
+                    setTimeout(() => {
+                        const response = generateAIResponse(message);
+                        addMessage(response, 'bot');
+                    }, 1000);
+                }
+            }
+
+            function addMessage(text, sender) {
+                const messageElement = document.createElement('div');
+                messageElement.className = `ai-message ${sender}`;
+                messageElement.textContent = text;
+                aiMessages.appendChild(messageElement);
+                aiMessages.scrollTop = aiMessages.scrollHeight;
+            }
+
+            function generateAIResponse(message) {
+                const lowerMessage = message.toLowerCase();
+
+                if (lowerMessage.includes('hello') || lowerMessage.includes('hi')) {
+                    return "Hello! How can I assist you with your trading education today?";
+                } else if (lowerMessage.includes('course') || lowerMessage.includes('learn')) {
+                    return "I recommend starting with our 'Trading Fundamentals' course if you're new to trading. For more advanced topics, check out 'Technical Analysis Mastery' or 'Advanced Risk Management'.";
+                } else if (lowerMessage.includes('technical') || lowerMessage.includes('analysis')) {
+                    return "Technical analysis involves studying price charts and using indicators to predict future price movements. Our 'Technical Analysis Mastery' course covers everything from basic chart patterns to advanced indicators.";
+                } else if (lowerMessage.includes('risk') || lowerMessage.includes('management')) {
+                    return "Risk management is crucial for successful trading. It involves position sizing, stop-loss orders, and diversification. Our 'Advanced Risk Management' course teaches sophisticated techniques to protect your capital.";
+                } else if (lowerMessage.includes('webinar') || lowerMessage.includes('live')) {
+                    return "We have several upcoming webinars on various trading topics. Check the 'Webinars' section to see the schedule and register for sessions that interest you.";
+                } else if (lowerMessage.includes('resource') || lowerMessage.includes('tool')) {
+                    return "We offer various trading tools including a risk calculator, economic calendar, trading glossary, and portfolio tracker. You can find these in the 'Resources' section.";
+                } else {
+                    return "I'm here to help with your trading education questions. You can ask me about courses, articles, webinars, trading strategies, or risk management.";
+                }
+            }
+
+            // Modal functionality
+            const actionModal = document.getElementById('actionModal');
+            const closeModal = document.getElementById('closeModal');
+            const cancelAction = document.getElementById('cancelAction');
+            const confirmAction = document.getElementById('confirmAction');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalMessage = document.getElementById('modalMessage');
+
+            closeModal.addEventListener('click', closeActionModal);
+            cancelAction.addEventListener('click', closeActionModal);
+
+            function showModal(title, message, confirmCallback) {
+                modalTitle.textContent = title;
+                modalMessage.textContent = message;
+                actionModal.classList.add('active');
+
+                // Set up confirm action
+                confirmAction.onclick = function () {
+                    closeActionModal();
+                    if (confirmCallback) confirmCallback();
+                };
+            }
+
+            function closeActionModal() {
+                actionModal.classList.remove('active');
+            }
+
+            // Helper functions
+            function getCourseName(courseId) {
+                const courses = {
+                    'fundamentals': 'Trading Fundamentals',
+                    'technical-analysis': 'Technical Analysis Mastery',
+                    'risk-management': 'Advanced Risk Management'
+                };
+                return courses[courseId] || 'Unknown Course';
+            }
+
+            function getArticleName(articleId) {
+                const articles = {
+                    'market-trends': 'Understanding Market Trends in 2024',
+                    'crypto-strategies': 'Cryptocurrency Trading Strategies',
+                    'trading-psychology': 'Psychology of Successful Traders'
+                };
+                return articles[articleId] || 'Unknown Article';
+            }
+
+            function getWebinarName(webinarId) {
+                const webinars = {
+                    'forex-beginners': 'Forex Trading for Beginners',
+                    'options-strategies': 'Advanced Options Strategies',
+                    'market-analysis': 'Market Analysis & Prediction Techniques'
+                };
+                return webinars[webinarId] || 'Unknown Webinar';
+            }
+
+            function getResourceName(resourceId) {
+                const resources = {
+                    'risk-calculator': 'Risk Calculator',
+                    'economic-calendar': 'Economic Calendar',
+                    'trading-glossary': 'Trading Glossary',
+                    'portfolio-tracker': 'Portfolio Tracker'
+                };
+                return resources[resourceId] || 'Unknown Resource';
+            }
+
+            function simulateLoading(callback) {
+                // Show loading state
+                showNotification('Processing your request...', 'info');
+
+                // Simulate API call delay
+                setTimeout(() => {
+                    if (callback) callback();
+                }, 1500);
+            }
+
+            function showNotification(message, type = 'success') {
+                // Create notification element
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: ${type === 'success' ? 'var(--success)' : 'var(--gold-primary)'};
+                    color: var(--dark-primary);
+                    padding: 1rem 1.5rem;
+                    border-radius: 10px;
+                    font-weight: 600;
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                    z-index: 1000;
+                    animation: slideIn 0.3s ease;
+                `;
+                notification.textContent = message;
+
+                document.body.appendChild(notification);
+
+                // Remove notification after 3 seconds
+                setTimeout(() => {
+                    notification.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => {
+                        document.body.removeChild(notification);
+                    }, 300);
+                }, 3000);
+            }
+
+            // Add CSS for notification animations
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes slideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+                @keyframes scaleUp {
+                    from { transform: scale(0.9); opacity: 0; }
+                    to { transform: scale(1); opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/js/jquery-3.7.1.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/app.js"></script>
+
+</body>
+
+</html>

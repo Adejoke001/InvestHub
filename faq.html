@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - InvestHub</title> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+
+
+    <style>
+        :root {
+            --dark-primary: #0a0f1c;
+            --dark-secondary: #1a1f2e;
+            --dark-tertiary: #2d3345;
+            --gold-primary: #ffd700;
+            --gold-secondary: #ffed4e;
+            --gold-dark: #b39700;
+            --gold-gradient: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            --dark-gradient: linear-gradient(135deg, #0a0f1c 0%, #1a1f2e 100%);
+            --text-light: #f8f9fa;
+            --text-muted: #a0aec0;
+            --text-dark: #2d3748;
+            --border-color: #2d3345;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--dark-gradient);
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .faq-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .faq-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            margin-top: 4rem;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+        }
+
+        .faq-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .faq-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gold-gradient);
+            border-radius: 2px;
+        }
+
+        .faq-search {
+            max-width: 500px;
+            margin: 0 auto 3rem;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: var(--dark-tertiary);
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            color: var(--text-light);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+            background: var(--dark-secondary);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gold-primary);
+            font-size: 1.1rem;
+        }
+
+        .faq-categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            background: var(--dark-tertiary);
+            border: 2px solid var(--border-color);
+            color: var(--text-light);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .category-btn.active,
+        .category-btn:hover {
+            background: var(--gold-gradient);
+            color: var(--dark-primary);
+            border-color: var(--gold-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .faq-items {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .faq-item {
+            background: var(--dark-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .faq-item.active {
+            background: var(--dark-tertiary);
+            border-color: var(--gold-primary);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .faq-question {
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        .question-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-light);
+            flex: 1;
+            margin-right: 1rem;
+        }
+
+        .faq-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gold-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+            background: var(--dark-primary);
+            color: var(--gold-primary);
+        }
+
+        .faq-answer {
+            padding: 0 2rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 2rem 1.5rem;
+            max-height: 500px;
+            opacity: 1;
+        }
+
+        .answer-content {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .answer-content p {
+            margin-bottom: 1rem;
+        }
+
+        .answer-content ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .answer-content li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .answer-content li::before {
+            content: '•';
+            color: var(--gold-primary);
+            font-weight: bold;
+            position: absolute;
+            left: -1rem;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+            display: none;
+        }
+
+        .no-results i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--gold-primary);
+            opacity: 0.5;
+        }
+
+        .faq-cta {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 3rem;
+            background: var(--dark-tertiary);
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .faq-cta h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .faq-cta p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            background: var(--gold-gradient);
+            border: none;
+            color: var(--dark-primary);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Gold accent elements */
+        .faq-accent {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, rgba(255,215,0,0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .accent-1 {
+            top: 10%;
+            left: 5%;
+        }
+
+        .accent-2 {
+            bottom: 20%;
+            right: 8%;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .faq-item {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .faq-item:nth-child(1) { animation-delay: 0.1s; }
+        .faq-item:nth-child(2) { animation-delay: 0.2s; }
+        .faq-item:nth-child(3) { animation-delay: 0.3s; }
+        .faq-item:nth-child(4) { animation-delay: 0.4s; }
+        .faq-item:nth-child(5) { animation-delay: 0.5s; }
+        .faq-item:nth-child(6) { animation-delay: 0.6s; }
+        .faq-item:nth-child(7) { animation-delay: 0.7s; }
+        .faq-item:nth-child(8) { animation-delay: 0.8s; }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .faq-container {
+                padding: 1rem;
+            }
+
+            .faq-title {
+                font-size: 2.5rem;
+            }
+
+            .faq-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .faq-question {
+                padding: 1.25rem 1.5rem;
+            }
+
+            .question-text {
+                font-size: 1rem;
+            }
+
+            .faq-answer {
+                padding: 0 1.5rem;
+            }
+
+            .faq-item.active .faq-answer {
+                padding: 0 1.5rem 1.25rem;
+            }
+
+            .faq-categories {
+                gap: 0.5rem;
+            }
+
+            .category-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.85rem;
+            }
+
+            .faq-cta {
+                padding: 2rem 1.5rem;
+            }
+
+            .faq-cta h3 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .faq-title {
+                font-size: 2rem;
+            }
+
+            .faq-question {
+                padding: 1rem 1.25rem;
+            }
+
+            .faq-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
+
+            .faq-accent {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+     <nav class="navbar navbar-expand-lg navbar-trade fixed-top mb-0">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                InvestHub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/invest.html">Invest</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Cash Card</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            What We Offer
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/invest.html">Invest</a></li>
+                            <li><a class="dropdown-item" href="#">Crypto</a></li>
+                            <li><a class="dropdown-item" href="#">Trading</a></li>
+                            <li><a class="dropdown-item" href="#">Banking</a></li>
+                            <li><a class="dropdown-item" href="#">Credit Card</a></li>
+                            <li><a class="dropdown-item" href="#">Stocks & ETFs</a></li>
+                            <li><a class="dropdown-item" href="#">Options</a></li>
+                            <li><a class="dropdown-item" href="#">Crypto</a></li>
+                            <li><a class="dropdown-item" href="#">Learn & Explore</a></li>
+                        </ul>
+                    </li>
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                          Others
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/testimonial.html">Testimonials</a></li>
+                            <li><a class="dropdown-item" href="/faq.html">FAQ</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Learn</a>
+                    </li>
+                </ul>
+                <div class="d-flex btn-container">
+                    <button class="btn btn-login me-2 "><a href="/login.html" class="log">Log in</a></button>
+                    <button class="btn btn-signup"><a href="./signup.html" class="sign">Sign up</a></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="faq-container">
+        <div class="faq-header">
+            <h1 class="faq-title">Frequently Asked Questions</h1>
+            <p class="faq-subtitle">Find answers to common questions about our trading platform and services</p>
+        </div>
+
+        <div class="faq-search">
+            <input type="text" class="search-input" placeholder="Search questions..." id="searchInput">
+            <i class="fas fa-search search-icon"></i>
+        </div>
+
+        <div class="faq-categories">
+            <button class="category-btn active" data-category="all">All Questions</button>
+            <button class="category-btn" data-category="account">Account</button>
+            <button class="category-btn" data-category="trading">Trading</button>
+            <button class="category-btn" data-category="fees">Fees & Payments</button>
+            <button class="category-btn" data-category="security">Security</button>
+        </div>
+
+        <div class="faq-items" id="faqItems">
+            <!-- FAQ items will be populated by JavaScript -->
+        </div>
+
+        <div class="no-results" id="noResults">
+            <i class="fas fa-search"></i>
+            <h3>No results found</h3>
+            <p>Try adjusting your search or filter to find what you're looking for.</p>
+        </div>
+
+        <div class="faq-cta">
+            <h3>Still have questions?</h3>
+            <p>Our support team is here to help you with any additional questions you might have about our platform.</p>
+            <button class="cta-button">
+                <i class="fas fa-headset"></i> Contact Support
+            </button>
+        </div>
+
+        <!-- Gold accent elements -->
+        <div class="faq-accent accent-1"></div>
+        <div class="faq-accent accent-2"></div>
+    </div>
+
+    <script>
+        // FAQ Data
+        const faqData = [
+            {
+                question: "How do I create a trading account?",
+                answer: "Creating a trading account is simple. Click the 'Sign Up' button in the top navigation, fill in your personal details, verify your email address, and complete the identity verification process. Once approved, you can fund your account and start trading.",
+                category: "account"
+            },
+            {
+                question: "What is the minimum deposit required?",
+                answer: "The minimum deposit to start trading is $100. However, we recommend starting with at least $500 to have adequate risk management and trading flexibility. Different account types may have varying minimum deposit requirements.",
+                category: "account"
+            },
+            {
+                question: "How secure is my funds and personal information?",
+                answer: "We employ bank-level security measures including:<ul><li>256-bit SSL encryption</li><li>Two-factor authentication (2FA)</li><li>Segregated client funds</li><li>Regular security audits</li><li>Cold storage for digital assets</li></ul>Your funds and data are protected with the highest security standards.",
+                category: "security"
+            },
+            {
+                question: "What trading instruments are available?",
+                answer: "We offer a wide range of trading instruments including:<ul><li>Forex (50+ currency pairs)</li><li>Stocks (1000+ global companies)</li><li>Cryptocurrencies (50+ digital assets)</li><li>Commodities (Gold, Oil, Silver)</li><li>Indices (S&P 500, NASDAQ, etc.)</li><li>ETFs and Mutual Funds</li></ul>",
+                category: "trading"
+            },
+            {
+                question: "What are the trading fees and commissions?",
+                answer: "Our fee structure is transparent and competitive:<ul><li>Zero commission on stock trades</li><li>Forex spreads from 0.8 pips</li><li>Crypto trading fees: 0.1%</li><li>No deposit or withdrawal fees</li><li>Inactivity fee only after 12 months</li></ul>All fees are clearly displayed before you execute any trade.",
+                category: "fees"
+            },
+            {
+                question: "How long do withdrawals take to process?",
+                answer: "Withdrawal processing times vary by method:<ul><li>Bank transfers: 1-3 business days</li><li>Credit/Debit cards: 1-2 business days</li><li>E-wallets (PayPal, Skrill): Instant to 24 hours</li><li>Crypto withdrawals: Usually within 2 hours</li></ul>First-time withdrawals may require additional verification.",
+                category: "fees"
+            },
+            {
+                question: "Can I use automated trading strategies?",
+                answer: "Yes, we fully support automated trading. You can use:<ul><li>Expert Advisors (EAs) on MT4/MT5</li><li>API trading for custom algorithms</li><li>Copy trading from successful traders</li><li>Pre-built trading robots</li></ul>All automated strategies must comply with our trading rules.",
+                category: "trading"
+            },
+            {
+                question: "What educational resources are available?",
+                answer: "We provide comprehensive educational materials:<ul><li>Daily market analysis and webinars</li><li>Trading courses for all skill levels</li><li>Video tutorials and eBooks</li><li>Economic calendar</li><li>1-on-1 coaching sessions</li><li>Demo account with virtual $50,000</li></ul>",
+                category: "account"
+            },
+            {
+                question: "Is there a mobile trading app?",
+                answer: "Yes, we offer fully-featured mobile apps for both iOS and Android. Our mobile app includes:<ul><li>Real-time price quotes and charts</li><li>Full trading functionality</li><li>Portfolio management</li><li>Push notifications</li><li>Biometric login</li><li>24/7 customer support</li></ul>Download from App Store or Google Play.",
+                category: "trading"
+            },
+            {
+                question: "What happens if the platform experiences downtime?",
+                answer: "While our platform maintains 99.9% uptime, in rare cases of downtime:<ul><li>All open positions remain active</li><li>Stop-loss and take-profit orders execute as set</li><li>We provide real-time updates via email and social media</li><li>Alternative trading methods are available</li><li>Customer support remains operational 24/7</li></ul>",
+                category: "security"
+            }
+        ];
+
+        // Initialize FAQ
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.getElementById('faqItems');
+            const searchInput = document.getElementById('searchInput');
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            const noResults = document.getElementById('noResults');
+            
+            let currentCategory = 'all';
+            let currentSearch = '';
+
+            // Render FAQ items
+            function renderFAQ() {
+                faqItems.innerHTML = '';
+                let filteredItems = faqData;
+                
+                // Filter by category
+                if (currentCategory !== 'all') {
+                    filteredItems = filteredItems.filter(item => item.category === currentCategory);
+                }
+                
+                // Filter by search
+                if (currentSearch) {
+                    const searchTerm = currentSearch.toLowerCase();
+                    filteredItems = filteredItems.filter(item => 
+                        item.question.toLowerCase().includes(searchTerm) || 
+                        item.answer.toLowerCase().includes(searchTerm)
+                    );
+                }
+                
+                // Show/hide no results message
+                if (filteredItems.length === 0) {
+                    noResults.style.display = 'block';
+                } else {
+                    noResults.style.display = 'none';
+                }
+                
+                // Render items
+                filteredItems.forEach((item, index) => {
+                    const faqItem = document.createElement('div');
+                    faqItem.className = 'faq-item';
+                    faqItem.setAttribute('data-category', item.category);
+                    
+                    faqItem.innerHTML = `
+                        <div class="faq-question">
+                            <span class="question-text">${item.question}</span>
+                            <div class="faq-icon">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">${item.answer}</div>
+                        </div>
+                    `;
+                    
+                    faqItems.appendChild(faqItem);
+                    
+                    // Add click event to toggle answer
+                    const question = faqItem.querySelector('.faq-question');
+                    question.addEventListener('click', () => {
+                        faqItem.classList.toggle('active');
+                    });
+                });
+            }
+
+            // Search functionality
+            searchInput.addEventListener('input', function(e) {
+                currentSearch = e.target.value;
+                renderFAQ();
+            });
+
+            // Category filter
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentCategory = this.getAttribute('data-category');
+                    renderFAQ();
+                });
+            });
+
+            // Initial render
+            renderFAQ();
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/js/jquery-3.7.1.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/app.js"></script>
+
+</body>
+</html>

@@ -1,40 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InvestHub - Sign Up</title>
+    <title>Sign Up-InvestHub</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --turquoise-primary: #40E0D0;
-            --turquoise-light: #e0f780;
-            --turquoise-bright: #deff58;
-            --turquoise-dark: #20B2AA;
-            --text-dark: #2C3E50;
+            --dark-primary: #0a0f1c;
+            --dark-secondary: #1a1f2e;
+            --dark-tertiary: #2d3345;
+            --gold-primary: #ffd700;
+            --gold-secondary: #ffed4e;
+            --gold-dark: #b39700;
+            --gold-gradient: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            --dark-gradient: linear-gradient(135deg, #0a0f1c 0%, #1a1f2e 100%);
+            --text-light: #f8f9fa;
+            --text-muted: #a0aec0;
+            --text-dark: #2d3748;
         }
 
         body {
-            background: linear-gradient(135deg, #c8de71 0%, rgb(132, 236, 225)100%);
+            background: var(--dark-gradient);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-light);
         }
 
         .signup-container {
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            background: linear-gradient(135deg, var(--dark-secondary) 0%, var(--dark-tertiary) 100%);
             border-radius: 25px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
             overflow: hidden;
             max-width: 480px;
             width: 100%;
-            border: 1px solid rgba(64, 224, 208, 0.2);
+            border: 1px solid var(--border-color);
             position: relative;
         }
 
@@ -45,12 +53,12 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, var(--turquoise-primary), var(--turquoise-light), var(--turquoise-bright));
+            background: var(--gold-gradient);
         }
 
         .signup-header {
-            background: linear-gradient(135deg, var(--turquoise-primary) 0%, var(--turquoise-light) 100%);
-            color: var(--text-dark);
+            background: var(--gold-gradient);
+            color: var(--dark-primary);
             padding: 2.5rem 2rem;
             text-align: center;
             position: relative;
@@ -64,7 +72,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
             animation: float 6s ease-in-out infinite;
         }
 
@@ -74,12 +82,12 @@
             font-size: 2.2rem;
             position: relative;
             z-index: 2;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .signup-header p {
             margin: 0.8rem 0 0 0;
-            font-weight: 500;
+            font-weight: 600;
             opacity: 0.9;
             position: relative;
             z-index: 2;
@@ -88,117 +96,131 @@
 
         .signup-body {
             padding: 2.5rem 2rem;
-            background: white;
+            background: var(--dark-secondary);
         }
 
         /* Form Styles */
         .signup-form .form-label {
             font-weight: 600;
-            color: var(--text-dark);
+            color: var(--text-light);
             margin-bottom: 0.5rem;
             font-size: 0.95rem;
         }
 
         .signup-form .form-control {
-            border: 2px solid #e9ecef;
+            border: 2px solid var(--border-color);
             border-radius: 12px;
             padding: 0.75rem 1rem;
             font-size: 1rem;
             transition: all 0.3s ease;
-            background: #f8f9fa;
+            background: var(--dark-tertiary);
+            color: var(--text-light);
         }
 
         .signup-form .form-control:focus {
-            border-color: var(--turquoise-primary);
-            box-shadow: 0 0 0 0.3rem rgba(64, 224, 208, 0.15);
-            background: white;
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 0 0.3rem rgba(255, 215, 0, 0.15);
+            background: var(--dark-primary);
             transform: translateY(-2px);
         }
 
         .signup-form .form-control::placeholder {
-            color: #adb5bd;
+            color: var(--text-muted);
             font-weight: 400;
         }
 
         .input-group .btn-outline-secondary {
-            border: 2px solid #e9ecef;
+            border: 2px solid var(--border-color);
             border-left: none;
             border-radius: 0 12px 12px 0;
-            background: #f8f9fa;
-            color: var(--turquoise-dark);
+            background: var(--dark-tertiary);
+            color: var(--gold-primary);
             transition: all 0.3s ease;
         }
 
         .input-group .btn-outline-secondary:hover {
-            background: var(--turquoise-primary);
-            color: white;
-            border-color: var(--turquoise-primary);
+            background: var(--gold-primary);
+            color: var(--dark-primary);
+            border-color: var(--gold-primary);
         }
 
         .signup-form .form-check-input {
-            border: 2px solid #e9ecef;
+            border: 2px solid var(--border-color);
             margin-top: 0.2rem;
+            background: var(--dark-tertiary);
         }
 
         .signup-form .form-check-input:checked {
-            background-color: var(--turquoise-primary);
-            border-color: var(--turquoise-primary);
+            background-color: var(--gold-primary);
+            border-color: var(--gold-primary);
         }
 
         .signup-form .form-check-input:focus {
-            border-color: var(--turquoise-primary);
-            box-shadow: 0 0 0 0.2rem rgba(64, 224, 208, 0.25);
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.25);
         }
 
         .signup-form .form-check-label {
-            color: var(--text-dark);
+            color: var(--text-light);
             font-weight: 500;
         }
 
-        .btn-turquoise {
-            background: linear-gradient(135deg, var(--turquoise-primary) 0%, var(--turquoise-light) 100%);
+        .signup-form .form-check-label a {
+            color: var(--gold-primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .signup-form .form-check-label a:hover {
+            color: var(--gold-secondary);
+            text-decoration: underline;
+        }
+
+        .btn-gold {
+            background: var(--gold-gradient);
             border: none;
-            color: var(--text-dark);
+            color: var(--dark-primary);
             font-weight: 700;
             font-size: 1.1rem;
             padding: 1rem 2rem;
             border-radius: 15px;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 8px 25px rgba(64, 224, 208, 0.3);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
             position: relative;
             overflow: hidden;
+            width: 100%;
         }
 
-        .btn-turquoise::before {
+        .btn-gold::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
             transition: left 0.7s ease;
         }
 
-        .btn-turquoise:hover {
+        .btn-gold:hover {
             transform: translateY(-4px);
-            box-shadow: 0 15px 35px rgba(64, 224, 208, 0.4);
-            background: linear-gradient(135deg, var(--turquoise-light) 0%, var(--turquoise-bright) 100%);
+            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.5);
+            background: linear-gradient(135deg, var(--gold-secondary) 0%, var(--gold-primary) 100%);
         }
 
-        .btn-turquoise:hover::before {
+        .btn-gold:hover::before {
             left: 100%;
         }
 
-        .text-turquoise {
-            color: var(--turquoise-primary) !important;
+        .text-gold {
+            color: var(--gold-primary) !important;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
         }
 
-        .text-turquoise:hover {
-            color: var(--turquoise-dark) !important;
+        .text-gold:hover {
+            color: var(--gold-secondary) !important;
             text-decoration: underline;
         }
 
@@ -217,19 +239,28 @@
             left: 50%;
             margin-left: -12px;
             margin-top: -12px;
-            border: 3px solid var(--text-dark);
+            border: 3px solid var(--dark-primary);
             border-radius: 50%;
             border-top-color: transparent;
             animation: spin 1s ease-in-out infinite;
         }
 
         @keyframes spin {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(180deg); }
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-10px) rotate(180deg);
+            }
         }
 
         /* Alert positioning */
@@ -241,14 +272,15 @@
             max-width: 400px;
             border-radius: 15px;
             border: none;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            background: linear-gradient(135deg, var(--turquoise-primary) 0%, var(--turquoise-light) 100%);
-            color: var(--text-dark);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            background: var(--gold-gradient);
+            color: var(--dark-primary);
             font-weight: 600;
+            border: 1px solid var(--gold-primary);
         }
 
         .form-text {
-            color: #6c757d;
+            color: var(--text-muted);
             font-size: 0.85rem;
             margin-top: 0.3rem;
         }
@@ -256,11 +288,13 @@
         .invalid-feedback {
             font-size: 0.85rem;
             font-weight: 500;
+            color: #f56565;
         }
 
         /* Floating animation for icons */
         .floating-icon {
             animation: float 3s ease-in-out infinite;
+            color: var(--gold-primary);
         }
 
         .floating-icon:nth-child(2) {
@@ -271,27 +305,92 @@
             animation-delay: 2s;
         }
 
+        /* Additional gold accents */
+        .signup-accent {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0) 70%);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .accent-1 {
+            top: 10%;
+            left: 5%;
+        }
+
+        .accent-2 {
+            bottom: 20%;
+            right: 8%;
+        }
+
+        /* Login link section */
+        .login-link {
+            text-align: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .login-link p {
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
         /* Responsive adjustments */
         @media (max-width: 576px) {
             .signup-container {
                 margin: 10px;
                 border-radius: 20px;
             }
-            
+
             .signup-header {
                 padding: 2rem 1.5rem;
             }
-            
+
             .signup-body {
                 padding: 2rem 1.5rem;
             }
-            
+
             .signup-header h2 {
                 font-size: 1.8rem;
             }
+
+            .btn-gold {
+                padding: 0.9rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+
+        /* Password strength indicator */
+        .password-strength {
+            margin-top: 0.5rem;
+        }
+
+        .strength-bar {
+            height: 4px;
+            background: var(--border-color);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: 0.3rem;
+        }
+
+        .strength-fill {
+            height: 100%;
+            background: var(--gold-gradient);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .strength-text {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.2rem;
         }
     </style>
 </head>
+
 <body>
     <!-- Signup Form Container -->
     <div class="signup-container">
@@ -299,7 +398,7 @@
             <h2><i class="fas fa-rocket floating-icon me-2"></i>Start Investing Today</h2>
             <p>Join millions building wealth with InvestHub</p>
         </div>
-        
+
         <div class="signup-body">
             <form id="signupForm" class="signup-form">
                 <div class="row">
@@ -345,8 +444,10 @@
                 <div class="form-group mb-3">
                     <label for="confirmPassword" class="form-label">Confirm Password *</label>
                     <div class="input-group">
-                        <input type="password" class="form-control" id="confirmPassword" required placeholder="••••••••">
-                        <button type="button" class="btn btn-outline-secondary toggle-password" data-target="confirmPassword">
+                        <input type="password" class="form-control" id="confirmPassword" required
+                            placeholder="••••••••">
+                        <button type="button" class="btn btn-outline-secondary toggle-password"
+                            data-target="confirmPassword">
                             <i class="fas fa-eye floating-icon"></i>
                         </button>
                     </div>
@@ -366,7 +467,8 @@
                 <div class="form-check mb-4">
                     <input class="form-check-input" type="checkbox" id="terms" required>
                     <label class="form-check-label" for="terms">
-                        I agree to the <a href="#" class="text-turquoise">Terms of Service</a> and <a href="#" class="text-turquoise">Privacy Policy</a>
+                        I agree to the <a href="#" class="text-turquoise">Terms of Service</a> and <a href="#"
+                            class="text-turquoise">Privacy Policy</a>
                     </label>
                     <div class="invalid-feedback">You must agree to the terms and conditions</div>
                 </div>
@@ -379,7 +481,8 @@
                 </div>
 
                 <div class="text-center mt-4">
-                    <p class="text-muted mb-0">Already have an account? <a href="#" class="text-turquoise">Log in</a></p>
+                    <p class="text-muted mb-0">Already have an account? <a href="#" class="text-turquoise">Log in</a>
+                    </p>
                 </div>
             </form>
         </div>
@@ -397,18 +500,18 @@
 
     <script>
         // Signup Form Functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const signupForm = document.getElementById('signupForm');
             const submitBtn = document.getElementById('submitBtn');
             const successAlert = document.getElementById('successAlert');
 
             // Password toggle functionality
             document.querySelectorAll('.toggle-password').forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     const targetId = this.getAttribute('data-target');
                     const passwordInput = document.getElementById(targetId);
                     const icon = this.querySelector('i');
-                    
+
                     if (passwordInput.type === 'password') {
                         passwordInput.type = 'text';
                         icon.classList.remove('fa-eye');
@@ -436,7 +539,7 @@
                 if (passwordValue.length > 0) {
                     const hasLetter = /[a-zA-Z]/.test(passwordValue);
                     const hasNumber = /[0-9]/.test(passwordValue);
-                    
+
                     if (passwordValue.length < 8 || !hasLetter || !hasNumber) {
                         password.classList.add('is-invalid');
                         return false;
@@ -461,9 +564,9 @@
             }
 
             // Form submission
-            signupForm.addEventListener('submit', function(e) {
+            signupForm.addEventListener('submit', function (e) {
                 e.preventDefault();
-                
+
                 if (validateForm()) {
                     // Show loading state
                     submitBtn.disabled = true;
@@ -475,7 +578,7 @@
                         // Reset form
                         signupForm.reset();
                         signupForm.classList.remove('was-validated');
-                        
+
                         // Remove validation classes
                         document.querySelectorAll('.is-valid, .is-invalid').forEach(el => {
                             el.classList.remove('is-valid', 'is-invalid');
@@ -545,7 +648,7 @@
                     if (firstInvalid) {
                         firstInvalid.focus();
                     }
-                    
+
                     // Show error alert
                     showAlert('Please fill in all required fields correctly.', 'danger');
                 }
@@ -573,7 +676,7 @@
                     ${message}
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 `;
-                
+
                 document.body.appendChild(alertDiv);
 
                 // Auto remove after 5 seconds
@@ -593,4 +696,5 @@
         });
     </script>
 </body>
+
 </html>

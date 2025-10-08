@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>InvestHub Testimonials</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+    <style>
+        /* Color Variables */
+        :root {
+            /* Dark & Gold Color Palette */
+            --dark-primary: #0a0f1c;
+            --dark-secondary: #1a1f2e;
+            --dark-tertiary: #2d3345;
+            --gold-primary: #ffd700;
+            --gold-secondary: #ffed4e;
+            --gold-dark: #b39700;
+            --gold-gradient: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            --dark-gradient: linear-gradient(135deg, #0a0f1c 0%, #1a1f2e 100%);
+            
+            /* Text Colors */
+            --text-light: #f8f9fa;
+            --text-muted: #a0aec0;
+            --text-dark: #2d3748;
+            
+            /* Component Colors */
+            --card-bg: #1a1f2e;
+            --section-bg: #0a0f1c;
+            --border-color: #2d3345;
+            
+            /* Status Colors */
+            --success: #48bb78;
+            --danger: #f56565;
+            --warning: #ed8936;
+            --info: #4299e1;
+            
+            /* Button Colors */
+            --btn-primary-bg: var(--gold-primary);
+            --btn-primary-text: var(--dark-primary);
+            --btn-primary-hover: var(--gold-secondary);
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-primary);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 5rem 0;
+            background: var(--dark-gradient);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(
+                circle at 20% 30%,
+                rgba(255, 215, 0, 0.05) 0%,
+                transparent 50%
+            );
+            z-index: 1;
+        }
+
+        .testimonials-section .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Section Header */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+            text-align: center;
+            margin-bottom: 1rem;
+            position: relative;
+            margin-top: 28px;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--gold-gradient);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            text-align: center;
+            max-width: 700px;
+            margin: 2rem auto 4rem;
+            line-height: 1.6;
+        }
+
+        /* Testimonial Cards */
+        .testimonial-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            margin-bottom: 2rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-left: 4px solid var(--gold-primary);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .testimonial-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 215, 0, 0.05),
+                transparent
+            );
+            transition: left 0.6s ease;
+        }
+
+        .testimonial-card:hover::before {
+            left: 100%;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.15);
+            border-left-color: var(--gold-secondary);
+            border-color: var(--gold-primary);
+        }
+
+        /* Testimonial Content */
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            font-size: 1.1rem;
+            position: relative;
+        }
+
+        .testimonial-text::before {
+            font-size: 4rem;
+            color: var(--gold-primary);
+            opacity: 0.3;
+            position: absolute;
+            top: -1.5rem;
+            left: -1rem;
+            font-family: serif;
+            line-height: 1;
+        }
+
+        /* Rating Stars */
+        .testimonial-rating {
+            margin-bottom: 1rem;
+        }
+
+        .rating-stars {
+            color: var(--gold-primary);
+            font-size: 1.1rem;
+        }
+
+        .rating-stars .star {
+            margin-right: 2px;
+        }
+
+        /* Author Info */
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .author-avatar {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: var(--gold-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-primary);
+            font-weight: bold;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover .author-avatar {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .author-info h5 {
+            margin: 0;
+            color: var(--gold-primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .author-info p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Testimonial Controls */
+        .testimonial-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+            gap: 1rem;
+        }
+
+        .testimonial-nav-btn {
+            background: var(--gold-gradient);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: var(--dark-primary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+        }
+
+        .testimonial-nav-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .testimonial-dots {
+            display: flex;
+            gap: 10px;
+        }
+
+        .testimonial-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-dot.active {
+            background: var(--gold-primary);
+            transform: scale(1.2);
+        }
+
+        /* Animations */
+        .animate-pop-in {
+            animation: popIn 0.8s cubic-bezier(0.26, 0.53, 0.74, 1.48) forwards;
+            opacity: 0;
+            transform: scale(0.8) translateY(20px);
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .animate-slide-up {
+            animation: slideUp 1s ease forwards;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        @keyframes slideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-delay-1 {
+            animation-delay: 0.3s;
+        }
+
+        .animate-delay-2 {
+            animation-delay: 0.6s;
+        }
+
+        .animate-delay-3 {
+            animation-delay: 0.9s;
+        }
+
+        /* Gold accent elements */
+        .testimonial-accent {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, rgba(255,215,0,0) 70%);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .testimonial-accent-1 {
+            top: 10%;
+            right: 10%;
+        }
+
+        .testimonial-accent-2 {
+            bottom: 20%;
+            left: 5%;
+        }
+
+        /* Grid Layout */
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -15px;
+        }
+
+        .col-lg-4, .col-md-6 {
+            padding: 0 15px;
+        }
+
+        .col-lg-4 {
+            flex: 0 0 33.333333%;
+            max-width: 33.333333%;
+        }
+
+        .col-md-6 {
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+
+        .justify-content-center {
+            justify-content: center;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-4 {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .col-lg-4 {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .testimonials-section {
+                padding: 3rem 0;
+            }
+            
+            .testimonial-card {
+                padding: 2rem 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .testimonial-text {
+                font-size: 1rem;
+            }
+            
+            .testimonial-text::before {
+                font-size: 3rem;
+                top: -1rem;
+                left: -0.5rem;
+            }
+            
+            .author-avatar {
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
+            
+            .col-lg-4, .col-md-6 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .testimonials-section {
+                padding: 2rem 0;
+            }
+            
+            .testimonial-card {
+                padding: 1.5rem 1rem;
+            }
+            
+            .testimonial-author {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .author-avatar {
+                margin-right: 0;
+                margin-bottom: 0.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+     <nav class="navbar navbar-expand-lg navbar-trade fixed-top mb-0">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                InvestHub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/invest.html">Invest</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Cash Card</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            What We Offer
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/invest.html">Invest</a></li>
+                            <li><a class="dropdown-item" href="#">Crypto</a></li>
+                            <li><a class="dropdown-item" href="#">Trading</a></li>
+                            <li><a class="dropdown-item" href="#">Banking</a></li>
+                            <li><a class="dropdown-item" href="#">Credit Card</a></li>
+                            <li><a class="dropdown-item" href="#">Stocks & ETFs</a></li>
+                            <li><a class="dropdown-item" href="#">Options</a></li>
+                            <li><a class="dropdown-item" href="#">Crypto</a></li>
+                            <li><a class="dropdown-item" href="#">Learn & Explore</a></li>
+                        </ul>
+                    </li>
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                          Others
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/testimonial.html">Testimonials</a></li>
+                            <li><a class="dropdown-item" href="/faq.html">FAQ</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/learn.html">Learn</a>
+                    </li>
+                </ul>
+                <div class="d-flex btn-container">
+                    <button class="btn btn-login me-2 "><a href="/login.html" class="log">Log in</a></button>
+                    <button class="btn btn-signup"><a href="./signup.html" class="sign">Sign up</a></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <!-- Section Header -->
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="section-title animate-pop-in">What Our Traders Say</h2>
+                    <p class="section-subtitle animate-pop-in animate-delay-1">
+                        Discover why thousands of investors trust our platform for their trading journey
+                    </p>
+                </div>
+            </div>
+
+            <!-- Testimonials Grid -->
+            <div class="row" id="testimonials-container">
+                <!-- Testimonials will be loaded here by JavaScript -->
+            </div>
+
+            <!-- Testimonial Controls -->
+            <div class="testimonial-controls">
+                <button class="testimonial-nav-btn" id="prev-testimonial">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="testimonial-dots" id="testimonial-dots">
+                    <!-- Dots will be generated by JavaScript -->
+                </div>
+                <button class="testimonial-nav-btn" id="next-testimonial">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Gold accent elements -->
+        <div class="testimonial-accent testimonial-accent-1"></div>
+        <div class="testimonial-accent testimonial-accent-2"></div>
+    </section>
+
+     <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h2 class="footer-brand mb-15"><a href="#" class="foot">InvestHub</a></h2>
+                    <p class="firstp">We are a leading trading platform providing access to global markets, advanced
+                        trading tools, and educational resources for traders of all experience levels.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Trading Platforms</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Market Analysis</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Investment Products</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Trading Education</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Economic Calendar</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Headquarters</strong><br>
+                                123 Financial District,<br>
+                                New York, NY 10005
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Phone</strong><br>
+                                +1 (555) 123-4567
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email</strong><br>
+                                support@globaltradepro.com
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for market insights, trading tips, and platform updates.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2023 Global Trade Pro. All rights reserved.</p>
+
+                    <div class="payment-methods">
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-paypal"></i>
+                        <i class="fab fa-cc-apple-pay"></i>
+                    </div>
+
+                    <div class="legal-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Risk Disclosure</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        // Testimonial data
+        const testimonials = [
+            {
+                id: 1,
+                name: "Sarah Johnson",
+                role: "Professional Trader",
+                avatar: "SJ",
+                rating: 5,
+                text: "This platform has completely transformed my trading strategy. The real-time analytics and intuitive interface helped me increase my portfolio by 35% in just three months."
+            },
+            {
+                id: 2,
+                name: "Michael Chen",
+                role: "Investment Analyst",
+                avatar: "MC",
+                rating: 5,
+                text: "As someone who analyzes trading platforms professionally, I'm impressed by the depth of tools available while maintaining user-friendliness. The gold-themed interface is both beautiful and functional."
+            },
+            {
+                id: 3,
+                name: "Emma Rodriguez",
+                role: "Day Trader",
+                avatar: "ER",
+                rating: 4,
+                text: "The execution speed is incredible! I've tried multiple platforms, but none match the reliability and speed of this one. The dark theme is easy on the eyes during long trading sessions."
+            },
+            {
+                id: 4,
+                name: "David Kim",
+                role: "Crypto Investor",
+                avatar: "DK",
+                rating: 5,
+                text: "The crypto trading features are outstanding. I appreciate the security measures and the variety of altcoins available. The gold accents give it a premium feel."
+            },
+            {
+                id: 5,
+                name: "Lisa Thompson",
+                role: "Financial Advisor",
+                avatar: "LT",
+                rating: 5,
+                text: "I recommend this platform to all my clients. The educational resources combined with powerful trading tools make it perfect for both beginners and experienced traders."
+            },
+            {
+                id: 6,
+                name: "James Wilson",
+                role: "Options Trader",
+                avatar: "JW",
+                rating: 4,
+                text: "The options trading interface is the best I've used. Clear visuals and easy-to-understand analytics help me make better decisions quickly."
+            }
+        ];
+
+        // DOM elements
+        const testimonialsContainer = document.getElementById('testimonials-container');
+        const testimonialDots = document.getElementById('testimonial-dots');
+        const prevButton = document.getElementById('prev-testimonial');
+        const nextButton = document.getElementById('next-testimonial');
+
+        // Current testimonial page
+        let currentPage = 0;
+        const testimonialsPerPage = 3;
+
+        // Function to generate star rating
+        function generateStars(rating) {
+            let stars = '';
+            for (let i = 0; i < 5; i++) {
+                if (i < rating) {
+                    stars += '<span class="star">★</span>';
+                } else {
+                    stars += '<span class="star" style="opacity: 0.3">★</span>';
+                }
+            }
+            return stars;
+        }
+
+        // Function to render testimonials
+        function renderTestimonials() {
+            testimonialsContainer.innerHTML = '';
+            
+            const startIndex = currentPage * testimonialsPerPage;
+            const endIndex = startIndex + testimonialsPerPage;
+            const currentTestimonials = testimonials.slice(startIndex, endIndex);
+            
+            currentTestimonials.forEach((testimonial, index) => {
+                const testimonialElement = document.createElement('div');
+                testimonialElement.className = 'col-lg-4 col-md-6 mb-4';
+                testimonialElement.innerHTML = `
+                    <div class="testimonial-card animate-slide-up" style="animation-delay: ${index * 0.2}s">
+                        <div class="testimonial-rating">
+                            <div class="rating-stars">
+                                ${generateStars(testimonial.rating)}
+                            </div>
+                        </div>
+                        <p class="testimonial-text">${testimonial.text}</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">${testimonial.avatar}</div>
+                            <div class="author-info">
+                                <h5>${testimonial.name}</h5>
+                                <p>${testimonial.role}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                testimonialsContainer.appendChild(testimonialElement);
+            });
+            
+            updateDots();
+        }
+
+        // Function to update navigation dots
+        function updateDots() {
+            testimonialDots.innerHTML = '';
+            const totalPages = Math.ceil(testimonials.length / testimonialsPerPage);
+            
+            for (let i = 0; i < totalPages; i++) {
+                const dot = document.createElement('div');
+                dot.className = `testimonial-dot ${i === currentPage ? 'active' : ''}`;
+                dot.addEventListener('click', () => {
+                    currentPage = i;
+                    renderTestimonials();
+                });
+                testimonialDots.appendChild(dot);
+            }
+        }
+
+        // Event listeners for navigation buttons
+        prevButton.addEventListener('click', () => {
+            currentPage = (currentPage - 1 + Math.ceil(testimonials.length / testimonialsPerPage)) % Math.ceil(testimonials.length / testimonialsPerPage);
+            renderTestimonials();
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentPage = (currentPage + 1) % Math.ceil(testimonials.length / testimonialsPerPage);
+            renderTestimonials();
+        });
+
+        // Initialize testimonials on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTestimonials();
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/js/jquery-3.7.1.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/app.js"></script>
+
+</body>
+</html>
