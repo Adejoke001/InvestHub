@@ -5,31 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invest | Professional Wealth Management</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <link rel="stylesheet" href="/css/style.css">
 
     <style>
         :root {
-            --teal-primary: #07a6a6;
-            --teal-dark: #006666;
-            --teal-light: #07acac;
+            --dark-primary: #0a0f1c;
+            --dark-secondary: #1a1f2e;
+            --dark-tertiary: #2d3345;
+            --gold-primary: #d8b907a7;
+            --gold-secondary: #d0bc0bbb;
+            --gold-dark: #b39800d8;
+            --gold-gradient: linear-gradient(135deg, #ffd900a4 0%, #ae9f18 100%);
+            --dark-gradient: linear-gradient(135deg, #0a0f1c 0%, #1a1f2e 100%);
             --text-light: #f8f9fa;
-            --text-dark: #212529;
-            --card-bg: #ffffff;
-            --section-bg: #f8fafc;
-
-            --turquoise-primary: #40e0d0;
-            --turquoise-light: #e0f780;
-            --turquoise-bright: #deff58;
-            --turquoise-dark: #20b2aa;
-            --text-dark: #2c3e50;
-            --section-bg-dark: #0a2540;
+            --text-muted: #a0aec0;
+            --text-dark: #2d3748;
+            --card-bg: #1a1f2e;
+            --section-bg: #0a0f1c;
+            --border-color: #2d3345;
+            --success: #48bb78;
+            --danger: #f56565;
+            --warning: #ed8936;
+            --info: #4299e1;
+            --btn-primary-bg: var(--gold-primary);
+            --btn-primary-text: var(--dark-primary);
+            --btn-primary-hover: var(--gold-secondary);
+            --btn-secondary-bg: transparent;
+            --btn-secondary-text: var(--gold-primary);
+            --btn-secondary-border: var(--gold-primary);
+            --btn-secondary-hover: rgba(255, 215, 0, 0.1);
         }
 
         * {
@@ -41,7 +49,7 @@
 
         body {
             background-color: var(--section-bg);
-            color: var(--text-dark);
+            color: var(--text-light);
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -51,171 +59,14 @@
             margin: 0 auto;
             padding: 0 20px;
         }
+        
 
-        /* Header Styles
-        header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            transition: all 0.3s ease;
-        }
-
-        header.scrolled {
-            padding: 5px 0;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-            transition: all 0.3s ease;
-        }
-
-        header.scrolled .navbar {
-            padding: 10px 0;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--teal-primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-
-        .logo i {
-            margin-right: 8px;
-            font-size: 26px;
-            transition: transform 0.5s ease;
-        }
-
-        .logo:hover i {
-            transform: rotate(15deg);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 30px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 500;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--teal-primary);
-        }
-
-        .nav-links a.active {
-            color: var(--teal-primary);
-        }
-
-        .nav-links a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--teal-primary);
-            animation: slideIn 0.3s ease;
-        }
-
-        @keyframes slideIn {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-
-        .nav-buttons {
-            display: flex;
-            align-items: center;
-        }
-
-        .btn {
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 5px;
-            height: 5px;
-            background: rgba(255, 255, 255, 0.5);
-            opacity: 0;
-            border-radius: 100%;
-            transform: scale(1, 1) translate(-50%);
-            transform-origin: 50% 50%;
-        }
-
-        .btn:focus:not(:active)::after {
-            animation: ripple 1s ease-out;
-        }
-
-        @keyframes ripple {
-            0% {
-                transform: scale(0, 0);
-                opacity: 0.5;
-            }
-            100% {
-                transform: scale(20, 20);
-                opacity: 0;
-            }
-        }
-
-        .btn-outline {
-            border: 1px solid var(--teal-primary);
-            color: var(--teal-primary);
-            background: transparent;
-            margin-right: 15px;
-        }
-
-        .btn-outline:hover {
-            background-color: rgba(7, 166, 166, 0.1);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(7, 166, 166, 0.2);
-        }
-
-        .btn-primary {
-            background-color: var(--teal-primary);
-            color: white;
-            border: none;
-        }
-
-        .btn-primary:hover {
-            background-color: var(--teal-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(7, 166, 166, 0.4);
-        } */
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--section-bg-dark) 0%, #1a3a5f 100%);
-            color: white;
-            padding: 100px 0;
+            background: var(--dark-gradient);
+            color: var(--text-light);
+            padding: 120px 0 80px;
             position: relative;
             overflow: hidden;
         }
@@ -227,7 +78,7 @@
             right: 0;
             width: 50%;
             height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(64, 224, 208, 0.1)"/></svg>');
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(216, 185, 7, 0.1)"/></svg>');
             background-size: cover;
         }
 
@@ -249,6 +100,7 @@
         .hero p {
             font-size: 18px;
             margin-bottom: 30px;
+            color: var(--text-muted);
             opacity: 0;
             transform: translateY(30px);
             animation: fadeInUp 0.8s ease 0.2s forwards;
@@ -270,20 +122,41 @@
         }
 
         .btn-light {
-            background-color: white;
-            color: var(--section-bg-dark);
+            background: var(--gold-gradient);
+            color: var(--dark-primary);
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
         }
 
         .btn-light:hover {
-            background-color: #f0f0f0;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(216, 185, 7, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--gold-primary);
+            border: 1px solid var(--gold-primary);
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--btn-secondary-hover);
+            transform: translateY(-2px);
         }
 
         /* Features Section */
         .features {
             padding: 100px 0;
-            background-color: white;
+            background-color: var(--section-bg);
         }
 
         .section-header {
@@ -293,7 +166,7 @@
 
         .section-header h2 {
             font-size: 36px;
-            color: var(--text-dark);
+            color: var(--text-light);
             margin-bottom: 15px;
             opacity: 0;
             transform: translateY(20px);
@@ -307,7 +180,7 @@
 
         .section-header p {
             font-size: 18px;
-            color: #6c757d;
+            color: var(--text-muted);
             max-width: 600px;
             margin: 0 auto;
             opacity: 0;
@@ -330,8 +203,9 @@
             background-color: var(--card-bg);
             border-radius: 10px;
             padding: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--border-color);
             opacity: 0;
             transform: translateY(30px);
         }
@@ -343,13 +217,14 @@
 
         .feature-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 30px rgba(216, 185, 7, 0.1);
+            border-color: var(--gold-primary);
         }
 
         .feature-icon {
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, var(--teal-primary), var(--turquoise-primary));
+            background: var(--gold-gradient);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -364,22 +239,22 @@
 
         .feature-icon i {
             font-size: 24px;
-            color: white;
+            color: var(--dark-primary);
         }
 
         .feature-card h3 {
             font-size: 22px;
             margin-bottom: 15px;
-            color: var(--text-dark);
+            color: var(--text-light);
         }
 
         .feature-card p {
-            color: #6c757d;
+            color: var(--text-muted);
             margin-bottom: 20px;
         }
 
         .feature-link {
-            color: var(--teal-primary);
+            color: var(--gold-primary);
             text-decoration: none;
             font-weight: 600;
             display: flex;
@@ -398,7 +273,7 @@
         /* Investment Options */
         .investment-options {
             padding: 100px 0;
-            background-color: var(--section-bg);
+            background-color: var(--dark-primary);
         }
 
         .options-grid {
@@ -408,11 +283,12 @@
         }
 
         .option-card {
-            background-color: white;
+            background-color: var(--card-bg);
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s;
+            border: 1px solid var(--border-color);
             opacity: 0;
             transform: translateY(30px);
         }
@@ -424,12 +300,13 @@
 
         .option-card:hover {
             transform: translateY(-10px);
+            border-color: var(--gold-primary);
         }
 
         .option-header {
             padding: 20px;
-            background: linear-gradient(135deg, var(--teal-primary), var(--turquoise-primary));
-            color: white;
+            background: var(--gold-gradient);
+            color: var(--dark-primary);
             position: relative;
             overflow: hidden;
         }
@@ -472,15 +349,17 @@
 
         .option-body li {
             padding: 8px 0;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid var(--border-color);
             display: flex;
             align-items: center;
             transition: all 0.3s ease;
+            color: var(--text-muted);
         }
 
         .option-body li:hover {
-            background-color: rgba(7, 166, 166, 0.05);
+            background-color: rgba(216, 185, 7, 0.05);
             padding-left: 10px;
+            color: var(--text-light);
         }
 
         .option-body li:last-child {
@@ -488,7 +367,7 @@
         }
 
         .option-body li i {
-            color: var(--teal-primary);
+            color: var(--gold-primary);
             margin-right: 10px;
         }
 
@@ -496,10 +375,30 @@
             padding: 0 20px 20px;
         }
 
+        .btn-primary {
+            background: var(--gold-gradient);
+            color: var(--dark-primary);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            text-align: center;
+            display: block;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(216, 185, 7, 0.3);
+        }
+
         /* Performance Section */
         .performance {
             padding: 100px 0;
-            background-color: white;
+            background-color: var(--section-bg);
         }
 
         .performance-content {
@@ -510,10 +409,11 @@
 
         .performance-chart {
             flex: 1;
-            background-color: var(--section-bg);
+            background-color: var(--card-bg);
             border-radius: 10px;
             padding: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-color);
             opacity: 0;
             transform: translateX(-30px);
             transition: all 0.8s ease;
@@ -547,19 +447,19 @@
 
         .stat h3 {
             font-size: 36px;
-            color: var(--teal-primary);
+            color: var(--gold-primary);
             margin-bottom: 10px;
         }
 
         .stat p {
-            color: #6c757d;
+            color: var(--text-muted);
         }
 
         /* CTA Section */
         .cta {
             padding: 100px 0;
-            background: linear-gradient(135deg, var(--section-bg-dark) 0%, #1a3a5f 100%);
-            color: white;
+            background: var(--dark-gradient);
+            color: var(--text-light);
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -572,7 +472,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,70 C20,40 40,60 60,30 C80,0 100,20 100,50 L100,100 L0,100 Z" fill="rgba(64, 224, 208, 0.1)"/></svg>');
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,70 C20,40 40,60 60,30 C80,0 100,20 100,50 L100,100 L0,100 Z" fill="rgba(216, 185, 7, 0.1)"/></svg>');
             background-size: cover;
             animation: wave 10s linear infinite;
         }
@@ -594,7 +494,7 @@
             font-size: 18px;
             max-width: 600px;
             margin: 0 auto 30px;
-            opacity: 0.9;
+            color: var(--text-muted);
             position: relative;
             z-index: 1;
         }
@@ -605,7 +505,6 @@
         }
 
        
-
         /* Loading Animation */
         .loading {
             display: inline-block;
@@ -613,7 +512,7 @@
             height: 20px;
             border: 3px solid rgba(255,255,255,.3);
             border-radius: 50%;
-            border-top-color: #fff;
+            border-top-color: var(--gold-primary);
             animation: spin 1s ease-in-out infinite;
         }
 
@@ -629,12 +528,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.7);
             z-index: 1000;
             justify-content: center;
             align-items: center;
             opacity: 0;
             transition: opacity 0.3s ease;
+            padding: 20px;
         }
 
         .modal.active {
@@ -643,12 +543,13 @@
         }
 
         .modal-content {
-            background-color: white;
+            background-color: var(--card-bg);
             border-radius: 10px;
             padding: 30px;
             max-width: 500px;
-            width: 90%;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
             transform: scale(0.7);
             transition: transform 0.3s ease;
         }
@@ -665,7 +566,7 @@
         }
 
         .modal-header h3 {
-            color: var(--teal-primary);
+            color: var(--gold-primary);
         }
 
         .close-modal {
@@ -673,52 +574,121 @@
             border: none;
             font-size: 24px;
             cursor: pointer;
-            color: #6c757d;
+            color: var(--text-muted);
             transition: color 0.3s;
         }
 
         .close-modal:hover {
-            color: var(--teal-primary);
+            color: var(--gold-primary);
+        }
+
+        .modal label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: var(--text-light);
+        }
+
+        .modal input, .modal select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            background-color: var(--dark-secondary);
+            color: var(--text-light);
+            margin-bottom: 15px;
         }
 
         /* Responsive Design */
-        @media (max-width: 768px) {
-            .navbar {
+        @media (max-width: 992px) {
+            .performance-content {
                 flex-direction: column;
-                padding: 15px 0;
+                gap: 30px;
             }
-
-            .nav-links {
-                margin: 20px 0;
+            
+            .footer-bottom-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
             }
+        }
 
-            .nav-links li {
-                margin: 0 15px;
+        @media (max-width: 768px) {
+            .hero {
+                padding: 100px 0 60px;
             }
-
+            
             .hero h1 {
                 font-size: 36px;
             }
-
-            .performance-content {
-                flex-direction: column;
-            }
-
+            
             .hero-buttons {
                 flex-direction: column;
                 gap: 10px;
             }
-
-            .btn {
+            
+            .btn-light, .btn-outline {
                 width: 100%;
                 text-align: center;
+            }
+            
+            .features, .investment-options, .performance, .cta {
+                padding: 60px 0;
+            }
+            
+            .section-header h2 {
+                font-size: 28px;
+            }
+            
+            .features-grid, .options-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-form input {
+                border-radius: 6px;
+                margin-bottom: 10px;
+            }
+            
+            .newsletter-form button {
+                border-radius: 6px;
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .feature-card, .option-card {
+                padding: 20px;
+            }
+            
+            .performance-chart {
+                padding: 20px;
+            }
+            
+            .stat h3 {
+                font-size: 28px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-   <nav class="navbar navbar-expand-lg navbar-trade fixed-top mb-0">
+    <nav class="navbar navbar-expand-lg navbar-trade fixed-top mb-0">
         <div class="container">
             <a class="navbar-brand" href="#">
                 InvestHub
@@ -730,10 +700,10 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/index.html">Home</a>
+                        <a class="nav-link" aria-current="page" href="/index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/invest.html">Invest</a>
+                        <a class="nav-link active" href="/invest.html">Invest</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Cash Card</a>
@@ -785,7 +755,7 @@
                 <p>Access a wide range of investment opportunities with our intuitive platform. Build your portfolio with stocks, ETFs, and more, all with zero commission fees.</p>
                 <div class="hero-buttons">
                     <a href="#" class="btn btn-light" id="openAccountBtn">Open an Account</a>
-                    <a href="#" class="btn btn-outline" style="color: white; border-color: white;">Learn More</a>
+                    <a href="#" class="btn btn-outline">Learn More</a>
                 </div>
             </div>
         </div>
@@ -849,7 +819,7 @@
                         </ul>
                     </div>
                     <div class="option-footer">
-                        <a href="#" class="btn btn-primary" style="width: 100%; text-align: center;">Explore Stocks</a>
+                        <a href="#" class="btn btn-primary">Explore Stocks</a>
                     </div>
                 </div>
                 <div class="option-card" id="option2">
@@ -866,7 +836,7 @@
                         </ul>
                     </div>
                     <div class="option-footer">
-                        <a href="#" class="btn btn-primary" style="width: 100%; text-align: center;">Explore ETFs</a>
+                        <a href="#" class="btn btn-primary">Explore ETFs</a>
                     </div>
                 </div>
                 <div class="option-card" id="option3">
@@ -883,7 +853,7 @@
                         </ul>
                     </div>
                     <div class="option-footer">
-                        <a href="#" class="btn btn-primary" style="width: 100%; text-align: center;">Explore Options</a>
+                        <a href="#" class="btn btn-primary">Explore Options</a>
                     </div>
                 </div>
             </div>
@@ -931,13 +901,12 @@
     </section>
 
     <!-- Footer -->
-   <footer class="footer">
+    <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h2 class="footer-brand mb-15"><a href="#" class="foot">InvestHub</a></h2>
-                    <p class="firstp">We are a leading trading platform providing access to global markets, advanced
-                        trading tools, and educational resources for traders of all experience levels.</p>
+                    <h2 class="footer-brand">InvestHub</h2>
+                    <p>We are a leading trading platform providing access to global markets, advanced trading tools, and educational resources for traders of all experience levels.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -980,7 +949,7 @@
                             <i class="fas fa-envelope"></i>
                             <div>
                                 <strong>Email</strong><br>
-                                support@globaltradepro.com
+                                support@investhub.com
                             </div>
                         </li>
                     </ul>
@@ -1000,7 +969,7 @@
         <div class="footer-bottom">
             <div class="container">
                 <div class="footer-bottom-content">
-                    <p>&copy; 2023 Global Trade Pro. All rights reserved.</p>
+                    <p>&copy; 2023 InvestHub. All rights reserved.</p>
 
                     <div class="payment-methods">
                         <i class="fab fa-cc-visa"></i>
@@ -1027,23 +996,23 @@
                 <button class="close-modal">&times;</button>
             </div>
             <form id="accountForm">
-                <div style="margin-bottom: 15px;">
-                    <label for="fullName" style="display: block; margin-bottom: 5px; font-weight: 500;">Full Name</label>
-                    <input type="text" id="fullName" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;" required>
+                <div>
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" required>
                 </div>
-                <div style="margin-bottom: 15px;">
-                    <label for="email" style="display: block; margin-bottom: 5px; font-weight: 500;">Email Address</label>
-                    <input type="email" id="email" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;" required>
+                <div>
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required>
                 </div>
-                <div style="margin-bottom: 20px;">
-                    <label for="investment" style="display: block; margin-bottom: 5px; font-weight: 500;">Investment Experience</label>
-                    <select id="investment" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                <div>
+                    <label for="investment">Investment Experience</label>
+                    <select id="investment">
                         <option value="beginner">Beginner</option>
                         <option value="intermediate">Intermediate</option>
                         <option value="advanced">Advanced</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;" id="submitBtn">
+                <button type="submit" class="btn btn-primary" id="submitBtn">
                     <span id="submitText">Create Account</span>
                     <span id="submitLoading" class="loading" style="display: none;"></span>
                 </button>
@@ -1054,16 +1023,6 @@
     <script>
         // Scroll animations
         document.addEventListener('DOMContentLoaded', function() {
-            // Header scroll effect
-            window.addEventListener('scroll', function() {
-                const header = document.querySelector('header');
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
-
             // Intersection Observer for scroll animations
             const observerOptions = {
                 threshold: 0.1,
@@ -1105,7 +1064,6 @@
             // Modal functionality
             const modal = document.getElementById('accountModal');
             const openAccountBtn = document.getElementById('openAccountBtn');
-            const getStartedBtn = document.getElementById('getStartedBtn');
             const ctaBtn = document.getElementById('ctaBtn');
             const closeModal = document.querySelector('.close-modal');
             const accountForm = document.getElementById('accountForm');
@@ -1124,11 +1082,6 @@
             }
 
             openAccountBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                openModal();
-            });
-
-            getStartedBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 openModal();
             });
@@ -1169,26 +1122,6 @@
                     submitLoading.style.display = 'none';
                 }, 2000);
             });
-
-            // Button ripple effect
-            const buttons = document.querySelectorAll('.btn');
-            buttons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    const x = e.clientX - e.target.getBoundingClientRect().left;
-                    const y = e.clientY - e.target.getBoundingClientRect().top;
-                    
-                    const ripple = document.createElement('span');
-                    ripple.classList.add('ripple');
-                    ripple.style.left = `${x}px`;
-                    ripple.style.top = `${y}px`;
-                    
-                    this.appendChild(ripple);
-                    
-                    setTimeout(() => {
-                        ripple.remove();
-                    }, 600);
-                });
-            });
         });
 
         // Initialize performance chart
@@ -1208,8 +1141,8 @@
                         {
                             label: 'Your Portfolio',
                             data: portfolioData,
-                            borderColor: '#07a6a6',
-                            backgroundColor: 'rgba(7, 166, 166, 0.1)',
+                            borderColor: '#d8b907a7',
+                            backgroundColor: 'rgba(216, 185, 7, 0.1)',
                             borderWidth: 3,
                             fill: true,
                             tension: 0.4
@@ -1217,8 +1150,8 @@
                         {
                             label: 'Market Average',
                             data: marketData,
-                            borderColor: '#40e0d0',
-                            backgroundColor: 'rgba(64, 224, 208, 0.1)',
+                            borderColor: '#d0bc0bbb',
+                            backgroundColor: 'rgba(208, 188, 11, 0.1)',
                             borderWidth: 2,
                             borderDash: [5, 5],
                             fill: true,
@@ -1233,6 +1166,7 @@
                         legend: {
                             position: 'top',
                             labels: {
+                                color: '#f8f9fa',
                                 usePointStyle: true,
                                 padding: 20
                             }
@@ -1240,6 +1174,9 @@
                         tooltip: {
                             mode: 'index',
                             intersect: false,
+                            backgroundColor: 'rgba(26, 31, 46, 0.9)',
+                            titleColor: '#f8f9fa',
+                            bodyColor: '#f8f9fa',
                             callbacks: {
                                 label: function(context) {
                                     return context.dataset.label + ': $' + context.parsed.y.toLocaleString();
@@ -1251,9 +1188,11 @@
                         y: {
                             beginAtZero: false,
                             grid: {
+                                color: 'rgba(45, 51, 69, 0.5)',
                                 drawBorder: false
                             },
                             ticks: {
+                                color: '#a0aec0',
                                 callback: function(value) {
                                     return '$' + value.toLocaleString();
                                 }
@@ -1262,6 +1201,9 @@
                         x: {
                             grid: {
                                 display: false
+                            },
+                            ticks: {
+                                color: '#a0aec0'
                             }
                         }
                     },
@@ -1280,6 +1222,5 @@
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/app.js"></script>
 
-    
 </body>
 </html>

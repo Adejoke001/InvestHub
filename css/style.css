@@ -3,10 +3,10 @@
   --dark-primary: #0a0f1c;
   --dark-secondary: #1a1f2e;
   --dark-tertiary: #2d3345;
-  --gold-primary: #ffd700;
-  --gold-secondary: #ffed4e;
-  --gold-dark: #b39700;
-  --gold-gradient: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+  --gold-primary: #ecc906c1;
+  --gold-secondary: #bfac03e4;
+  --gold-dark: #b59b04d8;
+  --gold-gradient: linear-gradient(135deg, #ffd900a4 0%, #ae9f18 100%);
   --dark-gradient: linear-gradient(135deg, #0a0f1c 0%, #1a1f2e 100%);
   
   /* Text Colors */
@@ -2270,7 +2270,7 @@ body {
   animation: float-gold 6s ease-in-out infinite;
 }
 
-/* Progress Bars */
+/* Progress Bars
 .strategy-progress {
   margin-top: 1.5rem;
 }
@@ -2307,7 +2307,7 @@ body {
 .progress-label span:last-child {
   color: var(--gold-primary);
   font-weight: 700;
-}
+} */
 
 /* Enhanced progress bar with animation */
 .progress-bar.animated {
@@ -2521,7 +2521,7 @@ body {
   }
 
   .strategy-card {
-    padding: 2rem;
+    padding: 1.5rem;
     margin-bottom: 2rem;
   }
 
