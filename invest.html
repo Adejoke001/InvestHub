@@ -7,10 +7,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="/css/style.css">
-
     <style>
         :root {
             --dark-primary: #0a0f1c;
@@ -54,13 +53,13 @@
             overflow-x: hidden;
         }
 
+        /* Fix container to be full width on small screens */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 15px;
+            width: 100%;
         }
-        
-
 
         /* Hero Section */
         .hero {
@@ -69,6 +68,7 @@
             padding: 120px 0 80px;
             position: relative;
             overflow: hidden;
+            width: 100%;
         }
 
         .hero::before {
@@ -86,6 +86,7 @@
             max-width: 600px;
             position: relative;
             z-index: 1;
+            width: 100%;
         }
 
         .hero h1 {
@@ -157,11 +158,13 @@
         .features {
             padding: 100px 0;
             background-color: var(--section-bg);
+            width: 100%;
         }
 
         .section-header {
             text-align: center;
             margin-bottom: 60px;
+            width: 100%;
         }
 
         .section-header h2 {
@@ -197,6 +200,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
+            width: 100%;
         }
 
         .feature-card {
@@ -208,6 +212,7 @@
             border: 1px solid var(--border-color);
             opacity: 0;
             transform: translateY(30px);
+            width: 100%;
         }
 
         .feature-card.visible {
@@ -274,12 +279,14 @@
         .investment-options {
             padding: 100px 0;
             background-color: var(--dark-primary);
+            width: 100%;
         }
 
         .options-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
+            width: 100%;
         }
 
         .option-card {
@@ -291,6 +298,7 @@
             border: 1px solid var(--border-color);
             opacity: 0;
             transform: translateY(30px);
+            width: 100%;
         }
 
         .option-card.visible {
@@ -318,11 +326,9 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(
-                to bottom right,
-                rgba(255,255,255,0.3) 0%,
-                rgba(255,255,255,0) 80%
-            );
+            background: linear-gradient(to bottom right,
+                    rgba(255, 255, 255, 0.3) 0%,
+                    rgba(255, 255, 255, 0) 80%);
             transform: rotate(30deg);
             transition: all 0.5s ease;
         }
@@ -399,12 +405,14 @@
         .performance {
             padding: 100px 0;
             background-color: var(--section-bg);
+            width: 100%;
         }
 
         .performance-content {
             display: flex;
             align-items: center;
             gap: 50px;
+            width: 100%;
         }
 
         .performance-chart {
@@ -417,6 +425,7 @@
             opacity: 0;
             transform: translateX(-30px);
             transition: all 0.8s ease;
+            width: 100%;
         }
 
         .performance-chart.visible {
@@ -427,10 +436,12 @@
         .chart-container {
             height: 300px;
             position: relative;
+            width: 100%;
         }
 
         .performance-stats {
             flex: 1;
+            width: 100%;
         }
 
         .stat {
@@ -438,6 +449,7 @@
             opacity: 0;
             transform: translateX(30px);
             transition: all 0.8s ease;
+            width: 100%;
         }
 
         .stat.visible {
@@ -463,6 +475,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            width: 100%;
         }
 
         .cta::before {
@@ -478,9 +491,17 @@
         }
 
         @keyframes wave {
-            0% { transform: translateX(0); }
-            50% { transform: translateX(-10px); }
-            100% { transform: translateX(0); }
+            0% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(-10px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
         }
 
         .cta h2 {
@@ -504,20 +525,119 @@
             z-index: 1;
         }
 
-       
+        /* Strategy Section - Fixed */
+        .strategy-section {
+            padding: 100px 0;
+            background-color: var(--dark-primary);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .strategy-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .strategy-image {
+            flex: 1 1 45%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Fixed image styling */
+        .strategy-image img {
+            width: 100%;
+            height: auto;
+            max-width: 500px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .strategy-text {
+            flex: 1 1 45%;
+            padding-right: 0;
+        }
+
+        .strategy-text h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--text-light);
+            line-height: 1.2;
+        }
+
+        .strategy-text p {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .strategy-points {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .strategy-points li {
+            padding: 12px 0;
+            display: flex;
+            align-items: flex-start;
+            color: var(--text-muted);
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .strategy-points li i {
+            color: var(--gold-primary);
+            margin-right: 15px;
+            font-size: 18px;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        /* Background Elements */
+        .bg-element {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--gold-primary);
+            opacity: 0.1;
+            filter: blur(40px);
+        }
+
+        .bg-element-1 {
+            width: 300px;
+            height: 300px;
+            top: -100px;
+            right: -100px;
+        }
+
+        .bg-element-2 {
+            width: 200px;
+            height: 200px;
+            bottom: -50px;
+            left: 10%;
+        }
+
         /* Loading Animation */
         .loading {
             display: inline-block;
             width: 20px;
             height: 20px;
-            border: 3px solid rgba(255,255,255,.3);
+            border: 3px solid rgba(255, 255, 255, .3);
             border-radius: 50%;
             border-top-color: var(--gold-primary);
             animation: spin 1s ease-in-out infinite;
         }
 
         @keyframes spin {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         /* Modal */
@@ -589,7 +709,8 @@
             color: var(--text-light);
         }
 
-        .modal input, .modal select {
+        .modal input,
+        .modal select {
             width: 100%;
             padding: 10px;
             border: 1px solid var(--border-color);
@@ -599,17 +720,36 @@
             margin-bottom: 15px;
         }
 
-        /* Responsive Design */
+        /* Responsive Design - Improved */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 20px;
+            }
+        }
+
         @media (max-width: 992px) {
             .performance-content {
                 flex-direction: column;
                 gap: 30px;
             }
             
-            .footer-bottom-content {
+            .strategy-content {
                 flex-direction: column;
-                gap: 20px;
                 text-align: center;
+                gap: 40px;
+            }
+            
+            .strategy-text {
+                padding: 0;
+                order: 2;
+            }
+            
+            .strategy-image {
+                order: 1;
+            }
+            
+            .strategy-image img {
+                max-width: 400px;
             }
         }
 
@@ -617,45 +757,58 @@
             .hero {
                 padding: 100px 0 60px;
             }
-            
+
             .hero h1 {
                 font-size: 36px;
             }
-            
+
             .hero-buttons {
                 flex-direction: column;
                 gap: 10px;
             }
-            
-            .btn-light, .btn-outline {
+
+            .btn-light,
+            .btn-outline {
                 width: 100%;
                 text-align: center;
             }
-            
-            .features, .investment-options, .performance, .cta {
+
+            .features,
+            .investment-options,
+            .performance,
+            .cta,
+            .strategy-section {
                 padding: 60px 0;
             }
-            
+
             .section-header h2 {
                 font-size: 28px;
             }
-            
-            .features-grid, .options-grid {
+
+            .features-grid,
+            .options-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .newsletter-form {
+
+            .performance-content {
                 flex-direction: column;
             }
             
-            .newsletter-form input {
-                border-radius: 6px;
-                margin-bottom: 10px;
+            .strategy-content {
+                flex-direction: column;
+                gap: 30px;
             }
             
-            .newsletter-form button {
-                border-radius: 6px;
-                padding: 10px;
+            .strategy-text h2 {
+                font-size: 30px;
+            }
+            
+            .strategy-image img {
+                max-width: 100%;
+            }
+            
+            .container {
+                padding: 0 15px;
             }
         }
 
@@ -663,32 +816,59 @@
             .container {
                 padding: 0 15px;
             }
-            
+
             .hero h1 {
                 font-size: 32px;
             }
-            
-            .feature-card, .option-card {
+
+            .feature-card,
+            .option-card {
                 padding: 20px;
             }
-            
+
             .performance-chart {
                 padding: 20px;
             }
-            
+
             .stat h3 {
                 font-size: 28px;
             }
             
-            .footer-content {
-                grid-template-columns: 1fr;
+            .strategy-text h2 {
+                font-size: 26px;
+            }
+            
+            .strategy-points li {
+                font-size: 15px;
+                text-align: left;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 400px) {
+            .container {
+                padding: 0 10px;
+            }
+            
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .section-header h2 {
+                font-size: 24px;
+            }
+            
+            .feature-card,
+            .option-card {
+                padding: 15px;
             }
         }
     </style>
 </head>
+
 <body>
-    <!-- Header -->
-    <nav class="navbar navbar-expand-lg navbar-trade fixed-top mb-0">
+    <!-- navbar -->
+     <nav class="navbar navbar-expand-lg navbar-trade fixed-top mb-0">
         <div class="container">
             <a class="navbar-brand" href="#">
                 InvestHub
@@ -700,13 +880,13 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/index.html">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="/invest.html">Invest</a>
+                        <a class="nav-link" href="/invest.html">Invest</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Cash Card</a>
+                        <a class="nav-link" href="/cashcard.html">Cash Card</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -747,12 +927,14 @@
         </div>
     </nav>
 
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
                 <h1>Professional Investing Made Simple</h1>
-                <p>Access a wide range of investment opportunities with our intuitive platform. Build your portfolio with stocks, ETFs, and more, all with zero commission fees.</p>
+                <p>Access a wide range of investment opportunities with our intuitive platform. Build your portfolio
+                    with stocks, ETFs, and more, all with zero commission fees.</p>
                 <div class="hero-buttons">
                     <a href="#" class="btn btn-light" id="openAccountBtn">Open an Account</a>
                     <a href="#" class="btn btn-outline">Learn More</a>
@@ -766,15 +948,17 @@
         <div class="container">
             <div class="section-header" id="featuresHeader">
                 <h2>Why Choose Our Platform</h2>
-                <p>We provide professional-grade investment tools with an intuitive interface designed for both beginners and experienced investors.</p>
+                <p>We provide professional-grade investment tools with an intuitive interface designed for both
+                    beginners and experienced investors.</p>
             </div>
-            <div class="features-grid">
+             <div class="features-grid">
                 <div class="feature-card" id="feature1">
                     <div class="feature-icon">
                         <i class="fas fa-chart-pie"></i>
                     </div>
                     <h3>Diversified Portfolios</h3>
-                    <p>Build well-balanced portfolios with our curated selection of stocks, ETFs, and funds across various sectors and markets.</p>
+                    <p>Build well-balanced portfolios with our curated selection of stocks, ETFs, and funds across
+                        various sectors and markets.</p>
                     <a href="#" class="feature-link">Explore options <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="feature-card" id="feature2">
@@ -782,7 +966,8 @@
                         <i class="fas fa-bolt"></i>
                     </div>
                     <h3>Zero Commission</h3>
-                    <p>Trade stocks and ETFs without paying any commission fees. Keep more of your investment returns.</p>
+                    <p>Trade stocks and ETFs without paying any commission fees. Keep more of your investment returns.
+                    </p>
                     <a href="#" class="feature-link">See pricing <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="feature-card" id="feature3">
@@ -790,7 +975,8 @@
                         <i class="fas fa-shield-alt"></i>
                     </div>
                     <h3>Secure & Regulated</h3>
-                    <p>Your investments are protected with bank-level security and we're fully regulated by financial authorities.</p>
+                    <p>Your investments are protected with bank-level security and we're fully regulated by financial
+                        authorities.</p>
                     <a href="#" class="feature-link">Learn about security <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
@@ -867,7 +1053,7 @@
                 <h2>Market Performance</h2>
                 <p>Track your investments with our intuitive performance dashboard and analytics tools.</p>
             </div>
-            <div class="performance-content">
+           <div class="performance-content">
                 <div class="performance-chart" id="performanceChart">
                     <div class="chart-container">
                         <canvas id="investmentChart"></canvas>
@@ -900,13 +1086,42 @@
         </div>
     </section>
 
+    <!-- Strategy Section - Fixed -->
+    <section class="strategy-section">
+        <div class="container">
+            <div class="section-header" id="strategyHeader">
+                <h2>Our Investment Strategies</h2>
+                <p>Get the 'why' behind the 'how' of every investment with our comprehensive approach.</p>
+            </div>
+            <div class="strategy-content">
+                <div class="strategy-image">
+                    <img src="/images/trade.jpg" alt="Investment Strategy" class="img-fluid">
+                </div>
+                <div class="strategy-text" id="strategyText">
+                    <h2>Understand Your Investment Strategy</h2>
+                    <p>We believe in transparent investing where you understand not just what you're investing in,
+                        but why it's part of your portfolio strategy.</p>
+                    <ul class="strategy-points">
+                        <li><i class="fas fa-check-circle"></i> Personalized investment plans based on your goals</li>
+                        <li><i class="fas fa-check-circle"></i> Regular portfolio reviews and rebalancing</li>
+                        <li><i class="fas fa-check-circle"></i> Educational resources to build your financial knowledge</li>
+                        <li><i class="fas fa-check-circle"></i> Tax-efficient investment strategies</li>
+                        <li><i class="fas fa-check-circle"></i> Risk management and diversification guidance</li>
+                    </ul>
+                    <a href="#" class="btn btn-light">Learn About Our Approach</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
-    <footer class="footer">
+   <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h2 class="footer-brand">InvestHub</h2>
-                    <p>We are a leading trading platform providing access to global markets, advanced trading tools, and educational resources for traders of all experience levels.</p>
+                    <h2 class="footer-brand mb-15"><a href="#" class="foot">InvestHub</a></h2>
+                    <p class="firstp">We are a leading trading platform providing access to global markets, advanced
+                        trading tools, and educational resources for traders of all experience levels.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -949,7 +1164,7 @@
                             <i class="fas fa-envelope"></i>
                             <div>
                                 <strong>Email</strong><br>
-                                support@investhub.com
+                                support@globaltradepro.com
                             </div>
                         </li>
                     </ul>
@@ -969,7 +1184,7 @@
         <div class="footer-bottom">
             <div class="container">
                 <div class="footer-bottom-content">
-                    <p>&copy; 2023 InvestHub. All rights reserved.</p>
+                    <p>&copy; 2023 Global Trade Pro. All rights reserved.</p>
 
                     <div class="payment-methods">
                         <i class="fab fa-cc-visa"></i>
@@ -987,6 +1202,7 @@
             </div>
         </div>
     </footer>
+
 
     <!-- Modal -->
     <div class="modal" id="accountModal">
@@ -1022,14 +1238,14 @@
 
     <script>
         // Scroll animations
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Intersection Observer for scroll animations
             const observerOptions = {
                 threshold: 0.1,
                 rootMargin: '0px 0px -50px 0px'
             };
 
-            const observer = new IntersectionObserver(function(entries) {
+            const observer = new IntersectionObserver(function (entries) {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
@@ -1051,7 +1267,9 @@
                 document.getElementById('performanceChart'),
                 document.getElementById('stat1'),
                 document.getElementById('stat2'),
-                document.getElementById('stat3')
+                document.getElementById('stat3'),
+                document.getElementById('strategyText'),
+                document.getElementById('strategyHeader')
             ];
 
             elementsToAnimate.forEach(element => {
@@ -1081,42 +1299,42 @@
                 document.body.style.overflow = 'auto';
             }
 
-            openAccountBtn.addEventListener('click', function(e) {
+            openAccountBtn.addEventListener('click', function (e) {
                 e.preventDefault();
                 openModal();
             });
 
-            ctaBtn.addEventListener('click', function(e) {
+            ctaBtn.addEventListener('click', function (e) {
                 e.preventDefault();
                 openModal();
             });
 
             closeModal.addEventListener('click', closeModalFunc);
 
-            modal.addEventListener('click', function(e) {
+            modal.addEventListener('click', function (e) {
                 if (e.target === modal) {
                     closeModalFunc();
                 }
             });
 
-            accountForm.addEventListener('submit', function(e) {
+            accountForm.addEventListener('submit', function (e) {
                 e.preventDefault();
-                
+
                 // Show loading state
                 submitText.style.display = 'none';
                 submitLoading.style.display = 'inline-block';
-                
+
                 // Simulate form submission
-                setTimeout(function() {
+                setTimeout(function () {
                     // Reset form
                     accountForm.reset();
-                    
+
                     // Show success message
                     alert('Thank you! Your account application has been received. Our team will contact you shortly.');
-                    
+
                     // Close modal
                     closeModalFunc();
-                    
+
                     // Reset button
                     submitText.style.display = 'inline-block';
                     submitLoading.style.display = 'none';
@@ -1127,12 +1345,12 @@
         // Initialize performance chart
         function initializeChart() {
             const ctx = document.getElementById('investmentChart').getContext('2d');
-            
+
             // Generate sample data
             const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
             const portfolioData = [10000, 10500, 11000, 11500, 12000, 11800, 12500, 13000, 13500, 14000, 14500, 15000];
             const marketData = [10000, 10200, 10400, 10600, 10800, 11000, 11200, 11400, 11600, 11800, 12000, 12200];
-            
+
             const chart = new Chart(ctx, {
                 type: 'line',
                 data: {
@@ -1178,7 +1396,7 @@
                             titleColor: '#f8f9fa',
                             bodyColor: '#f8f9fa',
                             callbacks: {
-                                label: function(context) {
+                                label: function (context) {
                                     return context.dataset.label + ': $' + context.parsed.y.toLocaleString();
                                 }
                             }
@@ -1193,7 +1411,7 @@
                             },
                             ticks: {
                                 color: '#a0aec0',
-                                callback: function(value) {
+                                callback: function (value) {
                                     return '$' + value.toLocaleString();
                                 }
                             }
@@ -1221,6 +1439,5 @@
     <script src="/js/jquery-3.7.1.js"></script>
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/app.js"></script>
-
 </body>
 </html>

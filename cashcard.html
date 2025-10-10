@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Cash Card - InvestHub</title>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+
+    <style>
+        :root {
+            /* Dark & Gold Color Palette */
+            --dark-primary: #000207;
+            --dark-secondary: #1a1f2e;
+            --dark-tertiary: #2d3345;
+            --gold-primary: #ecc906c1;
+            --gold-secondary: #bfac03e4;
+            --gold-dark: #b59b04d8;
+            --gold-gradient: linear-gradient(135deg, #ffd900a4 0%, #ae9f18 100%);
+            --dark-gradient: linear-gradient(135deg, #0a0f1c 0%, #1a1f2e 100%);
+            
+            /* Text Colors */
+            --text-light: #f8f9fa;
+            --text-muted: #a0aec0;
+            --text-dark: #2d3748;
+            
+            /* Component Colors */
+            --card-bg: #1a1f2e;
+            --section-bg: #0a0f1c;
+            --border-color: #2d3345;
+            
+            /* Status Colors */
+            --success: #48bb78;
+            --danger: #f56565;
+            --warning: #ed8936;
+            --info: #4299e1;
+            
+            /* Button Colors */
+            --btn-primary-bg: var(--gold-primary);
+            --btn-primary-text: var(--dark-primary);
+            --btn-primary-hover: var(--gold-secondary);
+            
+            --btn-secondary-bg: transparent;
+            --btn-secondary-text: var(--gold-primary);
+            --btn-secondary-border: var(--gold-primary);
+            --btn-secondary-hover: rgba(255, 215, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-primary);
+            color: var(--text-light);
+            line-height: 1.6;
+            padding-top: 76px;
+        }
+
+
+        /* Hero Section */
+        .cash-hero {
+            background: var(--dark-gradient);
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cash-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            margin-top: 40px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--gold-gradient);
+            color: var(--dark-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .hero-card-preview {
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .card-3d {
+            width: 100%;
+            max-width: 400px;
+            height: 250px;
+            background: var(--gold-gradient);
+            border-radius: 20px;
+            padding: 2rem;
+            color: var(--dark-primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+        }
+
+        .card-3d:hover {
+            transform: rotateY(10deg) rotateX(5deg);
+        }
+
+        .card-logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card-chip {
+            width: 50px;
+            height: 40px;
+            background: linear-gradient(135deg, #d4af37 0%, #f9e076 100%);
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-number {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .card-details {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+        }
+
+
+        .balance-display {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .balance-amount {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 5rem 0;
+            background: var(--section-bg);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            height: 100%;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold-primary);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gold-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--dark-primary);
+            font-size: 1.8rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            padding: 5rem 0;
+            background: var(--dark-gradient);
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+        }
+
+        .benefit-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gold-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            color: var(--dark-primary);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .benefit-content h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .benefit-content p {
+            color: var(--text-muted);
+            margin-bottom: 0;
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            padding: 5rem 0;
+            background: var(--section-bg);
+        }
+
+        .step-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            height: 100%;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold-primary);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--gold-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--dark-primary);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .step-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .step-card p {
+            color: var(--text-muted);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 0;
+            background: var(--dark-gradient);
+            text-align: center;
+        }
+
+        .cta-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid var(--border-color);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cta-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .btn-cta {
+            background: var(--gold-gradient);
+            color: var(--dark-primary);
+            border: none;
+            border-radius: 10px;
+            padding: 1rem 2rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+        }
+
+        
+        /* Responsive Styles */
+        @media (max-width: 991.98px) {
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .card-3d {
+                max-width: 350px;
+                height: 220px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .card-3d {
+                max-width: 300px;
+                height: 190px;
+                padding: 1.5rem;
+            }
+            
+            .card-number {
+                font-size: 1rem;
+            }
+            
+            .cta-card {
+                padding: 2rem;
+            }
+            
+            .cta-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            body {
+                padding-top: 70px;
+            }
+            
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .feature-card, .step-card {
+                margin-bottom: 1.5rem;
+            }
+            
+            .benefit-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .benefit-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-trade fixed-top mb-0">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                InvestHub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/invest.html">Invest</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cashcard.html">Cash Card</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            What We Offer
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/invest.html">Invest</a></li>
+                            <li><a class="dropdown-item" href="#">Crypto</a></li>
+                            <li><a class="dropdown-item" href="#">Trading</a></li>
+                            <li><a class="dropdown-item" href="#">Banking</a></li>
+                            <li><a class="dropdown-item" href="#">Credit Card</a></li>
+                            <li><a class="dropdown-item" href="#">Stocks & ETFs</a></li>
+                            <li><a class="dropdown-item" href="#">Options</a></li>
+                            <li><a class="dropdown-item" href="#">Crypto</a></li>
+                            <li><a class="dropdown-item" href="#">Learn & Explore</a></li>
+                        </ul>
+                    </li>
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                          Others
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/testimonial.html">Testimonials</a></li>
+                            <li><a class="dropdown-item" href="/faq.html">FAQ</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/learn.html">Learn</a>
+                    </li>
+                </ul>
+                <div class="d-flex btn-container">
+                    <button class="btn btn-login me-2 "><a href="/login.html" class="log">Log in</a></button>
+                    <button class="btn btn-signup"><a href="./signup.html" class="sign">Sign up</a></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="cash-hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <span class="hero-badge">INSTANT ACCESS</span>
+                        <h1 class="hero-title">InvestHub Cash Card</h1>
+                        <p class="hero-subtitle">Your trading funds, instantly accessible. Spend your investment profits anywhere, with real-time balance updates and premium security.</p>
+                        <div class="d-flex gap-3 flex-wrap">
+                            <button class="btn btn-cta" onclick="orderCard()">Order Your Card</button>
+                            <button class="btn" style="background: transparent; color: var(--gold-primary); border: 1px solid var(--gold-primary);" onclick="learnMore()">Learn More</button>
+                        </div>
+                        <div class="balance-display">
+                            <div style="font-size: 0.9rem; color: var(--text-muted);">YOUR AVAILABLE BALANCE</div>
+                            <div class="balance-amount">$5,247.89</div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">Updated just now</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-card-preview d-flex justify-content-center">
+                        <div class="card-3d">
+                            <div class="card-logo">InvestHub Cash</div>
+                            <div class="card-chip"></div>
+                            <div class="card-number">•••• •••• •••• 7821</div>
+                            <div class="card-details">
+                                <div>
+                                    <div style="font-size: 0.7rem; opacity: 0.8;">CARD HOLDER</div>
+                                    <div>JOHN DOE</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 0.7rem; opacity: 0.8;">VALID THRU</div>
+                                    <div>08/26</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Our Cash Card</h2>
+                <p>Designed specifically for traders and investors</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Instant Access</h3>
+                        <p>Immediately access your trading profits and account balance anywhere in the world with real-time synchronization.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Trading Integration</h3>
+                        <p>Seamlessly move funds between your trading account and cash card with zero transfer fees.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Advanced Security</h3>
+                        <p>Military-grade encryption, instant transaction alerts, and AI-powered fraud detection.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3>Global Acceptance</h3>
+                        <p>Accepted worldwide wherever Mastercard is accepted, with no foreign transaction fees.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <h3>Cashback Rewards</h3>
+                        <p>Earn 2% cashback on all purchases, automatically deposited into your trading account.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Mobile Management</h3>
+                        <p>Freeze/unfreeze your card, set spending limits, and track expenses through our mobile app.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Trader-Focused Benefits</h2>
+                <p>Features designed specifically for the trading community</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Real-Time Balance Sync</h4>
+                            <p>Your card balance updates instantly with every trade, deposit, or withdrawal from your InvestHub account.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>No Monthly Fees</h4>
+                            <p>Zero monthly maintenance fees, no minimum balance requirements, and free ATM withdrawals nationwide.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Spending Analytics</h4>
+                            <p>Track your spending patterns with detailed analytics that integrate with your trading performance data.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Investment Protection</h4>
+                            <p>Your investments remain secure while you spend only from your designated cash balance.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Priority Support</h4>
+                            <p>24/7 dedicated support line for cash card holders with average wait times under 2 minutes.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-piggy-bank"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Auto-Save Feature</h4>
+                            <p>Automatically round up purchases and invest the spare change into your preferred assets.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>How It Works</h2>
+                <p>Get started with your InvestHub Cash Card in three simple steps</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h4>Open Your Account</h4>
+                        <p>Create your InvestHub trading account and complete the verification process to unlock the cash card feature.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h4>Order Your Card</h4>
+                        <p>Request your physical or virtual cash card through your account dashboard. Delivery takes 5-7 business days.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h4>Start Spending</h4>
+                        <p>Fund your card from your trading account and use it anywhere Mastercard is accepted worldwide.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-card">
+                <h2 class="cta-title">Ready to Access Your Trading Profits?</h2>
+                <p class="cta-subtitle">Join thousands of traders who use the InvestHub Cash Card to seamlessly integrate their trading and spending.</p>
+                <button class="btn btn-cta" onclick="orderCard()">Order Your Card Now</button>
+                <div class="mt-3" style="color: var(--text-muted); font-size: 0.9rem;">
+                    <i class="fas fa-shield-alt me-2"></i>FDIC insured up to $250,000
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+      <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h2 class="footer-brand mb-15"><a href="#" class="foot">InvestHub</a></h2>
+                    <p class="firstp">We are a leading trading platform providing access to global markets, advanced
+                        trading tools, and educational resources for traders of all experience levels.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Trading Platforms</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Market Analysis</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Investment Products</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Trading Education</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Economic Calendar</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Headquarters</strong><br>
+                                123 Financial District,<br>
+                                New York, NY 10005
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Phone</strong><br>
+                                +1 (555) 123-4567
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email</strong><br>
+                                support@globaltradepro.com
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for market insights, trading tips, and platform updates.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2023 Global Trade Pro. All rights reserved.</p>
+
+                    <div class="payment-methods">
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-paypal"></i>
+                        <i class="fab fa-cc-apple-pay"></i>
+                    </div>
+
+                    <div class="legal-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Risk Disclosure</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+   
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function orderCard() {
+            alert('Redirecting to card order page...');
+            // In a real application, this would redirect to the order page
+            // window.location.href = '/order-card.html';
+        }
+
+        function learnMore() {
+            alert('Scroll to learn more about the InvestHub Cash Card features.');
+            document.querySelector('.features-section').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        // Simple balance update simulation
+        function updateBalance() {
+            const balanceElement = document.querySelector('.balance-amount');
+            if (balanceElement) {
+                // Simulate small balance change
+                const currentBalance = parseFloat(balanceElement.textContent.replace('$', '').replace(',', ''));
+                const change = (Math.random() - 0.5) * 10; // Random change between -5 and +5
+                const newBalance = Math.max(0, currentBalance + change);
+                balanceElement.textContent = '$' + newBalance.toFixed(2);
+                
+                // Update timestamp
+                const timeElement = document.querySelector('.balance-display div:last-child');
+                if (timeElement) {
+                    timeElement.textContent = 'Updated just now';
+                }
+            }
+        }
+
+        // Update balance every 30 seconds to simulate real-time updates
+        setInterval(updateBalance, 30000);
+    </script>
+
+     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/js/jquery-3.7.1.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/app.js"></script>
+</body>
+</html>
