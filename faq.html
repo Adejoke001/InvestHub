@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/favico.png" type="image/x-icon">
     <title>FAQ - InvestHub</title> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
@@ -17,10 +18,10 @@
             --dark-primary: #0a0f1c;
             --dark-secondary: #1a1f2e;
             --dark-tertiary: #2d3345;
-            --gold-primary: #ffd700;
-            --gold-secondary: #ffed4e;
-            --gold-dark: #b39700;
-            --gold-gradient: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            --gold-primary: #ecc906dc;
+            --gold-secondary: #bfac03e8;
+            --gold-dark: #b59b04d8;
+            --gold-gradient: linear-gradient(135deg, #ecc906dc 0%, #bfac03e8 100%);
             --dark-gradient: linear-gradient(135deg, #0a0f1c 0%, #1a1f2e 100%);
             --text-light: #f8f9fa;
             --text-muted: #a0aec0;
@@ -427,6 +428,276 @@
                 display: none;
             }
         }
+
+         /* AI Assistant Styles */
+        .ai-assistant-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .ai-assistant-btn {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(255, 217, 0, 0.838), #6d3e9c 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            border: none;
+            animation: pulse 2s infinite;
+        }
+
+        .ai-assistant-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .ai-assistant-chat {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid #e1e5e9;
+        }
+
+        .ai-assistant-chat.active {
+            display: flex;
+            animation: slideUp 0.3s ease;
+        }
+
+        .ai-chat-header {
+            background: linear-gradient(135deg, rgb(225, 195, 23) 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .ai-chat-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        .ai-chat-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .ai-chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f8f9fa;
+        }
+
+        .ai-message {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .ai-message.user {
+            flex-direction: row-reverse;
+        }
+
+        .ai-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .ai-avatar.bot {
+            background: linear-gradient(135deg, rgba(255, 217, 0, 0.801) 0%, #7b55a1 100%);
+            color: white;
+        }
+
+        .ai-avatar.user {
+            background: #e9ecef;
+            color: #495057;
+        }
+
+        .ai-message-content {
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .ai-message.bot .ai-message-content {
+            background: white;
+            color: #333;
+            border-bottom-left-radius: 4px;
+        }
+
+        .ai-message.user .ai-message-content {
+            background: linear-gradient(135deg, rgb(216, 185, 13) 0%, #704b94 100%);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .ai-chat-input {
+            padding: 15px 20px;
+            border-top: 1px solid #e1e5e9;
+            background: white;
+        }
+
+        .ai-input-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .ai-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #e1e5e9;
+            border-radius: 25px;
+            outline: none;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .ai-input:focus {
+            border-color: goldenrod;
+        }
+
+        .ai-send-btn {
+            background: linear-gradient(135deg, rgba(245, 210, 10, 0.87) 0%, #764ba2 100%);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .ai-send-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .ai-quick-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .ai-quick-btn {
+            background: #f8f9fa;
+            border: 1px solid #e1e5e9;
+            border-radius: 15px;
+            padding: 6px 12px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .ai-quick-btn:hover {
+            background: rgba(222, 189, 3, 0.63);
+            color: rgb(96, 70, 4);
+            border-color: #b4c0fa;
+        }
+
+        .ai-typing {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #6c757d;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .ai-typing-dots {
+            display: flex;
+            gap: 3px;
+        }
+
+        .ai-typing-dot {
+            width: 4px;
+            height: 4px;
+            background: #6c757d;
+            border-radius: 50%;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .ai-typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .ai-typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-5px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .ai-assistant-chat {
+                width: 300px;
+                height: 400px;
+            }
+            
+            .ai-assistant-container {
+                bottom: 10px;
+                right: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ai-assistant-chat {
+                width: calc(100vw - 40px);
+                right: -10px;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -459,11 +730,9 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/invest.html">Invest</a></li>
-                            <li><a class="dropdown-item" href="#">Crypto</a></li>
                             <li><a class="dropdown-item" href="#">Trading</a></li>
                             <li><a class="dropdown-item" href="#">Banking</a></li>
-                            <li><a class="dropdown-item" href="#">Credit Card</a></li>
-                            <li><a class="dropdown-item" href="#">Stocks & ETFs</a></li>
+                            <li><a class="dropdown-item" href="/stock.html">Stocks & ETFs</a></li>
                             <li><a class="dropdown-item" href="#">Options</a></li>
                             <li><a class="dropdown-item" href="#">Crypto</a></li>
                             <!-- <li><a class="dropdown-item" href="#">Learn & Explore</a></li> -->
@@ -532,6 +801,50 @@
         <!-- Gold accent elements -->
         <div class="faq-accent accent-1"></div>
         <div class="faq-accent accent-2"></div>
+    </div>
+
+     <!-- AI Assistant -->
+    <div class="ai-assistant-container">
+        <button class="ai-assistant-btn" id="aiAssistantBtn">
+            <i class="fas fa-robot"></i>
+        </button>
+        
+        <div class="ai-assistant-chat" id="aiAssistantChat">
+            <div class="ai-chat-header">
+                <div class="ai-chat-title">
+                    <i class="fas fa-robot"></i>
+                    InvestHub AI Assistant
+                </div>
+                <button class="ai-chat-close" id="aiChatClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="ai-chat-messages" id="aiChatMessages">
+                <div class="ai-message bot">
+                    <div class="ai-avatar bot">AI</div>
+                    <div class="ai-message-content">
+                        Hello! I'm your InvestHub AI assistant. How can I help you with your trading and investment questions today?
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ai-chat-input">
+                <div class="ai-input-group">
+                    <input type="text" class="ai-input" id="aiInput" placeholder="Ask about trading, investments...">
+                    <button class="ai-send-btn" id="aiSendBtn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+                
+                <div class="ai-quick-actions">
+                    <button class="ai-quick-btn" data-question="How do I start investing?">Start Investing</button>
+                    <button class="ai-quick-btn" data-question="What are the best stocks to buy?">Stock Picks</button>
+                    <button class="ai-quick-btn" data-question="Explain cryptocurrency trading">Crypto Guide</button>
+                    <button class="ai-quick-btn" data-question="Portfolio diversification tips">Diversification</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!--FOOTER-->
@@ -764,6 +1077,168 @@
             renderFAQ();
         });
     </script>
+
+     <script>
+        // AI Assistant Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const aiBtn = document.getElementById('aiAssistantBtn');
+            const aiChat = document.getElementById('aiAssistantChat');
+            const aiClose = document.getElementById('aiChatClose');
+            const aiMessages = document.getElementById('aiChatMessages');
+            const aiInput = document.getElementById('aiInput');
+            const aiSend = document.getElementById('aiSendBtn');
+            const quickBtns = document.querySelectorAll('.ai-quick-btn');
+
+            // Toggle chat window
+            aiBtn.addEventListener('click', function() {
+                aiChat.classList.toggle('active');
+            });
+
+            aiClose.addEventListener('click', function() {
+                aiChat.classList.remove('active');
+            });
+
+            // Send message function
+            function sendMessage() {
+                const message = aiInput.value.trim();
+                if (message) {
+                    addMessage(message, 'user');
+                    aiInput.value = '';
+                    
+                    // Show typing indicator
+                    showTypingIndicator();
+                    
+                    // Simulate AI response after delay
+                    setTimeout(() => {
+                        removeTypingIndicator();
+                        const response = generateAIResponse(message);
+                        addMessage(response, 'bot');
+                    }, 1000 + Math.random() * 2000);
+                }
+            }
+
+            // Send message on button click
+            aiSend.addEventListener('click', sendMessage);
+
+            // Send message on Enter key
+            aiInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+
+            // Quick action buttons
+            quickBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const question = this.getAttribute('data-question');
+                    aiInput.value = question;
+                    sendMessage();
+                });
+            });
+
+            // Add message to chat
+            function addMessage(text, sender) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `ai-message ${sender}`;
+                
+                const avatar = document.createElement('div');
+                avatar.className = `ai-avatar ${sender}`;
+                avatar.textContent = sender === 'bot' ? 'AI' : 'You';
+                
+                const content = document.createElement('div');
+                content.className = 'ai-message-content';
+                content.textContent = text;
+                
+                messageDiv.appendChild(avatar);
+                messageDiv.appendChild(content);
+                aiMessages.appendChild(messageDiv);
+                
+                // Scroll to bottom
+                aiMessages.scrollTop = aiMessages.scrollHeight;
+            }
+
+            // Show typing indicator
+            function showTypingIndicator() {
+                const typingDiv = document.createElement('div');
+                typingDiv.className = 'ai-typing';
+                typingDiv.id = 'typingIndicator';
+                
+                typingDiv.innerHTML = `
+                    <div class="ai-avatar bot">AI</div>
+                    <div class="ai-message-content">
+                        <div class="ai-typing-dots">
+                            <div class="ai-typing-dot"></div>
+                            <div class="ai-typing-dot"></div>
+                            <div class="ai-typing-dot"></div>
+                        </div>
+                    </div>
+                `;
+                
+                aiMessages.appendChild(typingDiv);
+                aiMessages.scrollTop = aiMessages.scrollHeight;
+            }
+
+            // Remove typing indicator
+            function removeTypingIndicator() {
+                const typingIndicator = document.getElementById('typingIndicator');
+                if (typingIndicator) {
+                    typingIndicator.remove();
+                }
+            }
+
+            // Generate AI responses based on user input
+            function generateAIResponse(userMessage) {
+                const lowerMessage = userMessage.toLowerCase();
+                
+                // Trading and investment responses
+                if (lowerMessage.includes('start') && lowerMessage.includes('invest')) {
+                    return "To start investing with InvestHub:\n\n1. Create your free account\n2. Complete identity verification\n3. Deposit funds (minimum $1)\n4. Explore our investment options\n5. Start with a diversified portfolio\n\nWould you like me to explain any specific investment type?";
+                }
+                
+                if (lowerMessage.includes('stock') && (lowerMessage.includes('buy') || lowerMessage.includes('pick'))) {
+                    return "While I can't provide specific investment advice, I can suggest:\n\n• Consider diversified ETFs for beginners\n• Research companies with strong fundamentals\n• Look at growth sectors like technology and renewable energy\n• Always diversify your portfolio\n\nRemember to do your own research or consult a financial advisor!";
+                }
+                
+                if (lowerMessage.includes('crypto') || lowerMessage.includes('bitcoin')) {
+                    return "Cryptocurrency trading involves:\n\n• Understanding blockchain technology\n• High volatility and risk management\n• Secure wallet storage\n• Regulatory considerations\n• Diversification across different coins\n\nWe offer secure crypto trading with educational resources to help you get started safely.";
+                }
+                
+                if (lowerMessage.includes('portfolio') || lowerMessage.includes('diversif')) {
+                    return "Portfolio diversification is key to risk management:\n\n• Spread investments across asset classes\n• Include stocks, bonds, and alternatives\n• Consider international exposure\n• Rebalance periodically\n• Align with your risk tolerance and timeline\n\nOur platform offers automated portfolio management tools!";
+                }
+                
+                if (lowerMessage.includes('fee') || lowerMessage.includes('commission')) {
+                    return "At InvestHub, we offer:\n\n• Zero commission stock and ETF trading\n• Low crypto trading fees (0.1%-0.25%)\n• No account maintenance fees\n• Free educational resources\n• Transparent pricing with no hidden costs\n\nCheck our pricing page for detailed fee structure.";
+                }
+                
+                if (lowerMessage.includes('safe') || lowerMessage.includes('secure')) {
+                    return "Your security is our priority:\n\n• Bank-level 256-bit encryption\n• SIPC insurance up to $500,000\n• Two-factor authentication\n• Real-time fraud monitoring\n• Secure cold storage for crypto assets\n• Regular security audits\n\nWe employ industry-leading security measures to protect your investments.";
+                }
+                
+                if (lowerMessage.includes('help') || lowerMessage.includes('support')) {
+                    return "I'm here to help! You can:\n\n• Ask me specific investment questions\n• Contact our 24/7 support team\n• Access our learning center\n• Join investor communities\n• Schedule a consultation with our experts\n\nWhat specific area do you need assistance with?";
+                }
+                
+                // Default response for other queries
+                return "I understand you're asking about: '" + userMessage + "'. As an AI assistant for InvestHub, I can help with:\n\n• Investment strategies and education\n• Platform features and tools\n• Account setup and management\n• Market insights and analysis\n• Risk management and diversification\n\nCould you please rephrase your question or ask about one of these topics?";
+            }
+
+            // Close chat when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!aiChat.contains(event.target) && !aiBtn.contains(event.target) && aiChat.classList.contains('active')) {
+                    aiChat.classList.remove('active');
+                }
+            });
+        });
+
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+    </script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
