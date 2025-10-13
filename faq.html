@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/images/favico.png" type="image/x-icon">
-    <title>FAQ - InvestHub</title> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <title>FAQ - InvestHub</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -318,7 +320,7 @@
             position: absolute;
             width: 200px;
             height: 200px;
-            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, rgba(255,215,0,0) 70%);
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0) 70%);
             border-radius: 50%;
             z-index: -1;
         }
@@ -339,6 +341,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -350,14 +353,37 @@
             opacity: 0;
         }
 
-        .faq-item:nth-child(1) { animation-delay: 0.1s; }
-        .faq-item:nth-child(2) { animation-delay: 0.2s; }
-        .faq-item:nth-child(3) { animation-delay: 0.3s; }
-        .faq-item:nth-child(4) { animation-delay: 0.4s; }
-        .faq-item:nth-child(5) { animation-delay: 0.5s; }
-        .faq-item:nth-child(6) { animation-delay: 0.6s; }
-        .faq-item:nth-child(7) { animation-delay: 0.7s; }
-        .faq-item:nth-child(8) { animation-delay: 0.8s; }
+        .faq-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .faq-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .faq-item:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .faq-item:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .faq-item:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .faq-item:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        .faq-item:nth-child(7) {
+            animation-delay: 0.7s;
+        }
+
+        .faq-item:nth-child(8) {
+            animation-delay: 0.8s;
+        }
 
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -429,7 +455,7 @@
             }
         }
 
-         /* AI Assistant Styles */
+        /* AI Assistant Styles */
         .ai-assistant-container {
             position: fixed;
             bottom: 20px;
@@ -653,29 +679,51 @@
             animation: typing 1.4s infinite ease-in-out;
         }
 
-        .ai-typing-dot:nth-child(1) { animation-delay: -0.32s; }
-        .ai-typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        .ai-typing-dot:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+
+        .ai-typing-dot:nth-child(2) {
+            animation-delay: -0.16s;
+        }
 
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
 
         @keyframes slideUp {
-            from { 
+            from {
                 opacity: 0;
                 transform: translateY(20px);
             }
-            to { 
+
+            to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
         @keyframes typing {
-            0%, 60%, 100% { transform: translateY(0); }
-            30% { transform: translateY(-5px); }
+
+            0%,
+            60%,
+            100% {
+                transform: translateY(0);
+            }
+
+            30% {
+                transform: translateY(-5px);
+            }
         }
 
         /* Responsive */
@@ -684,7 +732,7 @@
                 width: 300px;
                 height: 400px;
             }
-            
+
             .ai-assistant-container {
                 bottom: 10px;
                 right: 10px;
@@ -697,13 +745,13 @@
                 right: -10px;
             }
         }
-
     </style>
 </head>
+
 <body>
 
 
-     <nav class="navbar navbar-expand-lg navbar-trade fixed-top mb-0">
+    <nav class="navbar navbar-expand-lg navbar-trade fixed-top mb-0">
         <div class="container">
             <a class="navbar-brand" href="#">
                 InvestHub
@@ -735,13 +783,13 @@
                             <li><a class="dropdown-item" href="/stock.html">Stocks & ETFs</a></li>
                             <li><a class="dropdown-item" href="#">Options</a></li>
                             <li><a class="dropdown-item" href="#">Crypto</a></li>
-                            <li><a class="dropdown-item" href="#">Explore</a></li>
+                            <li><a class="dropdown-item" href="/explore.html">Explore</a></li>
                         </ul>
                     </li>
-                     <li class="nav-item dropdown">
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                          Others
+                            Others
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/testimonial.html">Testimonials</a></li>
@@ -803,12 +851,12 @@
         <div class="faq-accent accent-2"></div>
     </div>
 
-     <!-- AI Assistant -->
+    <!-- AI Assistant -->
     <div class="ai-assistant-container">
         <button class="ai-assistant-btn" id="aiAssistantBtn">
             <i class="fas fa-robot"></i>
         </button>
-        
+
         <div class="ai-assistant-chat" id="aiAssistantChat">
             <div class="ai-chat-header">
                 <div class="ai-chat-title">
@@ -819,16 +867,17 @@
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            
+
             <div class="ai-chat-messages" id="aiChatMessages">
                 <div class="ai-message bot">
                     <div class="ai-avatar bot">AI</div>
                     <div class="ai-message-content">
-                        Hello! I'm your InvestHub AI assistant. How can I help you with your trading and investment questions today?
+                        Hello! I'm your InvestHub AI assistant. How can I help you with your trading and investment
+                        questions today?
                     </div>
                 </div>
             </div>
-            
+
             <div class="ai-chat-input">
                 <div class="ai-input-group">
                     <input type="text" class="ai-input" id="aiInput" placeholder="Ask about trading, investments...">
@@ -836,7 +885,7 @@
                         <i class="fas fa-paper-plane"></i>
                     </button>
                 </div>
-                
+
                 <div class="ai-quick-actions">
                     <button class="ai-quick-btn" data-question="How do I start investing?">Start Investing</button>
                     <button class="ai-quick-btn" data-question="What are the best stocks to buy?">Stock Picks</button>
@@ -849,7 +898,7 @@
 
     <!--FOOTER-->
 
-     <footer class="footer">
+    <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
@@ -869,10 +918,10 @@
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
                         <li><a href="#"><i class="fas fa-chevron-right"></i> Trading Platforms</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Market Analysis</a></li>
+                        <li><a href="/stock.html"><i class="fas fa-chevron-right"></i> Market Analysis</a></li>
                         <li><a href="#"><i class="fas fa-chevron-right"></i> Investment Products</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Trading Education</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Economic Calendar</a></li>
+                        <li><a href="/learn.html"><i class="fas fa-chevron-right"></i> Trading Education</a></li>
+                        <li><a href="/invest.html"><i class="fas fa-chevron-right"></i> Invest</a></li>
                     </ul>
                 </div>
 
@@ -994,12 +1043,12 @@
         ];
 
         // Initialize FAQ
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const faqItems = document.getElementById('faqItems');
             const searchInput = document.getElementById('searchInput');
             const categoryBtns = document.querySelectorAll('.category-btn');
             const noResults = document.getElementById('noResults');
-            
+
             let currentCategory = 'all';
             let currentSearch = '';
 
@@ -1007,34 +1056,34 @@
             function renderFAQ() {
                 faqItems.innerHTML = '';
                 let filteredItems = faqData;
-                
+
                 // Filter by category
                 if (currentCategory !== 'all') {
                     filteredItems = filteredItems.filter(item => item.category === currentCategory);
                 }
-                
+
                 // Filter by search
                 if (currentSearch) {
                     const searchTerm = currentSearch.toLowerCase();
-                    filteredItems = filteredItems.filter(item => 
-                        item.question.toLowerCase().includes(searchTerm) || 
+                    filteredItems = filteredItems.filter(item =>
+                        item.question.toLowerCase().includes(searchTerm) ||
                         item.answer.toLowerCase().includes(searchTerm)
                     );
                 }
-                
+
                 // Show/hide no results message
                 if (filteredItems.length === 0) {
                     noResults.style.display = 'block';
                 } else {
                     noResults.style.display = 'none';
                 }
-                
+
                 // Render items
                 filteredItems.forEach((item, index) => {
                     const faqItem = document.createElement('div');
                     faqItem.className = 'faq-item';
                     faqItem.setAttribute('data-category', item.category);
-                    
+
                     faqItem.innerHTML = `
                         <div class="faq-question">
                             <span class="question-text">${item.question}</span>
@@ -1046,9 +1095,9 @@
                             <div class="answer-content">${item.answer}</div>
                         </div>
                     `;
-                    
+
                     faqItems.appendChild(faqItem);
-                    
+
                     // Add click event to toggle answer
                     const question = faqItem.querySelector('.faq-question');
                     question.addEventListener('click', () => {
@@ -1058,14 +1107,14 @@
             }
 
             // Search functionality
-            searchInput.addEventListener('input', function(e) {
+            searchInput.addEventListener('input', function (e) {
                 currentSearch = e.target.value;
                 renderFAQ();
             });
 
             // Category filter
             categoryBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
+                btn.addEventListener('click', function () {
                     categoryBtns.forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
                     currentCategory = this.getAttribute('data-category');
@@ -1078,9 +1127,9 @@
         });
     </script>
 
-     <script>
+    <script>
         // AI Assistant Functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const aiBtn = document.getElementById('aiAssistantBtn');
             const aiChat = document.getElementById('aiAssistantChat');
             const aiClose = document.getElementById('aiChatClose');
@@ -1090,11 +1139,11 @@
             const quickBtns = document.querySelectorAll('.ai-quick-btn');
 
             // Toggle chat window
-            aiBtn.addEventListener('click', function() {
+            aiBtn.addEventListener('click', function () {
                 aiChat.classList.toggle('active');
             });
 
-            aiClose.addEventListener('click', function() {
+            aiClose.addEventListener('click', function () {
                 aiChat.classList.remove('active');
             });
 
@@ -1104,10 +1153,10 @@
                 if (message) {
                     addMessage(message, 'user');
                     aiInput.value = '';
-                    
+
                     // Show typing indicator
                     showTypingIndicator();
-                    
+
                     // Simulate AI response after delay
                     setTimeout(() => {
                         removeTypingIndicator();
@@ -1121,7 +1170,7 @@
             aiSend.addEventListener('click', sendMessage);
 
             // Send message on Enter key
-            aiInput.addEventListener('keypress', function(e) {
+            aiInput.addEventListener('keypress', function (e) {
                 if (e.key === 'Enter') {
                     sendMessage();
                 }
@@ -1129,7 +1178,7 @@
 
             // Quick action buttons
             quickBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
+                btn.addEventListener('click', function () {
                     const question = this.getAttribute('data-question');
                     aiInput.value = question;
                     sendMessage();
@@ -1140,19 +1189,19 @@
             function addMessage(text, sender) {
                 const messageDiv = document.createElement('div');
                 messageDiv.className = `ai-message ${sender}`;
-                
+
                 const avatar = document.createElement('div');
                 avatar.className = `ai-avatar ${sender}`;
                 avatar.textContent = sender === 'bot' ? 'AI' : 'You';
-                
+
                 const content = document.createElement('div');
                 content.className = 'ai-message-content';
                 content.textContent = text;
-                
+
                 messageDiv.appendChild(avatar);
                 messageDiv.appendChild(content);
                 aiMessages.appendChild(messageDiv);
-                
+
                 // Scroll to bottom
                 aiMessages.scrollTop = aiMessages.scrollHeight;
             }
@@ -1162,7 +1211,7 @@
                 const typingDiv = document.createElement('div');
                 typingDiv.className = 'ai-typing';
                 typingDiv.id = 'typingIndicator';
-                
+
                 typingDiv.innerHTML = `
                     <div class="ai-avatar bot">AI</div>
                     <div class="ai-message-content">
@@ -1173,7 +1222,7 @@
                         </div>
                     </div>
                 `;
-                
+
                 aiMessages.appendChild(typingDiv);
                 aiMessages.scrollTop = aiMessages.scrollHeight;
             }
@@ -1189,42 +1238,42 @@
             // Generate AI responses based on user input
             function generateAIResponse(userMessage) {
                 const lowerMessage = userMessage.toLowerCase();
-                
+
                 // Trading and investment responses
                 if (lowerMessage.includes('start') && lowerMessage.includes('invest')) {
                     return "To start investing with InvestHub:\n\n1. Create your free account\n2. Complete identity verification\n3. Deposit funds (minimum $1)\n4. Explore our investment options\n5. Start with a diversified portfolio\n\nWould you like me to explain any specific investment type?";
                 }
-                
+
                 if (lowerMessage.includes('stock') && (lowerMessage.includes('buy') || lowerMessage.includes('pick'))) {
                     return "While I can't provide specific investment advice, I can suggest:\n\n• Consider diversified ETFs for beginners\n• Research companies with strong fundamentals\n• Look at growth sectors like technology and renewable energy\n• Always diversify your portfolio\n\nRemember to do your own research or consult a financial advisor!";
                 }
-                
+
                 if (lowerMessage.includes('crypto') || lowerMessage.includes('bitcoin')) {
                     return "Cryptocurrency trading involves:\n\n• Understanding blockchain technology\n• High volatility and risk management\n• Secure wallet storage\n• Regulatory considerations\n• Diversification across different coins\n\nWe offer secure crypto trading with educational resources to help you get started safely.";
                 }
-                
+
                 if (lowerMessage.includes('portfolio') || lowerMessage.includes('diversif')) {
                     return "Portfolio diversification is key to risk management:\n\n• Spread investments across asset classes\n• Include stocks, bonds, and alternatives\n• Consider international exposure\n• Rebalance periodically\n• Align with your risk tolerance and timeline\n\nOur platform offers automated portfolio management tools!";
                 }
-                
+
                 if (lowerMessage.includes('fee') || lowerMessage.includes('commission')) {
                     return "At InvestHub, we offer:\n\n• Zero commission stock and ETF trading\n• Low crypto trading fees (0.1%-0.25%)\n• No account maintenance fees\n• Free educational resources\n• Transparent pricing with no hidden costs\n\nCheck our pricing page for detailed fee structure.";
                 }
-                
+
                 if (lowerMessage.includes('safe') || lowerMessage.includes('secure')) {
                     return "Your security is our priority:\n\n• Bank-level 256-bit encryption\n• SIPC insurance up to $500,000\n• Two-factor authentication\n• Real-time fraud monitoring\n• Secure cold storage for crypto assets\n• Regular security audits\n\nWe employ industry-leading security measures to protect your investments.";
                 }
-                
+
                 if (lowerMessage.includes('help') || lowerMessage.includes('support')) {
                     return "I'm here to help! You can:\n\n• Ask me specific investment questions\n• Contact our 24/7 support team\n• Access our learning center\n• Join investor communities\n• Schedule a consultation with our experts\n\nWhat specific area do you need assistance with?";
                 }
-                
+
                 // Default response for other queries
                 return "I understand you're asking about: '" + userMessage + "'. As an AI assistant for InvestHub, I can help with:\n\n• Investment strategies and education\n• Platform features and tools\n• Account setup and management\n• Market insights and analysis\n• Risk management and diversification\n\nCould you please rephrase your question or ask about one of these topics?";
             }
 
             // Close chat when clicking outside
-            document.addEventListener('click', function(event) {
+            document.addEventListener('click', function (event) {
                 if (!aiChat.contains(event.target) && !aiBtn.contains(event.target) && aiChat.classList.contains('active')) {
                     aiChat.classList.remove('active');
                 }
@@ -1247,4 +1296,5 @@
     <script src="/js/app.js"></script>
 
 </body>
+
 </html>

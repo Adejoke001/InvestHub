@@ -13,406 +13,414 @@
     <link rel="stylesheet" href="/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/css/owl.theme.default.min.css">
 
-<style>
-    :root {
-        /* Dark & Gold Color Palette */
-        --dark-primary: #000207;
-        --dark-secondary: #1a1f2e;
-        --dark-tertiary: #2d3345;
-        --gold-primary: #ecc906c1;
-        --gold-secondary: #bfac03e4;
-        --gold-dark: #b59b04d8;
-        --gold-gradient: linear-gradient(135deg, #ffd900a4 0%, #ae9f18 100%);
-        --dark-gradient: linear-gradient(135deg, #0a0f1c 0%, #1a1f2e 100%);
+    <style>
+        :root {
+            /* Dark & Gold Color Palette */
+            --dark-primary: #000207;
+            --dark-secondary: #1a1f2e;
+            --dark-tertiary: #2d3345;
+            --gold-primary: #ecc906c1;
+            --gold-secondary: #bfac03e4;
+            --gold-dark: #b59b04d8;
+            --gold-gradient: linear-gradient(135deg, #ffd900a4 0%, #ae9f18 100%);
+            --dark-gradient: linear-gradient(135deg, #0a0f1c 0%, #1a1f2e 100%);
 
-        /* Text Colors */
-        --text-light: #f8f9fa;
-        --text-muted: #a0aec0;
-        --text-dark: #2d3748;
+            /* Text Colors */
+            --text-light: #f8f9fa;
+            --text-muted: #a0aec0;
+            --text-dark: #2d3748;
 
-        /* Component Colors */
-        --card-bg: #1a1f2e;
-        --section-bg: #0a0f1c;
-        --border-color: #2d3345;
-    }
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background-color: var(--dark-primary);
-        color: var(--text-light);
-        line-height: 1.6;
-        padding-top: 76px;
-        overflow-x: hidden;
-    }
-
-    /* HERO SECTION */
-    .cash-hero {
-        background: var(--dark-gradient);
-        padding: 5rem 0;
-        position: relative;
-        overflow: hidden;
-        min-height: 80vh;
-        display: flex;
-        align-items: center;
-    }
-
-    .cash-hero::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
-    }
-
-    .hero-content {
-        position: relative;
-        z-index: 2;
-    }
-
-    .hero-badge {
-        display: inline-block;
-        background: var(--gold-gradient);
-        color: var(--dark-primary);
-        padding: 0.5rem 1rem;
-        border-radius: 20px;
-        font-weight: 600;
-        margin-bottom: 1.5rem;
-        font-size: 0.9rem;
-    }
-
-    .hero-title {
-        font-size: 3.5rem;
-        font-weight: 700;
-        margin-bottom: 1.5rem;
-        background: var(--gold-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-    .hero-subtitle {
-        font-size: 1.2rem;
-        color: var(--text-muted);
-        margin-bottom: 2rem;
-        max-width: 600px;
-    }
-
-    /* CARD DESIGN */
-    .hero-card-preview {
-        position: relative;
-        perspective: 1000px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        margin-top: 2rem;
-    }
-
-
-    .card-3d {
-        position: relative;
-        width: 100%;
-        max-width: 400px;
-        height: 250px;
-        background: var(--gold-gradient);
-        border-radius: 20px;
-        padding: 2rem;
-        color: var(--dark-primary);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        transform-style: preserve-3d;
-        transition: transform 0.6s ease, box-shadow 0.3s ease;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        overflow: hidden;
-        cursor: pointer;
-    }
-
-    .card-3d:hover {
-        transform: rotateY(12deg) rotateX(5deg) scale(1.03);
-        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.45);
-    }
-
-    .card-logo {
-        font-weight: 700;
-        font-size: 1.5rem;
-    }
-
-    .card-chip {
-        position: relative;
-        width: 65px;
-        height: 45px;
-        background: linear-gradient(135deg, #d4af37 0%, #f9e076 100%);
-        border-radius: 6px;
-        margin-top: 1rem;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-        overflow: hidden;
-    }
-
-    .card-chip::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 200%;
-        height: 100%;
-        background: linear-gradient(120deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
-        animation: shimmer 6s infinite ease-in-out;
-    }
-
-    @keyframes shimmer {
-        0% { transform: translateX(-100%); }
-        50% { transform: translateX(100%); }
-        100% { transform: translateX(-100%); }
-    }
-
-    .card-number {
-        font-family: 'Courier New', monospace;
-        font-size: 1.2rem;
-        letter-spacing: 2px;
-        font-weight: 600;
-        margin: 1.2rem 0;
-    }
-
-    .card-details {
-        display: flex;
-        justify-content: space-between;
-        font-size: 0.9rem;
-        width: 100%;
-    }
-
-    .card-label {
-        font-size: 0.7rem;
-        opacity: 0.8;
-        margin-bottom: 2px;
-    }
-
-    .card-value {
-        font-weight: 600;
-        padding-bottom: 6px;
-        white-space: nowrap;
-    }
-
-    /* RESPONSIVE CARD VALUE FIX */
-    @media (max-width: 768px) {
-        .card-value {
-            font-size: 0.9rem;
-            white-space: normal;
-            line-height: 1.3;
-            padding-bottom: 6px;
+            /* Component Colors */
+            --card-bg: #1a1f2e;
+            --section-bg: #0a0f1c;
+            --border-color: #2d3345;
         }
-    }
 
-    @media (max-width: 576px) {
-        .card-value {
-            font-size: 0.85rem;
-            white-space: normal;
-            line-height: 1.4;
-            padding-bottom: 8px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-    }
 
-    @media (max-width: 400px) {
-        .card-value {
-            font-size: 0.8rem;
-            white-space: normal;
-            line-height: 1.5;
-            padding-bottom: 10px;
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-primary);
+            color: var(--text-light);
+            line-height: 1.6;
+            padding-top: 76px;
+            overflow-x: hidden;
         }
-    }
 
-    /* BUTTONS */
-    .btn-cta {
-        background: var(--gold-gradient);
-        color: var(--dark-primary);
-        font-weight: 600;
-        padding: 0.75rem 1.5rem;
-        border: none;
-        border-radius: 50px;
-        transition: all 0.3s ease;
-    }
-
-    .btn-cta:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
-    }
-
-    .learn{
-        text-decoration: none;
-        color: var(--gold-primary);
-        border-radius: 50px;
-        padding: 0.65rem 1.1rem;
-
-    }
-
-    .learn:hover{
-        transform: translateY(-2px);
-        text-decoration: none;
-    }
-
-    /* FEATURES SECTION */
-    .features-section {
-        background: var(--section-bg);
-        padding: 5rem 0;
-        text-align: center;
-    }
-
-    .section-title h2 {
-        color: var(--gold-primary);
-        font-weight: 700;
-        margin-bottom: 1rem;
-    }
-
-    .section-title p {
-        color: var(--text-muted);
-        margin-bottom: 3rem;
-    }
-
-    .feature-card {
-        background: var(--card-bg);
-        border-radius: 20px;
-        padding: 2rem;
-        height: 100%;
-        transition: all 0.3s ease;
-        border: 1px solid var(--border-color);
-    }
-
-    .feature-card:hover {
-        transform: translateY(-5px);
-        border-color: var(--gold-primary);
-        box-shadow: 0 8px 20px rgba(255, 215, 0, 0.1);
-    }
-
-    .feature-icon {
-        font-size: 2rem;
-        color: var(--gold-primary);
-        margin-bottom: 1rem;
-    }
-
-    /* BENEFITS SECTION */
-    .benefits-section {
-        background: var(--dark-secondary);
-        padding: 5rem 0;
-    }
-
-    .benefit-item {
-        display: flex;
-        align-items: flex-start;
-        margin-bottom: 2rem;
-    }
-
-    .benefit-icon {
-        font-size: 1.8rem;
-        color: var(--gold-primary);
-        margin-right: 1rem;
-    }
-
-    .benefit-content h4 {
-        color: var(--gold-secondary);
-        margin-bottom: 0.5rem;
-        font-weight: 600;
-    }
-
-    .benefit-content p {
-        color: var(--text-muted);
-        margin: 0;
-    }
-
-    /* HOW IT WORKS SECTION */
-    .how-it-works {
-        background: var(--section-bg);
-        padding: 5rem 0;
-        text-align: center;
-    }
-
-    .step-card {
-        background: var(--card-bg);
-        padding: 2rem;
-        border-radius: 15px;
-        border: 1px solid var(--border-color);
-        transition: all 0.3s ease;
-        height: 100%;
-    }
-
-    .step-card:hover {
-        transform: translateY(-5px);
-        border-color: var(--gold-primary);
-        box-shadow: 0 5px 20px rgba(255, 215, 0, 0.1);
-    }
-
-    .step-number {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background: var(--gold-gradient);
-        color: var(--dark-primary);
-        font-weight: bold;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 1rem;
-    }
-
-    /*CTA SECTION*/
-    .cta-section {
-        background: var(--dark-gradient);
-        padding: 5rem 0;
-        text-align: center;
-    }
-
-    .cta-card {
-        background: var(--card-bg);
-        border: 1px solid var(--border-color);
-        border-radius: 20px;
-        padding: 3rem 2rem;
-        max-width: 700px;
-        margin: 0 auto;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
-
-    .cta-title {
-        color: var(--gold-primary);
-        font-weight: 700;
-        margin-bottom: 1rem;
-    }
-
-    .cta-subtitle {
-        color: var(--text-muted);
-        margin-bottom: 2rem;
-    }
-
-    
-    /*RESPONSIVENESS*/
-    @media (max-width: 992px) {
-        .hero-title {
-            font-size: 2.8rem;
-        }
-    }
-
-    @media (max-width: 768px) {
+        /* HERO SECTION */
         .cash-hero {
-            text-align: center;
+            background: var(--dark-gradient);
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .cash-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
         }
 
         .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--gold-gradient);
+            color: var(--dark-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        /* CARD DESIGN */
+        .hero-card-preview {
+            position: relative;
+            perspective: 1000px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            margin-top: 2rem;
+        }
+
+
+        .card-3d {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            height: 250px;
+            background: var(--gold-gradient);
+            border-radius: 20px;
+            padding: 2rem;
+            color: var(--dark-primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .card-3d:hover {
+            transform: rotateY(12deg) rotateX(5deg) scale(1.03);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.45);
+        }
+
+        .card-logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .card-chip {
+            position: relative;
+            width: 65px;
+            height: 45px;
+            background: linear-gradient(135deg, #d4af37 0%, #f9e076 100%);
+            border-radius: 6px;
+            margin-top: 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .card-chip::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(120deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+            animation: shimmer 6s infinite ease-in-out;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            50% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .card-number {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin: 1.2rem 0;
+        }
+
+        .card-details {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            width: 100%;
+        }
+
+        .card-label {
+            font-size: 0.7rem;
+            opacity: 0.8;
+            margin-bottom: 2px;
+        }
+
+        .card-value {
+            font-weight: 600;
+            padding-bottom: 6px;
+            white-space: nowrap;
+        }
+
+        /* RESPONSIVE CARD VALUE FIX */
+        @media (max-width: 768px) {
+            .card-value {
+                font-size: 0.9rem;
+                white-space: normal;
+                line-height: 1.3;
+                padding-bottom: 6px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .card-value {
+                font-size: 0.85rem;
+                white-space: normal;
+                line-height: 1.4;
+                padding-bottom: 8px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .card-value {
+                font-size: 0.8rem;
+                white-space: normal;
+                line-height: 1.5;
+                padding-bottom: 10px;
+            }
+        }
+
+        /* BUTTONS */
+        .btn-cta {
+            background: var(--gold-gradient);
+            color: var(--dark-primary);
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .learn {
+            text-decoration: none;
+            color: var(--gold-primary);
+            border-radius: 50px;
+            padding: 0.65rem 1.1rem;
+
+        }
+
+        .learn:hover {
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+
+        /* FEATURES SECTION */
+        .features-section {
+            background: var(--section-bg);
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .section-title h2 {
+            color: var(--gold-primary);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            height: 100%;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold-primary);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--gold-primary);
+            margin-bottom: 1rem;
+        }
+
+        /* BENEFITS SECTION */
+        .benefits-section {
+            background: var(--dark-secondary);
+            padding: 5rem 0;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
             margin-bottom: 2rem;
         }
-    }
 
-    @media (max-width: 576px) {
-        .hero-title {
-            font-size: 2.2rem;
+        .benefit-icon {
+            font-size: 1.8rem;
+            color: var(--gold-primary);
+            margin-right: 1rem;
         }
-    }
 
-    /* AI Assistant Styles */
+        .benefit-content h4 {
+            color: var(--gold-secondary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .benefit-content p {
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* HOW IT WORKS SECTION */
+        .how-it-works {
+            background: var(--section-bg);
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .step-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold-primary);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.1);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gold-gradient);
+            color: var(--dark-primary);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+
+        /*CTA SECTION*/
+        .cta-section {
+            background: var(--dark-gradient);
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .cta-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-title {
+            color: var(--gold-primary);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-subtitle {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+
+        /*RESPONSIVENESS*/
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cash-hero {
+                text-align: center;
+            }
+
+            .hero-content {
+                margin-bottom: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* AI Assistant Styles */
         .ai-assistant-container {
             position: fixed;
             bottom: 20px;
@@ -636,29 +644,51 @@
             animation: typing 1.4s infinite ease-in-out;
         }
 
-        .ai-typing-dot:nth-child(1) { animation-delay: -0.32s; }
-        .ai-typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        .ai-typing-dot:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+
+        .ai-typing-dot:nth-child(2) {
+            animation-delay: -0.16s;
+        }
 
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
 
         @keyframes slideUp {
-            from { 
+            from {
                 opacity: 0;
                 transform: translateY(20px);
             }
-            to { 
+
+            to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
         @keyframes typing {
-            0%, 60%, 100% { transform: translateY(0); }
-            30% { transform: translateY(-5px); }
+
+            0%,
+            60%,
+            100% {
+                transform: translateY(0);
+            }
+
+            30% {
+                transform: translateY(-5px);
+            }
         }
 
         /* Responsive */
@@ -667,7 +697,7 @@
                 width: 300px;
                 height: 400px;
             }
-            
+
             .ai-assistant-container {
                 bottom: 10px;
                 right: 10px;
@@ -680,8 +710,7 @@
                 right: -10px;
             }
         }
-
-</style>
+    </style>
 
 
 
@@ -722,7 +751,7 @@
                             <li><a class="dropdown-item" href="/stock.html">Stocks & ETFs</a></li>
                             <li><a class="dropdown-item" href="#">Options</a></li>
                             <li><a class="dropdown-item" href="#">Crypto</a></li>
-                            <li><a class="dropdown-item" href="#">Explore</a></li>
+                            <li><a class="dropdown-item" href="/explore.html">Explore</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -749,45 +778,47 @@
 
     <!-- Hero Section -->
     <section class="cash-hero">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-6">
-          <div class="hero-content">
-            <span class="hero-badge">INSTANT ACCESS</span>
-            <h1 class="hero-title">InvestHub Cash Card</h1>
-            <p class="hero-subtitle">Your trading funds, instantly accessible. Spend your investment profits anywhere,
-              with real-time balance updates and premium security.</p>
-            <div class="d-flex gap-3 flex-wrap">
-              <button class="btn btn-cta" onclick="orderCard()">Order Your Card</button>
-              <button class="btn learn" style="background: transparent; color: var(--gold-primary); border: 1px solid var(--gold-primary);"
-               ><a href="/learn.html" class="learn">Learn More</a></button>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="hero-card-preview">
-            <div class="card-3d">
-              <div class="card-header-flex">
-                <div class="card-logo">InvestHub Cash</div>
-                <div class="card-chip"></div>
-              </div>
-              <div class="card-number">•••• •••• •••• 7821</div>
-              <div class="card-details">
-                <div>
-                  <div class="card-label">CARD HOLDER</div>
-                  <div class="card-value">JOHN DOE</div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <span class="hero-badge">INSTANT ACCESS</span>
+                        <h1 class="hero-title">InvestHub Cash Card</h1>
+                        <p class="hero-subtitle">Your trading funds, instantly accessible. Spend your investment profits
+                            anywhere,
+                            with real-time balance updates and premium security.</p>
+                        <div class="d-flex gap-3 flex-wrap">
+                            <button class="btn btn-cta" onclick="orderCard()">Order Your Card</button>
+                            <button class="btn learn"
+                                style="background: transparent; color: var(--gold-primary); border: 1px solid var(--gold-primary);"><a
+                                    href="/learn.html" class="learn">Learn More</a></button>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                  <div class="card-label">VALID THRU</div>
-                  <div class="card-value">08/26</div>
+                <div class="col-lg-6">
+                    <div class="hero-card-preview">
+                        <div class="card-3d">
+                            <div class="card-header-flex">
+                                <div class="card-logo">InvestHub Cash</div>
+                                <div class="card-chip"></div>
+                            </div>
+                            <div class="card-number">•••• •••• •••• 7821</div>
+                            <div class="card-details">
+                                <div>
+                                    <div class="card-label">CARD HOLDER</div>
+                                    <div class="card-value">JOHN DOE</div>
+                                </div>
+                                <div>
+                                    <div class="card-label">VALID THRU</div>
+                                    <div class="card-value">08/26</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
     <!-- Features Section -->
     <section class="features-section">
@@ -988,7 +1019,7 @@
         <button class="ai-assistant-btn" id="aiAssistantBtn">
             <i class="fas fa-robot"></i>
         </button>
-        
+
         <div class="ai-assistant-chat" id="aiAssistantChat">
             <div class="ai-chat-header">
                 <div class="ai-chat-title">
@@ -999,16 +1030,17 @@
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            
+
             <div class="ai-chat-messages" id="aiChatMessages">
                 <div class="ai-message bot">
                     <div class="ai-avatar bot">AI</div>
                     <div class="ai-message-content">
-                        Hello! I'm your InvestHub AI assistant. How can I help you with your trading and investment questions today?
+                        Hello! I'm your InvestHub AI assistant. How can I help you with your trading and investment
+                        questions today?
                     </div>
                 </div>
             </div>
-            
+
             <div class="ai-chat-input">
                 <div class="ai-input-group">
                     <input type="text" class="ai-input" id="aiInput" placeholder="Ask about trading, investments...">
@@ -1016,7 +1048,7 @@
                         <i class="fas fa-paper-plane"></i>
                     </button>
                 </div>
-                
+
                 <div class="ai-quick-actions">
                     <button class="ai-quick-btn" data-question="How do I start investing?">Start Investing</button>
                     <button class="ai-quick-btn" data-question="What are the best stocks to buy?">Stock Picks</button>
@@ -1026,7 +1058,7 @@
             </div>
         </div>
     </div>
-    
+
 
     <!-- Footer -->
     <footer class="footer">
@@ -1049,10 +1081,10 @@
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
                         <li><a href="#"><i class="fas fa-chevron-right"></i> Trading Platforms</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Market Analysis</a></li>
+                        <li><a href="/stock.html"><i class="fas fa-chevron-right"></i> Market Analysis</a></li>
                         <li><a href="#"><i class="fas fa-chevron-right"></i> Investment Products</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Trading Education</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Economic Calendar</a></li>
+                        <li><a href="/learn.html"><i class="fas fa-chevron-right"></i> Trading Education</a></li>
+                        <li><a href="/invest.html"><i class="fas fa-chevron-right"></i> Invest</a></li>
                     </ul>
                 </div>
 
@@ -1131,9 +1163,9 @@
     </script>
 
 
-      <script>
+    <script>
         // AI Assistant Functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const aiBtn = document.getElementById('aiAssistantBtn');
             const aiChat = document.getElementById('aiAssistantChat');
             const aiClose = document.getElementById('aiChatClose');
@@ -1143,11 +1175,11 @@
             const quickBtns = document.querySelectorAll('.ai-quick-btn');
 
             // Toggle chat window
-            aiBtn.addEventListener('click', function() {
+            aiBtn.addEventListener('click', function () {
                 aiChat.classList.toggle('active');
             });
 
-            aiClose.addEventListener('click', function() {
+            aiClose.addEventListener('click', function () {
                 aiChat.classList.remove('active');
             });
 
@@ -1157,10 +1189,10 @@
                 if (message) {
                     addMessage(message, 'user');
                     aiInput.value = '';
-                    
+
                     // Show typing indicator
                     showTypingIndicator();
-                    
+
                     // Simulate AI response after delay
                     setTimeout(() => {
                         removeTypingIndicator();
@@ -1174,7 +1206,7 @@
             aiSend.addEventListener('click', sendMessage);
 
             // Send message on Enter key
-            aiInput.addEventListener('keypress', function(e) {
+            aiInput.addEventListener('keypress', function (e) {
                 if (e.key === 'Enter') {
                     sendMessage();
                 }
@@ -1182,7 +1214,7 @@
 
             // Quick action buttons
             quickBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
+                btn.addEventListener('click', function () {
                     const question = this.getAttribute('data-question');
                     aiInput.value = question;
                     sendMessage();
@@ -1193,19 +1225,19 @@
             function addMessage(text, sender) {
                 const messageDiv = document.createElement('div');
                 messageDiv.className = `ai-message ${sender}`;
-                
+
                 const avatar = document.createElement('div');
                 avatar.className = `ai-avatar ${sender}`;
                 avatar.textContent = sender === 'bot' ? 'AI' : 'You';
-                
+
                 const content = document.createElement('div');
                 content.className = 'ai-message-content';
                 content.textContent = text;
-                
+
                 messageDiv.appendChild(avatar);
                 messageDiv.appendChild(content);
                 aiMessages.appendChild(messageDiv);
-                
+
                 // Scroll to bottom
                 aiMessages.scrollTop = aiMessages.scrollHeight;
             }
@@ -1215,7 +1247,7 @@
                 const typingDiv = document.createElement('div');
                 typingDiv.className = 'ai-typing';
                 typingDiv.id = 'typingIndicator';
-                
+
                 typingDiv.innerHTML = `
                     <div class="ai-avatar bot">AI</div>
                     <div class="ai-message-content">
@@ -1226,7 +1258,7 @@
                         </div>
                     </div>
                 `;
-                
+
                 aiMessages.appendChild(typingDiv);
                 aiMessages.scrollTop = aiMessages.scrollHeight;
             }
@@ -1242,42 +1274,42 @@
             // Generate AI responses based on user input
             function generateAIResponse(userMessage) {
                 const lowerMessage = userMessage.toLowerCase();
-                
+
                 // Trading and investment responses
                 if (lowerMessage.includes('start') && lowerMessage.includes('invest')) {
                     return "To start investing with InvestHub:\n\n1. Create your free account\n2. Complete identity verification\n3. Deposit funds (minimum $1)\n4. Explore our investment options\n5. Start with a diversified portfolio\n\nWould you like me to explain any specific investment type?";
                 }
-                
+
                 if (lowerMessage.includes('stock') && (lowerMessage.includes('buy') || lowerMessage.includes('pick'))) {
                     return "While I can't provide specific investment advice, I can suggest:\n\n• Consider diversified ETFs for beginners\n• Research companies with strong fundamentals\n• Look at growth sectors like technology and renewable energy\n• Always diversify your portfolio\n\nRemember to do your own research or consult a financial advisor!";
                 }
-                
+
                 if (lowerMessage.includes('crypto') || lowerMessage.includes('bitcoin')) {
                     return "Cryptocurrency trading involves:\n\n• Understanding blockchain technology\n• High volatility and risk management\n• Secure wallet storage\n• Regulatory considerations\n• Diversification across different coins\n\nWe offer secure crypto trading with educational resources to help you get started safely.";
                 }
-                
+
                 if (lowerMessage.includes('portfolio') || lowerMessage.includes('diversif')) {
                     return "Portfolio diversification is key to risk management:\n\n• Spread investments across asset classes\n• Include stocks, bonds, and alternatives\n• Consider international exposure\n• Rebalance periodically\n• Align with your risk tolerance and timeline\n\nOur platform offers automated portfolio management tools!";
                 }
-                
+
                 if (lowerMessage.includes('fee') || lowerMessage.includes('commission')) {
                     return "At InvestHub, we offer:\n\n• Zero commission stock and ETF trading\n• Low crypto trading fees (0.1%-0.25%)\n• No account maintenance fees\n• Free educational resources\n• Transparent pricing with no hidden costs\n\nCheck our pricing page for detailed fee structure.";
                 }
-                
+
                 if (lowerMessage.includes('safe') || lowerMessage.includes('secure')) {
                     return "Your security is our priority:\n\n• Bank-level 256-bit encryption\n• SIPC insurance up to $500,000\n• Two-factor authentication\n• Real-time fraud monitoring\n• Secure cold storage for crypto assets\n• Regular security audits\n\nWe employ industry-leading security measures to protect your investments.";
                 }
-                
+
                 if (lowerMessage.includes('help') || lowerMessage.includes('support')) {
                     return "I'm here to help! You can:\n\n• Ask me specific investment questions\n• Contact our 24/7 support team\n• Access our learning center\n• Join investor communities\n• Schedule a consultation with our experts\n\nWhat specific area do you need assistance with?";
                 }
-                
+
                 // Default response for other queries
                 return "I understand you're asking about: '" + userMessage + "'. As an AI assistant for InvestHub, I can help with:\n\n• Investment strategies and education\n• Platform features and tools\n• Account setup and management\n• Market insights and analysis\n• Risk management and diversification\n\nCould you please rephrase your question or ask about one of these topics?";
             }
 
             // Close chat when clicking outside
-            document.addEventListener('click', function(event) {
+            document.addEventListener('click', function (event) {
                 if (!aiChat.contains(event.target) && !aiBtn.contains(event.target) && aiChat.classList.contains('active')) {
                     aiChat.classList.remove('active');
                 }
