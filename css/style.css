@@ -68,6 +68,11 @@ body {
   color: var(--gold-primary);
 }
 
+.navbar-trade .navbar-brand:hover {
+  color: rgb(255, 221, 27);
+  text-decoration: none;
+}
+
 .navbar-trade .navbar-nav .nav-link {
   color: var(--text-light);
   font-weight: 500;

@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore - Trading News & Insights</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        :root {
+            /* Dark & Gold Color Palette */
+            --dark-primary: #000207;
+            --dark-secondary: #1a1f2e;
+            --dark-tertiary: #2d3345;
+            --gold-primary: #ecc906dc;
+            --gold-secondary: #bfac03e8;
+            --gold-dark: #b59b04d8;
+            --gold-gradient: linear-gradient(135deg, #ffd900a4 0%, #ae9f18 100%);
+            --dark-gradient: linear-gradient(135deg, #0a0f1c 0%, #1a1f2e 100%);
+            
+            /* Text Colors */
+            --text-light: #f8f9fa;
+            --text-muted: #a0aec0;
+            --text-dark: #2d3748;
+            
+            /* Component Colors */
+            --card-bg: #1a1f2e;
+            --section-bg: #0a0f1c;
+            --border-color: #2d3345;
+            
+            /* Status Colors */
+            --success: #48bb78;
+            --danger: #f56565;
+            --warning: #ed8936;
+            --info: #4299e1;
+            
+            /* Button Colors */
+            --btn-primary-bg: var(--gold-primary);
+            --btn-primary-text: var(--dark-primary);
+            --btn-primary-hover: var(--gold-secondary);
+            
+            --btn-secondary-bg: transparent;
+            --btn-secondary-text: var(--gold-primary);
+            --btn-secondary-border: var(--gold-primary);
+            --btn-secondary-hover: rgba(255, 215, 0, 0.1);
+        }
+
+        body {
+            background: var(--dark-primary);
+            color: var(--text-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Fix container spacing on mobile */
+        .container, .container-fluid {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        @media (max-width: 576px) {
+            .container, .container-fluid {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+        }
+
+        .explore-hero {
+            background: var(--dark-gradient);
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .explore-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(236, 201, 6, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 163, 255, 0.03) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .glow-text {
+            color: var(--gold-primary);
+            text-shadow: 0 0 10px rgba(236, 201, 6, 0.3);
+        }
+
+        .card-custom {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .card-custom:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-gold {
+            background: var(--gold-gradient);
+            color: var(--dark-primary);
+            border: none;
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(236, 201, 6, 0.3);
+            background: var(--gold-secondary);
+        }
+
+        .btn-outline-gold {
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-gold:hover {
+            background: rgba(236, 201, 6, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .news-card {
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .news-card img {
+            transition: transform 0.5s ease;
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .news-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .news-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--gold-primary);
+            color: var(--dark-primary);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .market-ticker {
+            background: var(--dark-tertiary);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 0;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .ticker-content {
+            display: flex;
+            animation: ticker 30s linear infinite;
+            padding: 0 15px;
+        }
+
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            margin-right: 40px;
+            white-space: nowrap;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .trending-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+        }
+
+        .trending-item:hover {
+            background: var(--dark-tertiary);
+        }
+
+        .trending-number {
+            background: var(--gold-primary);
+            color: var(--dark-primary);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 15px;
+        }
+
+        .positive {
+            color: var(--success);
+        }
+
+        .negative {
+            color: var(--danger);
+        }
+
+        .section-title {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--gold-primary);
+            border-radius: 2px;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            border-radius: 20px;
+            padding: 6px 15px;
+            margin: 0 5px 10px;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--gold-primary);
+            color: var(--dark-primary);
+            border-color: var(--gold-primary);
+        }
+
+        .news-category {
+            display: inline-block;
+            background: rgba(236, 201, 6, 0.1);
+            color: var(--gold-primary);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(236, 201, 6, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(236, 201, 6, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(236, 201, 6, 0); }
+        }
+
+        .stats-card {
+            text-align: center;
+            padding: 25px 15px;
+            border-radius: 12px;
+            background: var(--dark-gradient);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .stats-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(236, 201, 6, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .stats-card:hover::before {
+            opacity: 1;
+        }
+
+        .stats-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .stats-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--gold-primary);
+        }
+
+        .stats-number {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stats-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .featured-news {
+            grid-column: span 2;
+        }
+
+        @media (max-width: 992px) {
+            .featured-news {
+                grid-column: span 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .explore-hero {
+                padding: 100px 0 60px;
+            }
+        }
+
+        .news-source {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .source-logo {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 8px;
+            background: var(--gold-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: var(--dark-primary);
+            font-weight: bold;
+        }
+
+        .source-name {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .news-timestamp {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .market-overview {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .market-indicator {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 15px;
+            border-radius: 10px;
+            background: var(--dark-secondary);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .market-indicator:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .market-indicator .value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .market-indicator .label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .newsletter-signup {
+            background: var(--dark-gradient);
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 40px;
+            border: 1px solid var(--border-color);
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            background: var(--dark-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 30px 0 0 30px;
+            padding: 12px 20px;
+            color: var(--text-light);
+        }
+
+        .newsletter-form button {
+            background: var(--gold-primary);
+            color: var(--dark-primary);
+            border: none;
+            border-radius: 0 30px 30px 0;
+            padding: 0 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background: var(--gold-secondary);
+        }
+
+        .featured-content {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+        }
+
+        .featured-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 2, 7, 0.9));
+            padding: 30px;
+            color: white;
+        }
+
+        .market-sentiment {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--dark-secondary);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .sentiment-indicator {
+            display: flex;
+            align-items: center;
+        }
+
+        .sentiment-bar {
+            width: 200px;
+            height: 8px;
+            background: var(--dark-tertiary);
+            border-radius: 4px;
+            margin: 0 15px;
+            overflow: hidden;
+        }
+
+        .sentiment-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .sentiment-bullish {
+            background: var(--success);
+        }
+
+        .sentiment-bearish {
+            background: var(--danger);
+        }
+
+        .sentiment-label {
+            font-weight: 600;
+        }
+
+        .trending-stocks {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding: 10px 0;
+            margin-bottom: 30px;
+        }
+
+        .trending-stock {
+            min-width: 150px;
+            background: var(--dark-secondary);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .trending-stock:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .stock-symbol {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .stock-price {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .stock-change {
+            font-weight: 600;
+        }
+
+        .news-feed {
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .news-feed-item {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .news-feed-item:hover {
+            background: var(--dark-tertiary);
+        }
+
+        .news-feed-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-feed-time {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+        }
+
+        .news-feed-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .news-feed-source {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark-secondary);
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold-primary);
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold-secondary);
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translate(0, 0px); }
+            50% { transform: translate(0, 10px); }
+            100% { transform: translate(0, -0px); }
+        }
+
+        /* Mobile responsiveness improvements */
+        @media (max-width: 768px) {
+            .market-sentiment {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .sentiment-indicator {
+                justify-content: center;
+            }
+            
+            .sentiment-bar {
+                width: 150px;
+            }
+            
+            .market-overview {
+                gap: 15px;
+            }
+            
+            .market-indicator {
+                min-width: calc(50% - 10px);
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .newsletter-form input,
+            .newsletter-form button {
+                border-radius: 30px;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .market-indicator {
+                min-width: 100%;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .featured-overlay {
+                padding: 20px;
+            }
+            
+            .featured-overlay h3 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+     
+   <nav class="navbar navbar-expand-lg navbar-trade fixed-top mb-0">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            InvestHub
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/invest.html">Invest</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cashcard.html">Cash Card</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        What We Offer
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/invest.html">Invest</a></li>
+                        <li><a class="dropdown-item" href="#">Trading</a></li>
+                        <li><a class="dropdown-item" href="#">Banking</a></li>
+                        <li><a class="dropdown-item" href="/stock.html">Stocks & ETFs</a></li>
+                        <li><a class="dropdown-item" href="#">Options</a></li>
+                        <li><a class="dropdown-item" href="#">Crypto</a></li>
+                        <li><a class="dropdown-item" href="/explore.html">Explore</a></li>
+                    </ul>
+                </li>
+                 <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                      Others
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/testimonial.html">Testimonials</a></li>
+                        <li><a class="dropdown-item" href="/faq.html">FAQ</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/learn.html">Learn</a>
+                </li>
+            </ul>
+            <div class="d-flex btn-container">
+                <button class="btn btn-login me-2 "><a href="/login.html" class="log">Log in</a></button>
+                <button class="btn btn-signup"><a href="./signup.html" class="sign">Sign up</a></button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <!-- Hero Section -->
+    <section class="explore-hero">
+        <div class="container">
+            <div class="row align-items-center hero-content">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="display-4 fw-bold mb-4 glow-text">Trading Market</h1>
+                    <p class="lead mb-4">Your gateway to real-time trading insights, breaking news, and market analysis from trusted financial sources.</p>
+                    <div class="d-flex flex-wrap gap-3 justify-content-center">
+                        <a href="#trending" class="btn btn-gold pulse">
+                            <i class="fas fa-chart-line me-2"></i> Trending Assets
+                        </a>
+                        <a href="#news" class="btn btn-outline-gold">
+                            <i class="fas fa-newspaper me-2"></i> Latest News
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Ticker -->
+    <div class="market-ticker">
+        <div class="ticker-content">
+            <!-- Ticker items will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <!-- Market Overview -->
+        <div class="market-overview">
+            <div class="market-indicator">
+                <div class="value positive">+0.84%</div>
+                <div class="label">S&P 500</div>
+            </div>
+            <div class="market-indicator">
+                <div class="value negative">-0.32%</div>
+                <div class="label">NASDAQ</div>
+            </div>
+            <div class="market-indicator">
+                <div class="value positive">+1.24%</div>
+                <div class="label">DOW JONES</div>
+            </div>
+            <div class="market-indicator">
+                <div class="value positive">+2.56%</div>
+                <div class="label">BITCOIN</div>
+            </div>
+        </div>
+
+        <!-- Market Sentiment -->
+        <div class="market-sentiment">
+            <div class="sentiment-label">Market Sentiment:</div>
+            <div class="sentiment-indicator">
+                <span>Bearish</span>
+                <div class="sentiment-bar">
+                    <div class="sentiment-fill sentiment-bullish" id="sentimentFill" style="width: 65%"></div>
+                </div>
+                <span>Bullish</span>
+            </div>
+            <div class="sentiment-value">65% Bullish</div>
+        </div>
+
+        <!-- Trending Stocks -->
+        <div class="trending-stocks">
+            <!-- Trending stocks will be populated by JavaScript -->
+        </div>
+
+        <!-- Stats Section -->
+        <div class="row mb-5">
+            <div class="col-md-3 mb-4">
+                <div class="stats-card animate-on-scroll">
+                    <div class="stats-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="stats-number" id="activeTrades">1,247</div>
+                    <div class="stats-label">Active Trades</div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="stats-card animate-on-scroll">
+                    <div class="stats-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <div class="stats-number" id="marketCap">$2.1T</div>
+                    <div class="stats-label">Market Cap</div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="stats-card animate-on-scroll">
+                    <div class="stats-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stats-number" id="activeTraders">84.2K</div>
+                    <div class="stats-label">Active Traders</div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="stats-card animate-on-scroll">
+                    <div class="stats-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="stats-number" id="volume">$892B</div>
+                    <div class="stats-label">24h Volume</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Featured News -->
+        <div class="featured-content card-custom">
+            <img src="https://images.unsplash.com/photo-1642790554515-5b774806ed96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Stock Market Analysis">
+            <div class="featured-overlay">
+                <span class="news-category">MARKET ANALYSIS</span>
+                <h3 class="mt-2">Federal Reserve Signals Potential Rate Cuts Amid Economic Shifts</h3>
+                <p class="mb-2">Central bank officials hint at policy adjustments as inflation shows signs of cooling and economic growth moderates.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="news-source">
+                        <div class="source-logo">BB</div>
+                        <span class="source-name">Bloomberg</span>
+                    </div>
+                    <span class="news-timestamp">2 hours ago</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trending Section -->
+        <section class="mb-5" id="trending">
+            <h2 class="section-title glow-text">Trending Assets</h2>
+            <div class="row">
+                <div class="col-lg-8 mb-4">
+                    <div class="card-custom p-4 h-100 animate-on-scroll">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="mb-0">Top Market Movers</h4>
+                            <button class="btn btn-outline-gold btn-sm" id="refreshTrending">
+                                <i class="fas fa-sync-alt me-1"></i> Refresh
+                            </button>
+                        </div>
+                        <div id="trendingList">
+                            <!-- Trending items will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="card-custom p-4 h-100 animate-on-scroll">
+                        <h4 class="mb-3">Live News Feed</h4>
+                        <div class="news-feed" id="newsFeed">
+                            <!-- News feed items will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- News Filters -->
+        <div class="d-flex flex-wrap mb-4" id="news">
+            <button class="filter-btn active" data-filter="all">All News</button>
+            <button class="filter-btn" data-filter="stocks">Stocks</button>
+            <button class="filter-btn" data-filter="crypto">Crypto</button>
+            <button class="filter-btn" data-filter="forex">Forex</button>
+            <button class="filter-btn" data-filter="commodities">Commodities</button>
+            <button class="filter-btn" data-filter="analysis">Analysis</button>
+        </div>
+
+        <!-- News Grid -->
+        <section class="mb-5">
+            <h2 class="section-title glow-text">Latest Market News</h2>
+            <div class="news-grid" id="newsContainer">
+                <!-- News cards will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Newsletter Signup -->
+        <div class="newsletter-signup animate-on-scroll">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h3 class="glow-text">Stay Informed</h3>
+                    <p class="mb-0">Get daily market insights and trading opportunities delivered to your inbox.</p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Enter your email address">
+                        <button type="submit">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Load More Button -->
+        <div class="text-center mt-4">
+            <button class="btn btn-gold" id="loadMoreBtn">
+                <i class="fas fa-plus me-2"></i> Load More News
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+
+
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h2 class="footer-brand mb-15"><a href="#" class="foot">InvestHub</a></h2>
+                    <p class="firstp">We are a leading trading platform providing access to global markets, advanced
+                        trading tools, and educational resources for traders of all experience levels.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Trading Platforms</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Market Analysis</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Investment Products</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Trading Education</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Economic Calendar</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Headquarters</strong><br>
+                                123 Financial District,<br>
+                                New York, NY 10005
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Phone</strong><br>
+                                +1 (555) 123-4567
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email</strong><br>
+                                support@globaltradepro.com
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for market insights, trading tips, and platform updates.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2023 Global Trade Pro. All rights reserved.</p>
+
+                    <div class="payment-methods">
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-paypal"></i>
+                        <i class="fab fa-cc-apple-pay"></i>
+                    </div>
+
+                    <div class="legal-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Risk Disclosure</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Container for Notifications -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <!-- Toasts will be added here dynamically -->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Sample data for the explore page
+        const marketData = {
+            ticker: [
+                { symbol: 'AAPL', price: 178.72, change: 1.24 },
+                { symbol: 'TSLA', price: 245.18, change: -2.35 },
+                { symbol: 'MSFT', price: 374.51, change: 0.89 },
+                { symbol: 'NVDA', price: 473.20, change: 3.42 },
+                { symbol: 'AMZN', price: 132.14, change: -1.12 },
+                { symbol: 'GOOGL', price: 132.75, change: 0.67 },
+                { symbol: 'META', price: 312.65, change: 2.18 },
+                { symbol: 'BTC', price: 43210, change: 1.56 },
+                { symbol: 'ETH', price: 2345, change: -0.78 },
+                { symbol: 'SPY', price: 445.32, change: 0.45 }
+            ],
+            trending: [
+                { symbol: 'NVDA', name: 'NVIDIA Corp', price: 473.20, change: 3.42, volume: '45.2M' },
+                { symbol: 'META', name: 'Meta Platforms', price: 312.65, change: 2.18, volume: '32.1M' },
+                { symbol: 'TSLA', name: 'Tesla Inc', price: 245.18, change: -2.35, volume: '98.7M' },
+                { symbol: 'AMD', name: 'Advanced Micro Devices', price: 156.43, change: 1.87, volume: '67.3M' },
+                { symbol: 'BTC', name: 'Bitcoin', price: 43210, change: 1.56, volume: '28.4B' }
+            ],
+            trendingStocks: [
+                { symbol: 'AAPL', price: 178.72, change: 1.24 },
+                { symbol: 'MSFT', price: 374.51, change: 0.89 },
+                { symbol: 'GOOGL', price: 132.75, change: 0.67 },
+                { symbol: 'AMZN', price: 132.14, change: -1.12 },
+                { symbol: 'TSLA', price: 245.18, change: -2.35 },
+                { symbol: 'NVDA', price: 473.20, change: 3.42 },
+                { symbol: 'META', price: 312.65, change: 2.18 }
+            ],
+            newsFeed: [
+                { time: '10:45 AM', title: 'Federal Reserve announces interest rate decision', source: 'Reuters' },
+                { time: '10:30 AM', title: 'Tech stocks rally as earnings exceed expectations', source: 'Bloomberg' },
+                { time: '10:15 AM', title: 'Oil prices climb amid supply concerns', source: 'CNBC' },
+                { time: '10:00 AM', title: 'Bitcoin breaks $45,000 resistance level', source: 'CoinDesk' },
+                { time: '9:45 AM', title: 'European markets open higher following positive economic data', source: 'Financial Times' },
+                { time: '9:30 AM', title: 'Asian markets mixed as trade tensions persist', source: 'Reuters' },
+                { time: '9:15 AM', title: 'Gold prices steady ahead of inflation data', source: 'Bloomberg' }
+            ],
+            news: [
+                {
+                    id: 1,
+                    title: 'Tech Stocks Rally as NVIDIA Announces Breakthrough in AI Chip Technology',
+                    summary: 'NVIDIA shares surged 8% in after-hours trading following the announcement of their new AI processor, boosting the entire tech sector.',
+                    category: 'stocks',
+                    date: '4 hours ago',
+                    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+                    readTime: '3 min read',
+                    source: 'CNBC',
+                    sourceLogo: 'CN'
+                },
+                {
+                    id: 2,
+                    title: 'Bitcoin Surpasses $43,000 as Institutional Adoption Increases',
+                    summary: 'Cryptocurrency markets show strength as Bitcoin breaks through key resistance level amid growing institutional interest.',
+                    category: 'crypto',
+                    date: '6 hours ago',
+                    image: 'https://images.unsplash.com/photo-1518546305927-5a555bb7020d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+                    readTime: '5 min read',
+                    source: 'CoinDesk',
+                    sourceLogo: 'CD'
+                },
+                {
+                    id: 3,
+                    title: 'Oil Prices Volatile Amid Middle East Tensions and Supply Concerns',
+                    summary: 'Crude oil futures seesaw as geopolitical tensions in the Middle East offset concerns about global demand slowdown.',
+                    category: 'commodities',
+                    date: '8 hours ago',
+                    image: '/images/slide3.jpg',
+                    readTime: '3 min read',
+                    source: 'Reuters',
+                    sourceLogo: 'RT'
+                },
+                {
+                    id: 4,
+                    title: 'EUR/USD Approaches Key Resistance Level Ahead of ECB Meeting',
+                    summary: 'The euro strengthened against the dollar as traders anticipate potential policy shifts from the European Central Bank.',
+                    category: 'forex',
+                    date: '10 hours ago',
+                    image: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+                    readTime: '4 min read',
+                    source: 'Bloomberg',
+                    sourceLogo: 'BB'
+                },
+                {
+                    id: 5,
+                    title: 'Market Analysts Predict Rotation from Growth to Value Stocks',
+                    summary: 'Experts suggest investors may shift focus from high-growth tech stocks to value sectors as interest rate expectations change.',
+                    category: 'analysis',
+                    date: '12 hours ago',
+                    image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+                    readTime: '6 min read',
+                    source: 'Financial Times',
+                    sourceLogo: 'FT'
+                },
+                {
+                    id: 6,
+                    title: 'Federal Reserve Holds Interest Rates Steady Amid Inflation Concerns',
+                    summary: 'The Federal Reserve decided to maintain current interest rates while signaling potential hikes later this year if inflation persists above target levels.',
+                    category: 'analysis',
+                    date: '2 hours ago',
+                    image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+                    readTime: '4 min read',
+                    source: 'Wall Street Journal',
+                    sourceLogo: 'WS'
+                }
+            ]
+        };
+
+        // DOM Elements
+        const tickerContent = document.querySelector('.ticker-content');
+        const trendingList = document.getElementById('trendingList');
+        const newsContainer = document.getElementById('newsContainer');
+        const newsFeed = document.getElementById('newsFeed');
+        const trendingStocks = document.querySelector('.trending-stocks');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeTicker();
+            initializeTrending();
+            initializeTrendingStocks();
+            initializeNewsFeed();
+            initializeNews();
+            setupEventListeners();
+            setupScrollAnimations();
+            simulateLiveUpdates();
+        });
+
+        // Initialize market ticker
+        function initializeTicker() {
+            // Duplicate the ticker items for seamless looping
+            const tickerItems = [...marketData.ticker, ...marketData.ticker];
+            
+            tickerItems.forEach(item => {
+                const tickerItem = document.createElement('div');
+                tickerItem.className = 'ticker-item';
+                tickerItem.innerHTML = `
+                    <span class="fw-bold me-2">${item.symbol}</span>
+                    <span class="me-1">$${item.price.toLocaleString()}</span>
+                    <span class="${item.change >= 0 ? 'positive' : 'negative'}">
+                        ${item.change >= 0 ? '+' : ''}${item.change}%
+                    </span>
+                `;
+                tickerContent.appendChild(tickerItem);
+            });
+        }
+
+        // Initialize trending list
+        function initializeTrending() {
+            marketData.trending.forEach((item, index) => {
+                const trendingItem = document.createElement('div');
+                trendingItem.className = 'trending-item';
+                trendingItem.innerHTML = `
+                    <div class="trending-number">${index + 1}</div>
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between">
+                            <span class="fw-bold">${item.symbol}</span>
+                            <span class="${item.change >= 0 ? 'positive' : 'negative'} fw-bold">
+                                ${item.change >= 0 ? '+' : ''}${item.change}%
+                            </span>
+                        </div>
+                        <div class="small text-muted">${item.name} • Vol: ${item.volume}</div>
+                    </div>
+                `;
+                trendingList.appendChild(trendingItem);
+            });
+        }
+
+        // Initialize trending stocks
+        function initializeTrendingStocks() {
+            marketData.trendingStocks.forEach(item => {
+                const trendingStock = document.createElement('div');
+                trendingStock.className = 'trending-stock';
+                trendingStock.innerHTML = `
+                    <div class="stock-symbol">${item.symbol}</div>
+                    <div class="stock-price">$${item.price}</div>
+                    <div class="stock-change ${item.change >= 0 ? 'positive' : 'negative'}">
+                        ${item.change >= 0 ? '+' : ''}${item.change}%
+                    </div>
+                `;
+                trendingStocks.appendChild(trendingStock);
+            });
+        }
+
+        // Initialize news feed
+        function initializeNewsFeed() {
+            marketData.newsFeed.forEach(item => {
+                const newsFeedItem = document.createElement('div');
+                newsFeedItem.className = 'news-feed-item';
+                newsFeedItem.innerHTML = `
+                    <div class="news-feed-time">${item.time}</div>
+                    <div class="news-feed-title">${item.title}</div>
+                    <div class="news-feed-source">${item.source}</div>
+                `;
+                newsFeed.appendChild(newsFeedItem);
+            });
+        }
+
+        // Initialize news grid
+        function initializeNews() {
+            renderNews(marketData.news);
+        }
+
+        // Render news items
+        function renderNews(newsItems) {
+            newsContainer.innerHTML = '';
+            
+            newsItems.forEach(item => {
+                const newsCard = document.createElement('div');
+                newsCard.className = 'card-custom news-card animate-on-scroll';
+                newsCard.setAttribute('data-category', item.category);
+                newsCard.innerHTML = `
+                    <div class="position-relative">
+                        <img src="${item.image}" class="card-img-top" alt="${item.title}">
+                        <div class="news-badge">${item.category.toUpperCase()}</div>
+                    </div>
+                    <div class="card-body p-4">
+                        <span class="news-category">${item.category}</span>
+                        <h5 class="card-title">${item.title}</h5>
+                        <p class="card-text text-muted">${item.summary}</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <div class="news-source">
+                                <div class="source-logo">${item.sourceLogo}</div>
+                                <span class="source-name">${item.source}</span>
+                            </div>
+                            <small class="news-timestamp">${item.date} • ${item.readTime}</small>
+                        </div>
+                    </div>
+                `;
+                newsContainer.appendChild(newsCard);
+            });
+            
+            // Re-initialize scroll animations for new elements
+            setupScrollAnimations();
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Filter buttons
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    filterNews(filter);
+                });
+            });
+            
+            // Load more button
+            loadMoreBtn.addEventListener('click', function() {
+                showToast('Loading more news...', 'info');
+                // Simulate loading delay
+                setTimeout(() => {
+                    // In a real app, this would fetch more data from an API
+                    showToast('More news loaded successfully!', 'success');
+                    // For demo purposes, we'll just duplicate existing news
+                    const currentNews = [...marketData.news];
+                    const moreNews = currentNews.map(item => ({
+                        ...item,
+                        id: item.id + currentNews.length
+                    }));
+                    renderNews([...marketData.news, ...moreNews]);
+                }, 1500);
+            });
+            
+            // Refresh trending button
+            document.getElementById('refreshTrending').addEventListener('click', function() {
+                showToast('Refreshing trending data...', 'info');
+                // Simulate API call delay
+                setTimeout(() => {
+                    showToast('Trending data updated!', 'success');
+                    // In a real app, this would fetch fresh data
+                }, 1000);
+            });
+            
+            // Newsletter form
+            document.querySelector('.newsletter-form button').addEventListener('click', function(e) {
+                e.preventDefault();
+                const email = document.querySelector('.newsletter-form input').value;
+                if (email && email.includes('@')) {
+                    showToast('Thank you for subscribing to our newsletter!', 'success');
+                    document.querySelector('.newsletter-form input').value = '';
+                } else {
+                    showToast('Please enter a valid email address', 'warning');
+                }
+            });
+        }
+
+        // Filter news by category
+        function filterNews(category) {
+            const allNewsCards = document.querySelectorAll('.news-card');
+            
+            if (category === 'all') {
+                allNewsCards.forEach(card => {
+                    card.style.display = 'block';
+                });
+                showToast('Showing all news', 'info');
+            } else {
+                allNewsCards.forEach(card => {
+                    if (card.getAttribute('data-category') === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                showToast(`Showing ${category} news`, 'info');
+            }
+        }
+
+        // Setup scroll animations
+        function setupScrollAnimations() {
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+
+        // Show toast notification
+        function showToast(message, type = 'info') {
+            const toastContainer = document.querySelector('.toast-container');
+            const toastId = 'toast-' + Date.now();
+            
+            const toast = document.createElement('div');
+            toast.className = `toast align-items-center text-bg-${type === 'success' ? 'success' : type === 'warning' ? 'warning' : type === 'error' ? 'danger' : 'dark'} border-0`;
+            toast.setAttribute('id', toastId);
+            toast.innerHTML = `
+                <div class="d-flex">
+                    <div class="toast-body">
+                        ${message}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                </div>
+            `;
+            
+            toastContainer.appendChild(toast);
+            
+            const bsToast = new bootstrap.Toast(toast, { delay: 3000 });
+            bsToast.show();
+            
+            // Remove toast from DOM after it's hidden
+            toast.addEventListener('hidden.bs.toast', function() {
+                toast.remove();
+            });
+        }
+
+        // Simulate live updates
+        function simulateLiveUpdates() {
+            // Update stats with random values
+            setInterval(() => {
+                document.getElementById('activeTrades').textContent = 
+                    (Math.floor(Math.random() * 500) + 1200).toLocaleString();
+                document.getElementById('marketCap').textContent = 
+                    '$' + (Math.random() * 0.5 + 1.9).toFixed(1) + 'T';
+                document.getElementById('activeTraders').textContent = 
+                    (Math.floor(Math.random() * 5000) + 82000).toLocaleString();
+                document.getElementById('volume').textContent = 
+                    '$' + (Math.floor(Math.random() * 100) + 850) + 'B';
+            }, 5000);
+            
+            // Simulate new news notifications
+            setInterval(() => {
+                const categories = ['stocks', 'crypto', 'forex', 'commodities', 'analysis'];
+                const randomCategory = categories[Math.floor(Math.random() * categories.length)];
+                showToast(`New ${randomCategory} news available`, 'info');
+            }, 15000);
+            
+            // Update market sentiment
+            setInterval(() => {
+                const sentimentValue = Math.floor(Math.random() * 30) + 35;
+                document.getElementById('sentimentFill').style.width = `${sentimentValue}%`;
+                document.querySelector('.sentiment-value').textContent = `${sentimentValue}% Bullish`;
+            }, 8000);
+            
+            // Add new news feed items
+            setInterval(() => {
+                const times = ['10:50 AM', '10:55 AM', '11:00 AM', '11:05 AM'];
+                const titles = [
+                    'Asian markets close mixed as trade talks continue',
+                    'Gold prices edge higher amid inflation concerns',
+                    'Tech sector leads market gains in early trading',
+                    'Federal Reserve releases minutes from latest meeting'
+                ];
+                const sources = ['Reuters', 'Bloomberg', 'CNBC', 'Financial Times'];
+                
+                const randomIndex = Math.floor(Math.random() * times.length);
+                
+                const newsFeedItem = document.createElement('div');
+                newsFeedItem.className = 'news-feed-item';
+                newsFeedItem.innerHTML = `
+                    <div class="news-feed-time">${times[randomIndex]}</div>
+                    <div class="news-feed-title">${titles[randomIndex]}</div>
+                    <div class="news-feed-source">${sources[randomIndex]}</div>
+                `;
+                
+                // Add to top of news feed
+                newsFeed.insertBefore(newsFeedItem, newsFeed.firstChild);
+                
+                // Remove oldest item if more than 7 items
+                if (newsFeed.children.length > 7) {
+                    newsFeed.removeChild(newsFeed.lastChild);
+                }
+            }, 10000);
+        }
+    </script>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
