@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trading Dashboard</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <!-- GSAP (GreenSock) for more advanced animation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <style>
+    :root {
+      /* Your palette */
+      --dark-primary: #000207;
+      --dark-secondary: #1a1f2e;
+      --dark-tertiary: #2d3345;
+      --gold-primary: #ecc906dc;
+      --gold-secondary: #bfac03e8;
+      --gold-dark: #b59b04d8;
+      --gold-gradient: linear-gradient(135deg, #ffd900a4 0%, #ae9f18 100%);
+      --dark-gradient: linear-gradient(135deg, #0a0f1c 0%, #1a1f2e 100%);
+      --text-light: #f8f9fa;
+      --text-muted: #a0aec0;
+      --text-dark: #2d3748;
+      --card-bg: #1a1f2e;
+      --section-bg: #0a0f1c;
+      --border-color: #2d3345;
+      --success: #48bb78;
+      --danger: #f56565;
+      --warning: #ed8936;
+      --info: #4299e1;
+      --btn-primary-bg: var(--gold-primary);
+      --btn-primary-text: var(--dark-primary);
+      --btn-primary-hover: var(--gold-secondary);
+    }
+
+    body {
+      background: var(--section-bg);
+      color: var(--text-light);
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    .section {
+      padding: 40px 0;
+    }
+
+    .trading-hero {
+      background: var(--dark-gradient);
+      color: var(--text-light);
+      text-align: center;
+      padding: 80px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trading-hero h1 {
+      font-weight: 700;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      margin-top: 30px;
+    }
+
+    .trading-hero p.lead {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+    }
+
+    .price-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 15px;
+      padding: 20px;
+      transition: all 0.3s ease;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .price-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--gold-gradient);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .price-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .price-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(236, 201, 6, 0.2);
+    }
+
+    .price {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--gold-primary);
+    }
+
+    .price-change {
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    .price-change.positive {
+      background-color: rgba(72, 187, 120, 0.2);
+      color: var(--success);
+    }
+
+    .price-change.negative {
+      background-color: rgba(245, 101, 101, 0.2);
+      color: var(--danger);
+    }
+
+    .chart-section {
+      background: var(--dark-secondary);
+      border-top: 1px solid var(--border-color);
+    }
+
+    canvas {
+      background: var(--dark-tertiary);
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    .trade-form {
+      background: var(--card-bg);
+      border-radius: 15px;
+      padding: 30px;
+      border: 1px solid var(--border-color);
+    }
+
+    .trade-form .btn-primary {
+      background: var(--gold-primary);
+      color: var(--dark-primary);
+      border: none;
+      font-weight: 600;
+      transition: transform 0.2s ease, background-color 0.3s ease;
+    }
+
+    .trade-form .btn-primary:hover {
+      background: var(--gold-secondary);
+      transform: scale(1.02);
+    }
+
+    .image-section {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    .image-section img {
+      width: 100%;
+      height: auto;
+      transition: transform 0.5s ease;
+    }
+    .image-section:hover img {
+      transform: scale(1.05);
+    }
+
+    .nav-tabs .nav-link {
+      color: var(--text-muted);
+      border: none;
+      padding: 10px 20px;
+    }
+
+    .nav-tabs .nav-link.active {
+      background: transparent;
+      color: var(--gold-primary);
+      border-bottom: 2px solid var(--gold-primary);
+    }
+
+    .watchlist-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+      border-bottom: 1px solid var(--border-color);
+      transition: background 0.2s;
+    }
+
+    .watchlist-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .watchlist-item:last-child {
+      border-bottom: none;
+    }
+
+    .order-book {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .order-book-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 10px;
+      font-size: 0.9rem;
+    }
+
+    .order-book-row.bid {
+      background: rgba(72, 187, 120, 0.1);
+    }
+
+    .order-book-row.ask {
+      background: rgba(245, 101, 101, 0.1);
+    }
+
+    .floating-notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--card-bg);
+      border-left: 4px solid var(--gold-primary);
+      padding: 15px 20px;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      transform: translateX(120%);
+      transition: transform 0.3s ease;
+    }
+
+    .floating-notification.show {
+      transform: translateX(0);
+    }
+
+    .price-up {
+      animation: priceUp 0.5s ease;
+    }
+
+    .price-down {
+      animation: priceDown 0.5s ease;
+    }
+
+    @keyframes priceUp {
+      0% { color: var(--text-light); }
+      50% { color: var(--success); transform: scale(1.1); }
+      100% { color: var(--gold-primary); }
+    }
+
+    @keyframes priceDown {
+      0% { color: var(--text-light); }
+      50% { color: var(--danger); transform: scale(1.1); }
+      100% { color: var(--gold-primary); }
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(236, 201, 6, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(236, 201, 6, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(236, 201, 6, 0); }
+    }
+
+    .crypto-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--dark-tertiary);
+      font-size: 1.2rem;
+      margin-right: 10px;
+    }
+
+    .live-indicator {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--success);
+      border-radius: 50%;
+      margin-right: 5px;
+      animation: blink 1.5s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* Mobile Responsive Fixes */
+    @media (max-width: 768px) {
+      .container, .container-md, .container-sm {
+        max-width: 100% !important;
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+      
+      .trading-hero {
+        padding: 60px 15px;
+      }
+      
+      .trading-hero h1 {
+        font-size: 2rem;
+        margin-top: 35px;
+      }
+      
+      .section {
+        padding: 30px 0;
+      }
+      
+      .price {
+        font-size: 1.5rem;
+      }
+      
+      .price-card {
+        padding: 15px;
+        margin-bottom: 15px;
+      }
+      
+      .trade-form {
+        padding: 20px 15px;
+        margin-bottom: 20px;
+      }
+      
+      /* Chart responsive fixes */
+      .chart-section .container {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+      
+      canvas {
+        width: 100% !important;
+        height: 250px !important;
+        max-width: 100%;
+      }
+      
+      /* Image section fixes */
+      .image-section {
+        margin-bottom: 20px;
+      }
+      
+      /* Order book fixes */
+      .order-book {
+        max-height: 200px;
+      }
+      
+      /* Watchlist fixes */
+      .watchlist-item {
+        padding: 8px 12px;
+      }
+      
+      /* Floating notification mobile positioning */
+      .floating-notification {
+        bottom: 10px;
+        right: 10px;
+        left: 10px;
+        transform: translateY(120%);
+      }
+      
+      .floating-notification.show {
+        transform: translateY(0);
+      }
+    }
+
+    /* Extra small devices */
+    @media (max-width: 576px) {
+      .container {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+      
+      .trading-hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      .price {
+        font-size: 1.3rem;
+      }
+      
+      .trade-form {
+        padding: 15px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+    <!--  Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-trade fixed-top mb-0">
+        <div class="container-fluid px-3 px-md-4"> <!-- Changed to container-fluid for full width -->
+            <a class="navbar-brand" href="#">
+                InvestHub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/invest.html">Invest</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cashcard.html">Cash Card</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            What We Offer
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/invest.html">Invest</a></li>
+                            <li><a class="dropdown-item" href="/trading.html">Trading</a></li>
+                            <li><a class="dropdown-item" href="#">Banking</a></li>
+                            <li><a class="dropdown-item" href="/stock.html">Stocks & ETFs</a></li>
+                            <li><a class="dropdown-item" href="#">Crypto</a></li>
+                            <li><a class="dropdown-item" href="/explore.html">Explore</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/testimonial.html">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/faq.html">Faq</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/learn.html">Learn</a>
+                    </li>
+                </ul>
+                <div class="d-flex btn-container">
+                    <button class="btn btn-login me-2 "><a href="/login.html" class="log">Log in</a></button>
+                    <button class="btn btn-signup"><a href="./signup.html" class="sign">Sign up</a></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+  <!-- HERO SECTION -->
+  <section class="trading-hero">
+    <div class="container-fluid px-3 px-md-5"> <!-- Changed to container-fluid -->
+      <h1 data-aos="fade-down">Trade Smarter, Trade Live</h1>
+      <p class="lead" data-aos="fade-up">Live crypto prices, charts & insights updated in real-time.</p>
+      <div class="mt-4" data-aos="fade-up" data-aos-delay="200">
+        <span class="live-indicator"></span>
+        <span class="text-muted">Live Market Data</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVE PRICES -->
+  <section class="section">
+    <div class="container-fluid px-3 px-md-4"> <!-- Changed to container-fluid -->
+      <h2 class="mb-4 text-center" data-aos="fade-up">Live Crypto Prices</h2>
+      <div class="row g-3" id="live-prices">
+        <div class="col-12 col-md-4" data-aos="fade-right"> <!-- Added col-12 for mobile -->
+          <div class="price-card animate__animated animate__fadeInUp">
+            <div class="d-flex align-items-center justify-content-center mb-3">
+              <div class="crypto-icon">
+                <i class="fab fa-bitcoin"></i>
+              </div>
+              <h4 class="mb-0">Bitcoin (BTC)</h4>
+            </div>
+            <div class="price" id="btc-price">--</div>
+            <div class="price-change mt-2" id="btc-change">--</div>
+            <small class="text-muted d-block mt-2">Updating live...</small>
+          </div>
+        </div>
+        <div class="col-12 col-md-4" data-aos="fade-up"> <!-- Added col-12 for mobile -->
+          <div class="price-card animate__animated animate__fadeInUp">
+            <div class="d-flex align-items-center justify-content-center mb-3">
+              <div class="crypto-icon">
+                <i class="fab fa-ethereum"></i>
+              </div>
+              <h4 class="mb-0">Ethereum (ETH)</h4>
+            </div>
+            <div class="price" id="eth-price">--</div>
+            <div class="price-change mt-2" id="eth-change">--</div>
+            <small class="text-muted d-block mt-2">Updating live...</small>
+          </div>
+        </div>
+        <div class="col-12 col-md-4" data-aos="fade-left"> <!-- Added col-12 for mobile -->
+          <div class="price-card animate__animated animate__fadeInUp">
+            <div class="d-flex align-items-center justify-content-center mb-3">
+              <div class="crypto-icon">
+                <i class="fas fa-coins"></i>
+              </div>
+              <h4 class="mb-0">Binance Coin (BNB)</h4>
+            </div>
+            <div class="price" id="bnb-price">--</div>
+            <div class="price-change mt-2" id="bnb-change">--</div>
+            <small class="text-muted d-block mt-2">Updating live...</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMAGE DISPLAY SECTION -->
+  <section class="section">
+    <div class="container-fluid px-3 px-md-4"> <!-- Changed to container-fluid -->
+      <div class="row g-4 align-items-center">
+        <div class="col-12 col-md-6" data-aos="fade-right"> <!-- Added col-12 for mobile -->
+          <div class="image-section">
+            <img src="/images/tradenetwork.jpg" alt="Trading screen">
+          </div>
+        </div>
+        <div class="col-12 col-md-6" data-aos="fade-left"> <!-- Added col-12 for mobile -->
+          <div class="image-section">
+            <img src="/images/chart.avif" alt="Market chart">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHART + HISTORY SECTION -->
+  <section class="section chart-section">
+    <div class="container-fluid px-2 px-md-4"> <!-- Changed to container-fluid with smaller padding on mobile -->
+      <h2 class="mb-4 text-center" data-aos="fade-up">Market Trend (Last 12 Points)</h2>
+      <div class="row">
+        <div class="col-12 col-lg-8" data-aos="fade-right"> <!-- Added col-12 for mobile -->
+          <div class="chart-container" style="position: relative; height: 300px; width: 100%">
+            <canvas id="priceChart"></canvas>
+          </div>
+        </div>
+        <div class="col-12 col-lg-4 mt-4 mt-lg-0" data-aos="fade-left"> <!-- Added col-12 and margin top for mobile -->
+          <div class="price-card h-100">
+            <h5 class="mb-3">Order Book</h5>
+            <div class="order-book">
+              <div class="order-book-row ask">
+                <span>45,231.50</span>
+                <span class="text-danger">2.45 BTC</span>
+              </div>
+              <div class="order-book-row ask">
+                <span>45,230.75</span>
+                <span class="text-danger">1.87 BTC</span>
+              </div>
+              <div class="order-book-row ask">
+                <span>45,229.90</span>
+                <span class="text-danger">3.12 BTC</span>
+              </div>
+              <div class="order-book-row text-center my-2">
+                <strong>45,228.65</strong>
+              </div>
+              <div class="order-book-row bid">
+                <span>45,227.40</span>
+                <span class="text-success">1.56 BTC</span>
+              </div>
+              <div class="order-book-row bid">
+                <span>45,226.20</span>
+                <span class="text-success">2.33 BTC</span>
+              </div>
+              <div class="order-book-row bid">
+                <span>45,225.10</span>
+                <span class="text-success">0.98 BTC</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRADE ACTION SECTION -->
+  <section class="section">
+    <div class="container-fluid px-3 px-md-4"> <!-- Changed to container-fluid -->
+      <div class="row">
+        <div class="col-12 col-lg-6 mb-4 mb-lg-0" data-aos="fade-right"> <!-- Added col-12 and margin bottom for mobile -->
+          <div class="trade-form">
+            <h3 class="mb-3">Quick Trade</h3>
+            <form id="trade-form">
+              <div class="mb-3">
+                <label for="asset" class="form-label">Asset</label>
+                <select id="asset" class="form-select">
+                  <option value="bitcoin">Bitcoin</option>
+                  <option value="ethereum">Ethereum</option>
+                  <option value="binancecoin">Binance Coin</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="amount" class="form-label">Amount (USD)</label>
+                <input type="number" id="amount" class="form-control" placeholder="Enter USD amount">
+              </div>
+              <div class="mb-3">
+                <label for="order-type" class="form-label">Order Type</label>
+                <select id="order-type" class="form-select">
+                  <option value="market">Market</option>
+                  <option value="limit">Limit</option>
+                  <option value="stop">Stop-Loss</option>
+                </select>
+              </div>
+              <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Buy</button>
+                <button type="button" class="btn btn-outline-danger">Sell</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6" data-aos="fade-left"> <!-- Added col-12 for mobile -->
+          <div class="price-card h-100">
+            <h5 class="mb-3">Watchlist</h5>
+            <div class="watchlist">
+              <!-- Watchlist items remain the same -->
+              <div class="watchlist-item">
+                <div class="d-flex align-items-center">
+                  <div class="crypto-icon">
+                    <i class="fab fa-bitcoin"></i>
+                  </div>
+                  <div>
+                    <div>BTC/USD</div>
+                    <small class="text-muted">Bitcoin</small>
+                  </div>
+                </div>
+                <div class="text-end">
+                  <div id="watchlist-btc">--</div>
+                  <small class="text-muted" id="watchlist-btc-change">--</small>
+                </div>
+              </div>
+              <!-- Other watchlist items... -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MORE INFO SECTION -->
+  <section class="section">
+    <div class="container-fluid px-3 px-md-4"> <!-- Changed to container-fluid -->
+      <h2 class="mb-4 text-center" data-aos="fade-up">Market Overview</h2>
+      <div class="row g-4">
+        <div class="col-12 col-md-4" data-aos="flip-left"> <!-- Added col-12 for mobile -->
+          <div class="price-card">
+            <h5>24h Volume</h5>
+            <div class="price" id="volume">--</div>
+            <small class="text-muted">Total trading volume</small>
+          </div>
+        </div>
+        <div class="col-12 col-md-4" data-aos="flip-up"> <!-- Added col-12 for mobile -->
+          <div class="price-card">
+            <h5>Market Cap</h5>
+            <div class="price" id="marketcap">--</div>
+            <small class="text-muted">Total market capitalization</small>
+          </div>
+        </div>
+        <div class="col-12 col-md-4" data-aos="flip-right"> <!-- Added col-12 for mobile -->
+          <div class="price-card">
+            <h5>Price Change (24h)</h5>
+            <div class="price" id="pricechange">--</div>
+            <small class="text-muted">Bitcoin 24h performance</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLOATING NOTIFICATION -->
+  <div class="floating-notification" id="notification">
+    <div class="d-flex align-items-center">
+      <i class="fas fa-bell text-warning me-2"></i>
+      <div>
+        <strong>Price Alert</strong>
+        <div id="notification-text">Bitcoin price updated</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container-fluid px-3 px-md-4"> <!-- Changed to container-fluid -->
+      <!-- Footer content remains the same -->
+    </div>
+  </footer>
+
+  <!-- JS Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="/js/app.js"></script>
+
+  <script>
+    // Your existing JavaScript code remains the same
+    AOS.init({
+      duration: 800,
+      once: true
+    });
+
+    // Helper formatters
+    function formatMoney(num) {
+      return Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(num);
+    }
+
+    // Store previous prices for animation
+    let previousPrices = {
+      bitcoin: 0,
+      ethereum: 0,
+      binancecoin: 0
+    };
+
+    // Real-API fetch from CoinGecko
+    const apiBase = 'https://api.coingecko.com/api/v3';
+    const apiKeyParam = ''; // if required: '?x_cg_pro_api_key=YOUR_KEY' or & after
+
+    async function fetchPrices() {
+      try {
+        const res = await fetch(`${apiBase}/simple/price?ids=bitcoin,ethereum,binancecoin&vs_currencies=usd&include_24hr_change=true&include_market_cap=true&include_24hr_vol=true${apiKeyParam}`);
+        const data = await res.json();
+        
+        // Update prices with animation if changed
+        updatePriceWithAnimation('btc', data.bitcoin.usd, data.bitcoin.usd_24h_change);
+        updatePriceWithAnimation('eth', data.ethereum.usd, data.ethereum.usd_24h_change);
+        updatePriceWithAnimation('bnb', data.binancecoin.usd, data.binancecoin.usd_24h_change);
+        
+        // Update watchlist
+        document.getElementById('watchlist-btc').textContent = formatMoney(data.bitcoin.usd);
+        document.getElementById('watchlist-eth').textContent = formatMoney(data.ethereum.usd);
+        document.getElementById('watchlist-bnb').textContent = formatMoney(data.binancecoin.usd);
+        
+        document.getElementById('watchlist-btc-change').textContent = formatChange(data.bitcoin.usd_24h_change);
+        document.getElementById('watchlist-eth-change').textContent = formatChange(data.ethereum.usd_24h_change);
+        document.getElementById('watchlist-bnb-change').textContent = formatChange(data.binancecoin.usd_24h_change);
+        
+        // More info section
+        document.getElementById('pricechange').textContent = (data.bitcoin.usd_24h_change).toFixed(2) + '%';
+        document.getElementById('marketcap').textContent = formatMoney(data.bitcoin.usd_market_cap);
+        document.getElementById('volume').textContent = formatMoney(data.bitcoin.usd_24h_vol);
+
+        // update chart with new point
+        addChartData(data.bitcoin.usd);
+        
+        // Store current prices for next comparison
+        previousPrices.bitcoin = data.bitcoin.usd;
+        previousPrices.ethereum = data.ethereum.usd;
+        previousPrices.binancecoin = data.binancecoin.usd;
+        
+      } catch (err) {
+        console.error('Error fetching prices:', err);
+      }
+    }
+
+    function updatePriceWithAnimation(coin, newPrice, change) {
+      const priceElement = document.getElementById(`${coin}-price`);
+      const changeElement = document.getElementById(`${coin}-change`);
+      
+      const oldPrice = parseFloat(priceElement.textContent.replace(/[$,]/g, '')) || 0;
+      
+      if (oldPrice && oldPrice !== newPrice) {
+        // Show notification for significant price changes
+        if (Math.abs((newPrice - oldPrice) / oldPrice) > 0.005) { // 0.5% change
+          showNotification(`${coin.toUpperCase()} price ${newPrice > oldPrice ? 'increased' : 'decreased'} to ${formatMoney(newPrice)}`);
+        }
+        
+        // Add animation class
+        priceElement.classList.remove('price-up', 'price-down');
+        void priceElement.offsetWidth; // Trigger reflow
+        
+        if (newPrice > oldPrice) {
+          priceElement.classList.add('price-up');
+        } else {
+          priceElement.classList.add('price-down');
+        }
+      }
+      
+      // Update price and change
+      priceElement.textContent = formatMoney(newPrice);
+      changeElement.textContent = formatChange(change);
+      changeElement.className = `price-change mt-2 ${change >= 0 ? 'positive' : 'negative'}`;
+    }
+
+    function formatChange(change) {
+      const sign = change >= 0 ? '+' : '';
+      return `${sign}${change.toFixed(2)}%`;
+    }
+
+    function showNotification(message) {
+      const notification = document.getElementById('notification');
+      const notificationText = document.getElementById('notification-text');
+      
+      notificationText.textContent = message;
+      notification.classList.add('show');
+      
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 3000);
+    }
+
+    // Chart.js setup - updated for responsive container
+    const ctx = document.getElementById('priceChart');
+    const chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: [], // times
+        datasets: [{
+          label: 'BTC/USD',
+          data: [],
+          borderColor: getComputedStyle(document.documentElement).getPropertyValue('--gold-primary').trim(),
+          borderWidth: 3,
+          fill: true,
+          backgroundColor: 'rgba(236, 201, 6, 0.1)',
+          tension: 0.4,
+          pointBackgroundColor: getComputedStyle(document.documentElement).getPropertyValue('--gold-primary').trim(),
+          pointRadius: 4,
+          pointHoverRadius: 6,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: { 
+            ticks: { 
+              color: getComputedStyle(document.documentElement).getPropertyValue('--text-muted'),
+              callback: function(value) {
+                return '$' + value.toLocaleString();
+              }
+            }, 
+            grid: { 
+              color: getComputedStyle(document.documentElement).getPropertyValue('--border-color') 
+            } 
+          },
+          x: { 
+            ticks: { 
+              color: getComputedStyle(document.documentElement).getPropertyValue('--text-muted') 
+            }, 
+            grid: { 
+              color: getComputedStyle(document.documentElement).getPropertyValue('--border-color') 
+            } 
+          }
+        },
+        plugins: {
+          legend: { 
+            labels: { 
+              color: getComputedStyle(document.documentElement).getPropertyValue('--text-light'),
+              font: {
+                size: 14
+              }
+            } 
+          },
+          tooltip: {
+            backgroundColor: getComputedStyle(document.documentElement).getPropertyValue('--card-bg'),
+            titleColor: getComputedStyle(document.documentElement).getPropertyValue('--text-light'),
+            bodyColor: getComputedStyle(document.documentElement).getPropertyValue('--text-light'),
+            borderColor: getComputedStyle(document.documentElement).getPropertyValue('--gold-primary'),
+            borderWidth: 1,
+            callbacks: {
+              label: function(context) {
+                return `Price: $${context.parsed.y.toLocaleString()}`;
+              }
+            }
+          }
+        }
+      }
+    });
+
+    function addChartData(price) {
+      const now = new Date();
+      const timeLabel = now.getHours() + ':' + String(now.getMinutes()).padStart(2, '0');
+      if (chart.data.labels.length >= 12) {
+        chart.data.labels.shift();
+        chart.data.datasets[0].data.shift();
+      }
+      chart.data.labels.push(timeLabel);
+      chart.data.datasets[0].data.push(price);
+      chart.update();
+    }
+
+    // Initial fetch + interval
+    fetchPrices();
+    setInterval(fetchPrices, 15000); // every 15 seconds
+
+    // Trade form submit simulation
+    document.getElementById('trade-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const asset = document.getElementById('asset').value;
+      const amount = document.getElementById('amount').value;
+      const orderType = document.getElementById('order-type').value;
+      
+      // Animate form submission
+      gsap.fromTo('#trade-form', { scale: 1 }, { 
+        scale: 1.02, 
+        duration: 0.2, 
+        yoyo: true, 
+        repeat: 1 
+      });
+      
+      // Show success notification
+      showNotification(`${orderType.charAt(0).toUpperCase() + orderType.slice(1)} order for ${amount} USD of ${asset.toUpperCase()} placed successfully`);
+      
+      // Reset form
+      document.getElementById('amount').value = '';
+    });
+
+    // Add pulse animation to one of the price cards on load
+    document.addEventListener('DOMContentLoaded', function() {
+      const btcCard = document.querySelector('.price-card');
+      btcCard.classList.add('pulse');
+      
+      // Remove pulse after animation completes
+      setTimeout(() => {
+        btcCard.classList.remove('pulse');
+      }, 4000);
+    });
+  </script>
+</body>
+</html>
